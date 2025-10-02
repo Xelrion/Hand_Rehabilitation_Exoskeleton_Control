@@ -6,9 +6,9 @@
  *
  * Code generation for model "ControlSystem_Refactorization".
  *
- * Model version              : 2.9
+ * Model version              : 2.31
  * Simulink Coder version : 25.1 (R2025a) 21-Nov-2024
- * C source code generated on : Sun Sep 14 20:33:31 2025
+ * C source code generated on : Sat Sep 13 19:46:30 2025
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -34,8 +34,8 @@ extern void ControlSystem_Refactorization_CurvaturaActuador5_Start
    DW_CurvaturaActuador5_ControlSystem_Refactorization_T *localDW,
    XDis_CurvaturaActuador5_ControlSystem_Refactorization_T *localXdis);
 extern void ControlSystem_Refactorization_CurvaturaActuador5_Deriv(real_T
-  rtu_PresinEntrada, DW_CurvaturaActuador5_ControlSystem_Refactorization_T
-  *localDW, P_CurvaturaActuador5_ControlSystem_Refactorization_T *localP,
+  rtu_In1, DW_CurvaturaActuador5_ControlSystem_Refactorization_T *localDW,
+  P_CurvaturaActuador5_ControlSystem_Refactorization_T *localP,
   X_CurvaturaActuador5_ControlSystem_Refactorization_T *localX,
   XDot_CurvaturaActuador5_ControlSystem_Refactorization_T *localXdot);
 extern void ControlSystem_Refactorization_CurvaturaActuador5_Disable
@@ -48,6 +48,29 @@ extern void ControlSystem_Refactorization_CurvaturaActuador5
    P_CurvaturaActuador5_ControlSystem_Refactorization_T *localP,
    X_CurvaturaActuador5_ControlSystem_Refactorization_T *localX,
    XDis_CurvaturaActuador5_ControlSystem_Refactorization_T *localXdis);
+extern void ControlSystem_Refactorization_CurvaturaActuador4_Init
+  (B_CurvaturaActuador4_ControlSystem_Refactorization_T *localB,
+   P_CurvaturaActuador4_ControlSystem_Refactorization_T *localP,
+   X_CurvaturaActuador4_ControlSystem_Refactorization_T *localX);
+extern void ControlSystem_Refactorization_CurvaturaActuador4_Start
+  (B_CurvaturaActuador4_ControlSystem_Refactorization_T *localB,
+   DW_CurvaturaActuador4_ControlSystem_Refactorization_T *localDW,
+   XDis_CurvaturaActuador4_ControlSystem_Refactorization_T *localXdis);
+extern void ControlSystem_Refactorization_CurvaturaActuador4_Deriv(real_T
+  rtu_In1, DW_CurvaturaActuador4_ControlSystem_Refactorization_T *localDW,
+  P_CurvaturaActuador4_ControlSystem_Refactorization_T *localP,
+  X_CurvaturaActuador4_ControlSystem_Refactorization_T *localX,
+  XDot_CurvaturaActuador4_ControlSystem_Refactorization_T *localXdot);
+extern void ControlSystem_Refactorization_CurvaturaActuador4_Disable
+  (DW_CurvaturaActuador4_ControlSystem_Refactorization_T *localDW);
+extern void ControlSystem_Refactorization_CurvaturaActuador4
+  (RT_MODEL_ControlSystem_Refactorization_T * const
+   ControlSystem_Refactorization_M, boolean_T rtu_Enable,
+   B_CurvaturaActuador4_ControlSystem_Refactorization_T *localB,
+   DW_CurvaturaActuador4_ControlSystem_Refactorization_T *localDW,
+   P_CurvaturaActuador4_ControlSystem_Refactorization_T *localP,
+   X_CurvaturaActuador4_ControlSystem_Refactorization_T *localX,
+   XDis_CurvaturaActuador4_ControlSystem_Refactorization_T *localXdis);
 
 /* private model entry point functions */
 extern void ControlSystem_Refactorization_derivatives(void);

@@ -27,37 +27,21 @@ classdef elegirTensionesElectrovalvulas < matlab.System
             % Perform one-time calculations, such as computing constants
         end
 
-        function tensionesSalida = stepImpl(obj, sistema, actuadorBus, electroValvulas)
+        function tensionesSalida = stepImpl(obj, modoControl, actuadorBus, electroValvulas)
             % Implement algorithm. Calculate y as a function of input u and
             % internal states.
             
             % Inicialización de variables
-            modoControl = sistema.Configuracion.Global.modoControl;
-            tensionControl = sistema.Estado.Global.tensionControl;
             puertosDigitales = electroValvulas.Configuracion.PuertosDigitales;
             tensionesSalida = zeros(length(puertosDigitales),1);
-
-            % Seleccionar cámara de control
-            valvulaControl = EstadoValvula.Flexion;
-            if tensionControl < double(0)
-                valvulaControl = EstadoValvula.Extension;
-            end
 
             % Selección de tensiones de salida
             for actuador = 1:length(actuadorBus)
                 % Estado del actuador
                 if modoControl == ModoControl.Manual
-                    if actuadorBus(actuador).Configuracion.ControlManual.valvulaCerrada == true
-                        estadoActuador = EstadoValvula.Bloquear;
-                    else
-                        estadoActuador = valvulaControl;
-                    end
+                    estadoActuador = actuadorBus(actuador).Configuracion.ControlManual.estadoValvula;
                 else
-                    if actuadorBus(actuador).Estado.ControlAutomatico.valvulaCerrada == true
-                        estadoActuador = EstadoValvula.Bloquear;
-                    else
-                        estadoActuador = valvulaControl;
-                    end
+                    estadoActuador = actuadorBus(actuador).Estado.ControlAutomatico.estadoValvula;
                 end
                 % Puertos de conexión de la electoválvula del actuador
                 puertoTerminalA = electroValvulas.Configuracion.ConexionActuadores(actuador).terminalA;
@@ -75,10 +59,10 @@ classdef elegirTensionesElectrovalvulas < matlab.System
                 case EstadoValvula.Bloquear
                     tensionTerminalA = 0;
                     tensionTerminalB = 0;
-                case EstadoValvula.Flexion
+                case EstadoValvula.Inyectar
                     tensionTerminalA = 1;
                     tensionTerminalB = 0;
-                case EstadoValvula.Extension
+                case EstadoValvula.Expulsar
                     tensionTerminalA = 0;
                     tensionTerminalB = 1;
                 otherwise

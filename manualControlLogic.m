@@ -21,62 +21,41 @@ classdef manualControlLogic < matlab.System
         end
 
         function [controlador, actuadoresPosicionados, ...
-            valvulasCerradas_controlAutonomo, ...
-            realimentacion_presion, realimentacion_curvatura, ...
-            referencia_presion, referencia_curvatura] = ...
-            stepImpl(obj, sistema, actuadorBus, regulador)
-            % Implement algorithm. Calculate y as a function of input u and
-            % internal states.
+                estadoValvulas_ControlAutonomo, ...
+                realimentacionControl, referenciaControl] ...
+                = stepImpl(obj, sistema, actuadorBus, regulador)
 
-            % Inicializar variables
+            % 1. INICIALIZACIÓN DE VARIABLES
             numAct = length(actuadorBus);
             modoControl = sistema.Configuracion.Global.modoControl;
             parametroControl = sistema.Configuracion.Global.parametroControl;
             actuadorSeleccionado = sistema.Configuracion.ControlManual.actuadorSeleccionado;
-            referencias = struct( ...
-                'presion', arrayfun(@(x) x.Configuracion.Global.Referencia.presion, actuadorBus), ...
-                'curvatura', arrayfun(@(x) x.Configuracion.Global.Referencia.curvatura, actuadorBus) ...
-            );
-            realimentaciones = struct( ...
-                'presionRegulador', regulador.Estado.presion, ...
-                'actuador', struct( ...
-                    'presion', arrayfun(@(x) x.Estado.Realimentacion.presion, actuadorBus), ...
-                    'curvatura', arrayfun(@(x) x.Estado.Realimentacion.curvatura, actuadorBus) ...
-                ) ...
-            );
 
-            % Inicializar salidas
-            % 1. Controlador activo
-            controlador = Controlador.Presion;
-            % 2. Actuadores posicionados
+            % 2. INICIALIZACIÓN DE SALIDAS
             actuadoresPosicionados = repmat(ActuadorPosicionado.Control_Manual,1,numAct);
-            % 3. Realimentación y referencias por defecto
-            realimentacion_presion = realimentaciones.presionRegulador;
-            realimentacion_curvatura = double(0);
-            referencia_presion = realimentacion_presion;
-            referencia_curvatura = realimentacion_curvatura;
-            % 4. Estado electroválvulas (control autónomo)
-            valvulasCerradas_controlAutonomo = arrayfun(@(x) x.Estado.ControlAutomatico.valvulaCerrada, actuadorBus)';
-            % Finalizar lógica de control si está deshabilitada o no hay ningún actuador seleccionado
-            if modoControl ~= ModoControl.Manual | actuadorSeleccionado == 0 
+            estadoValvulas_ControlAutonomo = arrayfun(@(x) x.Estado.ControlAutomatico.estadoValvula, actuadorBus)';
+            controlador = Controlador.Presion;
+            % 1. No hay ningún actuador seleccionado o el modo de control
+            % manual está deshabilitado
+            if actuadorSeleccionado == 0 | modoControl ~= ModoControl.Manual
+                referenciaControl = regulador.Estado.presion;
+                realimentacionControl = regulador.Estado.presion;
                 return
             end
-
-            % Lógica de control
-            % 1. Señales de control
-            if actuadorSeleccionado ~= 0
-                % 1.1 Referencias
-                referencia_presion = referencias.presion(actuadorSeleccionado);
-                referencia_curvatura = referencias.curvatura(actuadorSeleccionado);
-                % 1.2 Realimentaciones
-                realimentacion_presion = realimentaciones.actuador.presion(actuadorSeleccionado);
-                realimentacion_curvatura = realimentaciones.actuador.curvatura(actuadorSeleccionado);
+            % 2. Se escogen las señales en función del actuador
+            % seleccionado y del parámetro de control activo
+            switch parametroControl
+                case ParametroControl.Presion
+                    controlador = Controlador.Presion;
+                    referenciaControl = actuadorBus(actuadorSeleccionado).Configuracion.Global.Referencia.presion;
+                    realimentacionControl = actuadorBus(actuadorSeleccionado).Estado.Realimentacion.presion;
+                case ParametroControl.Curvatura
+                    controlador = Controlador.Curvatura;
+                    referenciaControl = actuadorBus(actuadorSeleccionado).Configuracion.Global.Referencia.curvatura;
+                    realimentacionControl = actuadorBus(actuadorSeleccionado).Estado.Realimentacion.curvatura;
+                otherwise
+                    error('No se ha escogido un parámetro de control correcto.');
             end
-            % 2. Controlador activo
-            if parametroControl == ParametroControl.Curvatura
-                controlador = Controlador.Curvatura;
-            end
-
         end
 
         function resetImpl(obj)

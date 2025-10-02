@@ -6,9 +6,9 @@
  *
  * Code generation for model "ControlSystem_Refactorization".
  *
- * Model version              : 2.9
+ * Model version              : 2.31
  * Simulink Coder version : 25.1 (R2025a) 21-Nov-2024
- * C source code generated on : Sun Sep 14 20:33:31 2025
+ * C source code generated on : Sat Sep 13 19:46:30 2025
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -20,11 +20,11 @@
 #ifndef ControlSystem_Refactorization_types_h_
 #define ControlSystem_Refactorization_types_h_
 #include "rtwtypes.h"
-#include "referencia_control.h"
 #include "modo_control.h"
+#include "referencia_control.h"
+#include "myvalvestates.h"
 #include "controlador.h"
 #include "act_position.h"
-#include "myvalvestates.h"
 #ifndef DEFINED_TYPEDEF_FOR_Referencia_
 #define DEFINED_TYPEDEF_FOR_Referencia_
 
@@ -50,7 +50,7 @@ typedef struct {
 #define DEFINED_TYPEDEF_FOR_ControlManual_
 
 typedef struct {
-  boolean_T valvulaCerrada;
+  EstadoValvula estadoValvula;
 } ControlManual;
 
 #endif
@@ -69,7 +69,7 @@ typedef struct {
 #define DEFINED_TYPEDEF_FOR_ControlAutomatico_
 
 typedef struct {
-  boolean_T valvulaCerrada;
+  EstadoValvula estadoValvula;
   ActuadorPosicionado actuadorPosicionado;
 } ControlAutomatico;
 
@@ -105,16 +105,6 @@ typedef struct {
 
 #endif
 
-#ifndef DEFINED_TYPEDEF_FOR_referenciaControl_
-#define DEFINED_TYPEDEF_FOR_referenciaControl_
-
-typedef struct {
-  real_T presion;
-  real_T curvatura;
-} referenciaControl;
-
-#endif
-
 #ifndef DEFINED_TYPEDEF_FOR_ToleranciaPresion_
 #define DEFINED_TYPEDEF_FOR_ToleranciaPresion_
 
@@ -142,9 +132,9 @@ typedef struct {
   real_T numActuadores;
   ModoControl modoControl;
   ParametroControl parametroControl;
+  real_T referenciaControl;
   Controlador controlador;
-  referenciaControl referenciaControl;
-  boolean_T simulacionActiva;
+  real_T simulacionActiva;
   real_T toleranciaEquilibrioPresiones;
   ToleranciaPresion ToleranciaPresion;
   ToleranciaCurvatura ToleranciaCurvatura;
@@ -171,44 +161,13 @@ typedef struct {
 
 #endif
 
-#ifndef DEFINED_TYPEDEF_FOR_realimentacionControl_
-#define DEFINED_TYPEDEF_FOR_realimentacionControl_
-
-typedef struct {
-  real_T presion;
-  real_T curvatura;
-} realimentacionControl;
-
-#endif
-
-#ifndef DEFINED_TYPEDEF_FOR_errorEstacionario_
-#define DEFINED_TYPEDEF_FOR_errorEstacionario_
-
-typedef struct {
-  real_T presion;
-  real_T curvatura;
-} errorEstacionario;
-
-#endif
-
-#ifndef DEFINED_TYPEDEF_FOR_errorDerivativo_
-#define DEFINED_TYPEDEF_FOR_errorDerivativo_
-
-typedef struct {
-  real_T presion;
-  real_T curvatura;
-} errorDerivativo;
-
-#endif
-
 #ifndef DEFINED_TYPEDEF_FOR_slBus4_Global_
 #define DEFINED_TYPEDEF_FOR_slBus4_Global_
 
 typedef struct {
-  real_T tensionControl;
-  realimentacionControl realimentacionControl;
-  errorEstacionario errorEstacionario;
-  errorDerivativo errorDerivativo;
+  real_T realimentacionControl;
+  real_T errorEstacionario;
+  real_T errorDerivativo;
 } slBus4_Global;
 
 #endif
@@ -326,37 +285,108 @@ typedef struct tag_tNTZQzHg4pRnqsm6ksfZPG
 
 #endif          /* typedef_manualControlLogic_ControlSystem_Refactorization_T */
 
-#ifndef struct_tag_GvdguwzjehF0xqhwdOmYeH
-#define struct_tag_GvdguwzjehF0xqhwdOmYeH
+#ifndef struct_tag_s3Zh1fqUhMb4DUz4uJXlqfD
+#define struct_tag_s3Zh1fqUhMb4DUz4uJXlqfD
 
-struct tag_GvdguwzjehF0xqhwdOmYeH
+struct tag_s3Zh1fqUhMb4DUz4uJXlqfD
+{
+  real_T presionRegulador;
+  real_T presionesEquilibrio[4];
+  real_T actuador[4];
+};
+
+#endif                                 /* struct_tag_s3Zh1fqUhMb4DUz4uJXlqfD */
+
+#ifndef typedef_s3Zh1fqUhMb4DUz4uJXlqfD_ControlSystem_Refactorization_T
+#define typedef_s3Zh1fqUhMb4DUz4uJXlqfD_ControlSystem_Refactorization_T
+
+typedef struct tag_s3Zh1fqUhMb4DUz4uJXlqfD
+  s3Zh1fqUhMb4DUz4uJXlqfD_ControlSystem_Refactorization_T;
+
+#endif     /* typedef_s3Zh1fqUhMb4DUz4uJXlqfD_ControlSystem_Refactorization_T */
+
+#ifndef struct_tag_s7ZPPf7C83RtBPv6RIN9RQG
+#define struct_tag_s7ZPPf7C83RtBPv6RIN9RQG
+
+struct tag_s7ZPPf7C83RtBPv6RIN9RQG
+{
+  real_T estacionaria;
+  real_T derivativa;
+  real_T equilibrioPresiones;
+};
+
+#endif                                 /* struct_tag_s7ZPPf7C83RtBPv6RIN9RQG */
+
+#ifndef typedef_s7ZPPf7C83RtBPv6RIN9RQG_ControlSystem_Refactorization_T
+#define typedef_s7ZPPf7C83RtBPv6RIN9RQG_ControlSystem_Refactorization_T
+
+typedef struct tag_s7ZPPf7C83RtBPv6RIN9RQG
+  s7ZPPf7C83RtBPv6RIN9RQG_ControlSystem_Refactorization_T;
+
+#endif     /* typedef_s7ZPPf7C83RtBPv6RIN9RQG_ControlSystem_Refactorization_T */
+
+#ifndef struct_tag_s0BuO0sMFvbwNcEVTZBihWB
+#define struct_tag_s0BuO0sMFvbwNcEVTZBihWB
+
+struct tag_s0BuO0sMFvbwNcEVTZBihWB
+{
+  real_T estacionario;
+  real_T derivativo;
+};
+
+#endif                                 /* struct_tag_s0BuO0sMFvbwNcEVTZBihWB */
+
+#ifndef typedef_s0BuO0sMFvbwNcEVTZBihWB_ControlSystem_Refactorization_T
+#define typedef_s0BuO0sMFvbwNcEVTZBihWB_ControlSystem_Refactorization_T
+
+typedef struct tag_s0BuO0sMFvbwNcEVTZBihWB
+  s0BuO0sMFvbwNcEVTZBihWB_ControlSystem_Refactorization_T;
+
+#endif     /* typedef_s0BuO0sMFvbwNcEVTZBihWB_ControlSystem_Refactorization_T */
+
+#ifndef struct_tag_QttgpUQSlreahlCDZyHl1E
+#define struct_tag_QttgpUQSlreahlCDZyHl1E
+
+struct tag_QttgpUQSlreahlCDZyHl1E
 {
   int32_T isInitialized;
   boolean_T controlHabilitado;
+  ModoControl modoControl;
   ParametroControl parametroControl;
   real_T actuadorSeleccionado;
+  real_T referencias[4];
+  s3Zh1fqUhMb4DUz4uJXlqfD_ControlSystem_Refactorization_T realimentaciones;
+  s7ZPPf7C83RtBPv6RIN9RQG_ControlSystem_Refactorization_T tolerancias;
+  real_T errores[4];
+  s0BuO0sMFvbwNcEVTZBihWB_ControlSystem_Refactorization_T errorControl;
+  boolean_T actuadoresActivos[4];
+  EstadoValvula estadoValvulas[4];
 };
 
-#endif                                 /* struct_tag_GvdguwzjehF0xqhwdOmYeH */
+#endif                                 /* struct_tag_QttgpUQSlreahlCDZyHl1E */
 
 #ifndef typedef_sequential_autonomousControlLogic_ControlSystem_Refactorization_T
 #define typedef_sequential_autonomousControlLogic_ControlSystem_Refactorization_T
 
-typedef struct tag_GvdguwzjehF0xqhwdOmYeH
+typedef struct tag_QttgpUQSlreahlCDZyHl1E
   sequential_autonomousControlLogic_ControlSystem_Refactorization_T;
 
 #endif
 /* typedef_sequential_autonomousControlLogic_ControlSystem_Refactorization_T */
 
-/* Parameters for system: '<S21>/Flujo de aire en los actuadores' */
+/* Parameters for system: '<S18>/Flujo de aire en los actuadores' */
 typedef struct P_CoreSubsys_ControlSystem_Refactorization_gmy_T_
   P_CoreSubsys_ControlSystem_Refactorization_gmy_T;
 
-/* Parameters for system: '<S27>/Curvatura Actuador 5' */
+/* Parameters for system: '<S24>/Curvatura Actuador 5' */
 typedef struct P_CurvaturaActuador5_ControlSystem_Refactorization_T_
   P_CurvaturaActuador5_ControlSystem_Refactorization_T;
 
-/* Parameters for system: '<S22>/Modelo de los actuadores' */
+/* Parameters for system: '<S24>/Curvatura Actuador 4' */
+typedef struct P_CurvaturaActuador4_ControlSystem_Refactorization_T_
+  P_CurvaturaActuador4_ControlSystem_Refactorization_T;
+
+/* Parameters for system: '<S19>/Modelo de los actuadores' */
 typedef struct P_CoreSubsys_ControlSystem_Refactorization_gmy0_T_
   P_CoreSubsys_ControlSystem_Refactorization_gmy0_T;
 

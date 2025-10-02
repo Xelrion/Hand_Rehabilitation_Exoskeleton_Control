@@ -6,9 +6,9 @@
  *
  * Code generation for model "ControlSystem_Refactorization".
  *
- * Model version              : 2.9
+ * Model version              : 2.31
  * Simulink Coder version : 25.1 (R2025a) 21-Nov-2024
- * C source code generated on : Sun Sep 14 20:33:31 2025
+ * C source code generated on : Sat Sep 13 19:46:30 2025
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -42,6 +42,7 @@ static uint_T rtDataTypeSizes[] = {
   sizeof(Controlador),
   sizeof(int32_T),
   sizeof(int32_T),
+  sizeof(EstadoValvula),
   sizeof(int32_T),
   sizeof(int32_T),
   sizeof(ActuadorPosicionado),
@@ -64,15 +65,11 @@ static uint_T rtDataTypeSizes[] = {
   sizeof(int32_T),
   sizeof(int32_T),
   sizeof(int32_T),
-  sizeof(referenciaControl),
   sizeof(ToleranciaPresion),
   sizeof(ToleranciaCurvatura),
   sizeof(slBus1_Global),
   sizeof(slBus2_ControlManual),
   sizeof(slBus3_Configuracion),
-  sizeof(realimentacionControl),
-  sizeof(errorEstacionario),
-  sizeof(errorDerivativo),
   sizeof(slBus4_Global),
   sizeof(slBus5_ControlAutomatico),
   sizeof(slBus6_Estado),
@@ -87,7 +84,6 @@ static uint_T rtDataTypeSizes[] = {
   sizeof(ConexionActuadores),
   sizeof(slBus1_Configuracion),
   sizeof(slBusElectroValvulas),
-  sizeof(EstadoValvula),
   sizeof(elegirTensionesElectrovalvulas_ControlSystem_Refactorization_T),
   sizeof(manualControlLogic_ControlSystem_Refactorization_T),
   sizeof(sequential_autonomousControlLogic_ControlSystem_Refactorization_T),
@@ -122,12 +118,13 @@ static const char_T * rtDataTypeNames[] = {
   "Controlador",
   "struct_CPSYnxCWethLU9QIJHM1EH",
   "struct_eXzH5KP5yBot48ZvxrXAwD",
-  "struct_F5uhD4669REqk8ilv99yzE",
-  "struct_nCAIZ4xegaKiMIqo5f73mF",
+  "EstadoValvula",
+  "struct_H0LLDpqNeIsneCiFAA22oC",
+  "struct_njQFvBN3sajhrwz4TxOHYC",
   "ActuadorPosicionado",
-  "struct_tRE3KLlDSnHtadVgB14kLF",
-  "struct_bRez4MLern7xVfiUozLUE",
-  "struct_kxHCIlyGRqOqeDC8u5LDZD",
+  "struct_uUwnPxxRWvgY1g0UOPPGc",
+  "struct_cYVU3ufdQmpSwvT6knf62C",
+  "struct_tlFSC06dcPiUE7LnTIKxKD",
   "Referencia",
   "Global",
   "ControlManual",
@@ -138,21 +135,17 @@ static const char_T * rtDataTypeNames[] = {
   "slBusActuador",
   "ParametroControl",
   "struct_SWu0u3MiLxjwa3mw20mbsC",
-  "struct_DkGQbEQRaYnkW0wi1G3WtH",
+  "struct_K4jPPdC2VUeNVCoqVfEXBE",
   "struct_gqzhm13gdWNDdNckRWO7HG",
-  "struct_xRkashwzv8A9Egkx0x07ED",
-  "struct_ONYdVClh8vS21U4bgEQqDB",
-  "struct_I5jDjHa31eZijXPNVbrcSH",
-  "struct_C5SahwPDV7IifNndgUxaVB",
-  "referenciaControl",
+  "struct_pVDOHh28IFpckNXXMTOjb",
+  "struct_EsKGlnl7tMxVQ4Aw6vHIyE",
+  "struct_4FLGrzkPRph1CEQYLwGGKH",
+  "struct_GU8cKbP31Z2HFzqsEOK2hF",
   "ToleranciaPresion",
   "ToleranciaCurvatura",
   "slBus1_Global",
   "slBus2_ControlManual",
   "slBus3_Configuracion",
-  "realimentacionControl",
-  "errorEstacionario",
-  "errorDerivativo",
   "slBus4_Global",
   "slBus5_ControlAutomatico",
   "slBus6_Estado",
@@ -167,7 +160,6 @@ static const char_T * rtDataTypeNames[] = {
   "ConexionActuadores",
   "slBus1_Configuracion",
   "slBusElectroValvulas",
-  "EstadoValvula",
   "elegirTensionesElectrovalvulas_ControlSystem_Refactorization_T",
   "manualControlLogic_ControlSystem_Refactorization_T",
   "sequential_autonomousControlLogic_ControlSystem_Refactorization_T",
@@ -181,26 +173,22 @@ static const char_T * rtDataTypeNames[] = {
 
 /* data type transitions for block I/O structure */
 static DataTypeTransition rtBTransitions[] = {
-  { (char_T *)(&ControlSystem_Refactorization_B.sistema), 55, 0, 1 },
+  { (char_T *)(&ControlSystem_Refactorization_B.sistema), 52, 0, 1 },
 
-  { (char_T *)(&ControlSystem_Refactorization_B.DataStoreRead3[0]), 34, 0, 8 },
-
-  { (char_T *)
-    (&ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport2
-     [0]), 0, 0, 53 },
+  { (char_T *)(&ControlSystem_Refactorization_B.DataStoreRead3[0]), 35, 0, 8 },
 
   { (char_T *)
-    (&ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport4
-     [0]), 8, 0, 17 },
+    (&ControlSystem_Refactorization_B.HiddenBuf_InsertedFor_Simulacin_at_inport_3),
+    0, 0, 47 },
 
-  { (char_T *)(&ControlSystem_Refactorization_B.modoControl), 17, 0, 1 },
+  { (char_T *)(&ControlSystem_Refactorization_B.OR), 8, 0, 7 },
 
   { (char_T *)
     (&ControlSystem_Refactorization_B.ImpAsg_InsertedFor_Actuadoresposicionados_at_inport_0
-     [0]), 23, 0, 4 },
+     [0]), 24, 0, 4 },
 
-  { (char_T *)(&ControlSystem_Refactorization_B.CoreSubsys_pnae[3].Constant), 0,
-    0, 2 },
+  { (char_T *)(&ControlSystem_Refactorization_B.CoreSubsys_pnae[3].IndexVector1),
+    0, 0, 1 },
 
   { (char_T *)(&ControlSystem_Refactorization_B.CoreSubsys_pnae[3].Compare), 8,
     0, 10 },
@@ -221,28 +209,32 @@ static DataTypeTransition rtBTransitions[] = {
                CurvaturaActuador5.CurvAct), 0, 0, 1 }
   ,
 
-  { (char_T *)(&ControlSystem_Refactorization_DW.sistema), 55, 0, 1 },
+  { (char_T *)(&ControlSystem_Refactorization_DW.obj), 65, 0, 1 },
 
-  { (char_T *)(&ControlSystem_Refactorization_DW.actuadorBus[0]), 34, 0, 4 },
+  { (char_T *)(&ControlSystem_Refactorization_DW.sistema), 52, 0, 1 },
 
-  { (char_T *)(&ControlSystem_Refactorization_DW.electroValvulas), 65, 0, 1 },
+  { (char_T *)(&ControlSystem_Refactorization_DW.actuadorBus[0]), 35, 0, 4 },
 
-  { (char_T *)(&ControlSystem_Refactorization_DW.obj), 69, 0, 1 },
+  { (char_T *)(&ControlSystem_Refactorization_DW.electroValvulas), 62, 0, 1 },
 
   { (char_T *)(&ControlSystem_Refactorization_DW.TimeStampA), 0, 0, 12 },
 
-  { (char_T *)(&ControlSystem_Refactorization_DW.regulador), 59, 0, 1 },
+  { (char_T *)(&ControlSystem_Refactorization_DW.regulador), 56, 0, 1 },
 
-  { (char_T *)(&ControlSystem_Refactorization_DW.sfEvent), 6, 0, 1 },
+  { (char_T *)
+    (&ControlSystem_Refactorization_DW.TAQSigLogging_InsertedFor_DATOSDEACTUADORES_at_outport_1_PWORK.AQHandles),
+    11, 0, 5 },
 
-  { (char_T *)(&ControlSystem_Refactorization_DW.obj_b), 67, 0, 1 },
+  { (char_T *)(&ControlSystem_Refactorization_DW.sfEvent), 6, 0, 2 },
 
-  { (char_T *)(&ControlSystem_Refactorization_DW.obj_k), 68, 0, 1 },
+  { (char_T *)(&ControlSystem_Refactorization_DW.obj_b), 63, 0, 1 },
+
+  { (char_T *)(&ControlSystem_Refactorization_DW.obj_k), 64, 0, 1 },
 
   { (char_T *)(&ControlSystem_Refactorization_DW.ControldePresin_SubsysRanBC), 2,
     0, 4 },
 
-  { (char_T *)(&ControlSystem_Refactorization_DW.objisempty), 8, 0, 8 },
+  { (char_T *)(&ControlSystem_Refactorization_DW.objisempty), 8, 0, 9 },
 
   { (char_T *)(&ControlSystem_Refactorization_DW.CoreSubsys_pnae[3].
                CurvaturaActuador1.CurvaturaActuador5_SubsysRanBC), 2, 0, 1 },
@@ -251,22 +243,22 @@ static DataTypeTransition rtBTransitions[] = {
                CurvaturaActuador1.CurvaturaActuador5_MODE), 8, 0, 1 },
 
   { (char_T *)(&ControlSystem_Refactorization_DW.CoreSubsys_pnae[3].
-               CurvaturaActuador2.CurvaturaActuador5_SubsysRanBC), 2, 0, 1 },
+               CurvaturaActuador2.CurvaturaActuador4_SubsysRanBC), 2, 0, 1 },
 
   { (char_T *)(&ControlSystem_Refactorization_DW.CoreSubsys_pnae[3].
-               CurvaturaActuador2.CurvaturaActuador5_MODE), 8, 0, 1 },
+               CurvaturaActuador2.CurvaturaActuador4_MODE), 8, 0, 1 },
 
   { (char_T *)(&ControlSystem_Refactorization_DW.CoreSubsys_pnae[3].
-               CurvaturaActuador3.CurvaturaActuador5_SubsysRanBC), 2, 0, 1 },
+               CurvaturaActuador3.CurvaturaActuador4_SubsysRanBC), 2, 0, 1 },
 
   { (char_T *)(&ControlSystem_Refactorization_DW.CoreSubsys_pnae[3].
-               CurvaturaActuador3.CurvaturaActuador5_MODE), 8, 0, 1 },
+               CurvaturaActuador3.CurvaturaActuador4_MODE), 8, 0, 1 },
 
   { (char_T *)(&ControlSystem_Refactorization_DW.CoreSubsys_pnae[3].
-               CurvaturaActuador4.CurvaturaActuador5_SubsysRanBC), 2, 0, 1 },
+               CurvaturaActuador4.CurvaturaActuador4_SubsysRanBC), 2, 0, 1 },
 
   { (char_T *)(&ControlSystem_Refactorization_DW.CoreSubsys_pnae[3].
-               CurvaturaActuador4.CurvaturaActuador5_MODE), 8, 0, 1 },
+               CurvaturaActuador4.CurvaturaActuador4_MODE), 8, 0, 1 },
 
   { (char_T *)(&ControlSystem_Refactorization_DW.CoreSubsys_pnae[3].
                CurvaturaActuador5.CurvaturaActuador5_SubsysRanBC), 2, 0, 1 },
@@ -283,38 +275,24 @@ static DataTypeTransitionTable rtBTransTable = {
 
 /* data type transitions for Parameters structure */
 static DataTypeTransition rtPTransitions[] = {
-  { (char_T *)(&ControlSystem_Refactorization_P.sistema), 55, 0, 1 },
+  { (char_T *)(&ControlSystem_Refactorization_P.sistema), 52, 0, 1 },
 
-  { (char_T *)(&ControlSystem_Refactorization_P.actuadorBus[0]), 34, 0, 4 },
+  { (char_T *)(&ControlSystem_Refactorization_P.actuadorBus[0]), 35, 0, 4 },
 
-  { (char_T *)(&ControlSystem_Refactorization_P.electroValvulas), 65, 0, 1 },
+  { (char_T *)(&ControlSystem_Refactorization_P.electroValvulas), 62, 0, 1 },
 
-  { (char_T *)(&ControlSystem_Refactorization_P.regulador), 59, 0, 1 },
+  { (char_T *)(&ControlSystem_Refactorization_P.regulador), 56, 0, 1 },
+
+  { (char_T *)(&ControlSystem_Refactorization_P.AnalogInput_MaxMissedTicks), 0,
+    0, 8 },
+
+  { (char_T *)(&ControlSystem_Refactorization_P.DigitalOutput_BitMode), 6, 0, 21
+  },
 
   { (char_T *)(&ControlSystem_Refactorization_P.CompareToConstant_const), 18, 0,
     4 },
 
-  { (char_T *)(&ControlSystem_Refactorization_P.CompareToConstant7_const), 8, 0,
-    1 },
-
-  { (char_T *)(&ControlSystem_Refactorization_P.Errorestacionario_Y0), 27, 0, 1
-  },
-
-  { (char_T *)(&ControlSystem_Refactorization_P.Errorderivativo_Y0), 27, 0, 1 },
-
-  { (char_T *)(&ControlSystem_Refactorization_P.Errorestacionario_Y0_i), 27, 0,
-    1 },
-
-  { (char_T *)(&ControlSystem_Refactorization_P.Errorderivativo_Y0_b), 27, 0, 1
-  },
-
-  { (char_T *)(&ControlSystem_Refactorization_P.RefPresion1_Value), 0, 0, 43 },
-
-  { (char_T *)(&ControlSystem_Refactorization_P.Constant_Value_f), 17, 0, 1 },
-
-  { (char_T *)(&ControlSystem_Refactorization_P.Constant1_Value_e), 35, 0, 1 },
-
-  { (char_T *)(&ControlSystem_Refactorization_P.BloqueoManual1_Value), 8, 0, 9 },
+  { (char_T *)(&ControlSystem_Refactorization_P.PresinActuadores_Y0), 0, 0, 26 },
 
   { (char_T *)
     (&ControlSystem_Refactorization_P.CoreSubsys_pnae.CompareToConstant_const),
@@ -324,42 +302,40 @@ static DataTypeTransition rtPTransitions[] = {
     (&ControlSystem_Refactorization_P.CoreSubsys_pnae.CompareToConstant5_const),
     17, 0, 1 },
 
-  { (char_T *)
-    (&ControlSystem_Refactorization_P.CoreSubsys_pnae.CompareToConstant6_const),
-    8, 0, 2 },
+  { (char_T *)(&ControlSystem_Refactorization_P.CoreSubsys_pnae.Constant_Value),
+    0, 0, 1 },
 
   { (char_T *)
-    (&ControlSystem_Refactorization_P.CoreSubsys_pnae.CurvaturaActuador1.Curvatura_Y0),
+    (&ControlSystem_Refactorization_P.CoreSubsys_pnae.CurvaturaActuador1.Out1_Y0),
     0, 0, 11 },
 
   { (char_T *)
-    (&ControlSystem_Refactorization_P.CoreSubsys_pnae.CurvaturaActuador2.Curvatura_Y0),
+    (&ControlSystem_Refactorization_P.CoreSubsys_pnae.CurvaturaActuador2.Out1_Y0),
     0, 0, 11 },
 
   { (char_T *)
-    (&ControlSystem_Refactorization_P.CoreSubsys_pnae.CurvaturaActuador3.Curvatura_Y0),
+    (&ControlSystem_Refactorization_P.CoreSubsys_pnae.CurvaturaActuador3.Out1_Y0),
     0, 0, 11 },
 
   { (char_T *)
-    (&ControlSystem_Refactorization_P.CoreSubsys_pnae.CurvaturaActuador4.Curvatura_Y0),
+    (&ControlSystem_Refactorization_P.CoreSubsys_pnae.CurvaturaActuador4.Out1_Y0),
     0, 0, 11 },
 
   { (char_T *)
-    (&ControlSystem_Refactorization_P.CoreSubsys_pnae.CurvaturaActuador5.Curvatura_Y0),
+    (&ControlSystem_Refactorization_P.CoreSubsys_pnae.CurvaturaActuador5.Out1_Y0),
     0, 0, 11 },
 
   { (char_T *)
     (&ControlSystem_Refactorization_P.CoreSubsys_pna.CompareToConstant5_const),
     17, 0, 1 },
 
-  { (char_T *)
-    (&ControlSystem_Refactorization_P.CoreSubsys_pna.CompareToConstant6_const),
-    8, 0, 1 }
+  { (char_T *)(&ControlSystem_Refactorization_P.CoreSubsys_pna.Constant_Value),
+    0, 0, 1 }
 };
 
 /* data type transition table for Parameters structure */
 static DataTypeTransitionTable rtPTransTable = {
-  24U,
+  18U,
   rtPTransitions
 };
 

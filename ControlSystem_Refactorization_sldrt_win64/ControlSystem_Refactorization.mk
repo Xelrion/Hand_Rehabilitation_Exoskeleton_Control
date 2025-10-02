@@ -83,7 +83,7 @@ MATLAB_ROOT          := C:/PROGRA~1/MATLAB/R2025a
 MATLAB_BIN           := C:/PROGRA~1/MATLAB/R2025a/bin
 S_FUNCTIONS_LIB      := 
 SOLVER               := 
-NUMST                := 2
+NUMST                := 4
 TID01EQ              := 1
 NCSTATES             := 103
 BUILDARGS            :=  REAL_TIME_EXECUTION="kernel" EXTMODE_STATIC_ALLOC=0 EXTMODE_STATIC_ALLOC_SIZE=1000000 TMW_EXTMODE_TESTING=0 COMBINE_OUTPUT_UPDATE_FCNS=0 INCLUDE_MDL_TERMINATE_FCN=1 MULTI_INSTANCE_CODE=0 OPTS="-DTGTCONN -DEXT_MODE -DON_TARGET_WAIT_FOR_START=0 -DTID01EQ=1"
@@ -172,7 +172,7 @@ REQ_INCLUDES := $(MATLAB_ROOT)/simulink/include;$(MATLAB_ROOT)/extern/include;$(
 REQ_INCLUDES += ;$(MATLAB_ROOT)/toolbox/shared/can/src/scanutil;$(SLDRTDIR)/src
 
 # additional includes
-REQ_INCLUDES += ;$(WQ)C:/Users/david/PROYEC~1/CONTRO~1/Matlab/REALTI~2.1$(WQ);$(WQ)C:/Users/david/PROYEC~1/CONTRO~1/Matlab/REALTI~2.1/ControlSystem_Refactorization_sldrt_win64$(WQ);$(WQ)$(MATLAB_ROOT)/extern/include$(WQ);$(WQ)$(MATLAB_ROOT)/simulink/include$(WQ);$(WQ)$(MATLAB_ROOT)/rtw/c/src$(WQ);$(WQ)$(MATLAB_ROOT)/rtw/c/src/ext_mode/common$(WQ);$(WQ)$(MATLAB_ROOT)/toolbox/coder/rtiostream/src$(WQ)
+REQ_INCLUDES += ;$(WQ)C:/Users/david/PROYEC~1/CONTRO~1/Matlab/REALTI~1.1$(WQ);$(WQ)C:/Users/david/PROYEC~1/CONTRO~1/Matlab/REALTI~1.1/ControlSystem_Refactorization_sldrt_win64$(WQ);$(WQ)$(MATLAB_ROOT)/extern/include$(WQ);$(WQ)$(MATLAB_ROOT)/simulink/include$(WQ);$(WQ)$(MATLAB_ROOT)/rtw/c/src$(WQ);$(WQ)$(MATLAB_ROOT)/rtw/c/src/ext_mode/common$(WQ);$(WQ)$(MATLAB_ROOT)/toolbox/coder/rtiostream/src$(WQ)
 
 INCLUDES := $(USER_INCLUDES);.;$(RELATIVE_PATH_TO_ANCHOR);$(REQ_INCLUDES)
 
