@@ -4,6 +4,12 @@ Software de control desarrollado para la simulación y el control en tiempo real
 Este repositorio forma parte de un Trabajo Fin de Máster (TFM) en Robótica y Automática.
 
 El software se ha desarrollado mediante Simulink Desktop Real-Time, en Matlab 2025a, y sido desarrollado para comunicarse con la tarjeta de adquisición de datos NI PCIe-6323.
+
+La rama *Bidirectional-Prototype* permite controlar actuadores bidireccionales, con dos cámaras internas de aire, de manera que las referencias de presión negativas realizan el movimiento de extensión, y
+las referencias positivas realizan el movimiento de flexión (igual que para los actuadores monodireccionales).
+
+La rama *Unidirectional-Prototype* permite controlar actuadores monodireccionales, que solo poseen una cámara interna de aire, sin funcionalidad adicional para realizar movimientos en dos direcciones.
+
 ## Archivos del programa
 ### ControlSystem_Refactorization.slx
 El modelo de Simulink principal, donde se integra toda la lógica del programa, la interacción con el hardware, los modelos de simulación, y la interfaz de usuario desplegable.
