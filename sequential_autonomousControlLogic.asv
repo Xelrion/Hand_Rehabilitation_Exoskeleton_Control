@@ -1,0 +1,509 @@
+classdef sequential_autonomousControlLogic < matlab.System
+    % Lógica de control autónomo secuencial
+    %
+    % Este sistema, en base al estado actual de los actuadores y las referencias solicitadas por el usuario,
+    % determina qué actuadores se encuentran posicionados correctamente, selecciona el controlador y las referencias de control
+    % para la etapa actual de ejecución, y el estado de las electroválvulas de cada actuador.
+
+    % Public, tunable properties
+    properties
+
+    end
+
+    % Pre-computed constants or internal states
+    properties (Access = private)
+        controlHabilitado = false; % Registra si esta lógica de control ha sido habilitada
+        parametroControl = ParametroControl.Presion; % Registra el último parámetro de control activo
+        actuadorSeleccionado = 0; % Registra el actuador actualmente seleccionado para el control autónomo
+    end
+
+    methods (Access = protected)
+        function setupImpl(obj)
+            % Perform one-time calculations, such as computing constants
+        end
+
+        function [controlador, actuadoresPosicionados, ...
+            valvulasCerradas_controlAutonomo, ...
+            realimentacion_presion, realimentacion_curvatura, ...
+            referencia_presion, referencia_curvatura] = ...
+            stepImpl(obj, sistema, actuadorBus, regulador)
+            % Implement algorithm. Calculate y as a function of input u and
+            % internal states.
+
+            % Inicializar variables generales
+            numAct = length(actuadorBus);
+            modoControl = sistema.Configuracion.Global.modoControl;
+            parametroControl = sistema.Configuracion.Global.parametroControl;
+            actuadorSeleccionado = obj.actuadorSeleccionado;
+            referencias = struct( ...
+                'presion', arrayfun(@(x) x.Configuracion.Global.Referencia.presion, actuadorBus), ...
+                'curvatura', arrayfun(@(x) x.Configuracion.Global.Referencia.curvatura, actuadorBus) ...
+            );
+            realimentaciones = struct( ...
+                'presionRegulador', regulador.Estado.presion, ...
+                'actuador', struct( ...
+                    'presion', arrayfun(@(x) x.Estado.Realimentacion.presion, actuadorBus), ...
+                    'curvatura', arrayfun(@(x) x.Estado.Realimentacion.curvatura, actuadorBus) ...
+                ) ...
+            );
+
+            % Inicializar salidas generales
+            % Inicializar salidas
+            % 1. Controlador activo
+            controlador = sistema.Configuracion.Global.controlador;
+            % 2. Actuadores posicionados
+            actuadoresPosicionados = repmat(ActuadorPosicionado.Desposicionado,1,numAct);
+            % 3. Realimentación y referencias por defecto
+            realimentacion_presion = realimentaciones.presionRegulador;
+            realimentacion_curvatura = double(0);
+            referencia_presion = double(0);
+            referencia_curvatura = double(0);
+            % 5. Estado electroválvulas (control autónomo)
+            valvulasCerradas_controlAutonomo = arrayfun(@(x) x.Estado.ControlAutomatico.valvulaCerrada, actuadorBus)';
+            % Finalizar lógica de control si está deshabilitada
+            if modoControl ~= ModoControl.Autonomo_Secuencial
+                obj.controlHabilitado = false;
+                return
+            end
+
+            % Lógica aplicada a cada parámetro de control
+            switch parametroControl
+                
+                % Control de presión
+                case ParametroControl.Presion
+                    % 1. Actualiza y reinicia las variables de control cuando se produce
+                    % algún cambio en la lógica de control
+                    if ~obj.controlHabilitado || parametroControl ~= obj.parametroControl
+                        obj.controlHabilitado = true;
+                        obj.parametroControl = parametroControl;
+                        actuadorSeleccionado = 0;
+                    end
+                    % 2. Se comprueba el posicionamiento actual de los actuadores
+                    actuadoresPosicionados = actualizarPosicionamiento_Presion(obj, sistema, actuadorBus);
+                    % 3. Se selecciona el actuador utilizado como referencia para el control
+                    actuadorSeleccionado = seleccionarActuador_Presion(obj, sistema, actuadorBus, actuadoresPosicionados);
+                    % 4. Se establecen los estados de las electroválvulas
+                    [valvulasCerradas_controlAutonomo, controlador] = obj.estadoValvulas_Presion(sistema, actuadorBus, regulador, actuadorSeleccionado);
+                    % 5. Se definen las señales de control
+                    [referenciaControl, realimentacionControl] = controlSignals(obj, actuadorBus, regulador, actuadorSeleccionado, controlador);
+
+                % Control de curvatura
+                case ParametroControl.Curvatura
+                    % 1. Actualiza y reinicia las variables de control cuando se produce
+                    % algún cambio en la lógica de control
+                    if ~obj.controlHabilitado || parametroControl ~= obj.parametroControl
+                        obj.controlHabilitado = true;
+                        obj.parametroControl = parametroControl;
+                        obj.actuadorSeleccionado = 0;
+                    end
+                    % 2. Se comprueba el posicionamiento actual de los actuadores
+                    actuadoresPosicionados = actualizarPosicionamiento_Curvatura(obj, sistema, actuadorBus);
+                    % 3. Se selecciona el actuador utilizado como referencia para el control
+                    actuadorSeleccionado = seleccionarActuador_Curvatura(obj, sistema, actuadorBus, actuadoresPosicionados);
+                    % 4. Se establecen los estados de las electroválvulas
+                    [valvulasCerradas_controlAutonomo, controlador] = obj.estadoValvulas_Curvatura(sistema, actuadorBus, regulador, actuadorSeleccionado);
+                    % 5. Se definen las señales de control
+                    [referenciaControl, realimentacionControl] = controlSignals(obj, actuadorBus, regulador, actuadorSeleccionado, controlador);
+
+                otherwise
+                    error('No se ha elegido un parámetro de control correcto.');
+            end
+
+            % Actualizamos el actuador seleccionado
+            obj.actuadorSeleccionado = actuadorSeleccionado;
+
+            % Las señales de control se trasladan al formato de salida (sin estructuras)
+            % 1. Realimentación
+            realimentacion_presion = realimentacionControl.presion;
+            realimentacion_curvatura = realimentacionControl.curvatura;
+            % 2. Referencias
+            referencia_presion = referenciaControl.presion;
+            referencia_curvatura = referenciaControl.curvatura;
+
+        end
+
+        function resetImpl(obj)
+            % Initialize / reset internal properties
+        end
+
+        function actuadoresPosicionados = actualizarPosicionamiento_Presion(obj, sistema, actuadorBus)
+            % Inicialización de variables
+            % 1. Información sobre actuadores
+            numAct = length(actuadorBus);
+            actuadorSeleccionado = obj.actuadorSeleccionado;
+            actuadoresPosicionados = repmat(ActuadorPosicionado.Desposicionado,1,numAct);
+            actuadoresActivos = arrayfun(@(x) x.Configuracion.Global.activo, actuadorBus);
+            % 2. Estado de todos los actuadores
+            referencias = arrayfun(@(x) x.Configuracion.Global.Referencia.presion, actuadorBus);
+            realimentaciones = arrayfun(@(x) x.Estado.Realimentacion.presion, actuadorBus);
+            errores = referencias - realimentaciones;
+            % 3. Estado del actuador de control
+            actuadorControlPosicionado = obj.comprobarPosicionActuadorControl_Presion(sistema);
+            % 4. Tolerancias de error
+            toleranciaErrorEstacionario = sistema.Configuracion.Global.ToleranciaPresion.estacionaria;
+
+            % Comprueba si los actuadores se encuentran posicionados o desposicionados
+            for act = 1:numAct
+                % 1. Actuador desactivado
+                if ~actuadoresActivos(act)
+                    actuadoresPosicionados(act) = ActuadorPosicionado.Control_Manual;
+                    continue
+                end
+                % 2. Actuador seleccionado como referencia para control
+                if act == actuadorSeleccionado & actuadorControlPosicionado
+                    actuadoresPosicionados(act) = ActuadorPosicionado.Posicionado;
+                    obj.actuadorSeleccionado = 0;
+                    continue
+                elseif act == actuadorSeleccionado
+                    continue
+                end
+                % 3. Actuador previamente posicionado
+                if abs(errores(act)) > toleranciaErrorEstacionario
+                    actuadoresPosicionados(act) = ActuadorPosicionado.Desposicionado;
+                    continue
+                end
+                % 4. Actuador previamente desposicionado
+                if abs(errores(act)) <= toleranciaErrorEstacionario
+                    actuadoresPosicionados(act) = ActuadorPosicionado.Posicionado;
+                    continue
+                end
+            end
+        end
+
+        function actuadoresPosicionados = actualizarPosicionamiento_Curvatura(obj, sistema, actuadorBus)
+            % Inicialización de variables
+            % 1. Información sobre actuadores
+            numAct = length(actuadorBus);
+            actuadorSeleccionado = obj.actuadorSeleccionado;
+            actuadoresPosicionados = repmat(ActuadorPosicionado.Desposicionado,1,numAct);
+            actuadoresActivos = arrayfun(@(x) x.Configuracion.Global.activo, actuadorBus);
+            % 2. Estado de todos los actuadores
+            referencias = arrayfun(@(x) x.Configuracion.Global.Referencia.curvatura, actuadorBus);
+            realimentaciones = arrayfun(@(x) x.Estado.Realimentacion.curvatura, actuadorBus);
+            errores = referencias - realimentaciones;
+            % 3. Estado del actuador de control
+            actuadorControlPosicionado = obj.comprobarPosicionActuadorControl_Curvatura(sistema);
+            % 4. Tolerancias de error
+            toleranciaErrorEstacionario = sistema.Configuracion.Global.ToleranciaCurvatura.estacionaria;
+
+            % Comprueba si los actuadores se encuentran posicionados o desposicionados
+            for act = 1:numAct
+                % 1. Actuador desactivado
+                if ~actuadoresActivos(act)
+                    actuadoresPosicionados(act) = ActuadorPosicionado.Control_Manual;
+                    continue
+                end
+                % 2. Actuador seleccionado como referencia para control
+                if act == actuadorSeleccionado & actuadorControlPosicionado
+                    actuadoresPosicionados(act) = ActuadorPosicionado.Posicionado;
+                    obj.actuadorSeleccionado = 0;
+                    continue
+                elseif act == actuadorSeleccionado
+                    continue
+                end
+                % 3. Actuador previamente posicionado
+                if abs(errores(act)) > toleranciaErrorEstacionario
+                    actuadoresPosicionados(act) = ActuadorPosicionado.Desposicionado;
+                    continue
+                end
+                % 4. Actuador previamente desposicionado
+                if abs(errores(act)) <= toleranciaErrorEstacionario
+                    actuadoresPosicionados(act) = ActuadorPosicionado.Posicionado;
+                    continue
+                end
+            end
+        end
+
+        function actuadorControlPosicionado = comprobarPosicionActuadorControl_Presion(obj, sistema)
+            % Comprueba si los errores del actuador actualmente seleccionado para el control cumplen o no las tolerancias permitidas
+
+            % 1. Tolerancias de error
+            toleranciaError = struct( ...
+                'estacionario', sistema.Configuracion.Global.ToleranciaPresion.estacionaria, ...
+                'derivativo', sistema.Configuracion.Global.ToleranciaPresion.derivativa ...
+            );
+
+            % 2. Estado del actuador de control
+            errorControl = struct( ...
+                'estacionario', 'presion', sistema.Estado.Global.errorEstacionario.presion, ...
+                'derivativo', struct( ...
+                    'presion', sistema.Estado.Global.errorDerivativo.presion, ...
+                    'curvatura', sistema.Estado.Global.errorDerivativo.curvatura ...
+                ) ...
+            );
+
+            % 3. Comprobación de errores
+            actuadorControlPosicionado = true;
+            if abs(errorControl.estacionario.presion) > toleranciaError.estacionario.presion | abs(errorControl.derivativo.presion) > toleranciaError.derivativo.presion
+                actuadorControlPosicionado = false;
+                return;
+            end
+        end
+
+        function actuadorControlPosicionado = comprobarPosicionActuadorControl_Curvatura(obj, sistema)
+            % Comprueba si los errores del actuador actualmente seleccionado para el control cumplen o no las tolerancias permitidas
+
+            % 1. Tolerancias de error
+            toleranciaError = struct( ...
+                'estacionario', struct( ...
+                    'presion', sistema.Configuracion.Global.ToleranciaPresion.estacionaria, ...
+                    'curvatura', sistema.Configuracion.Global.ToleranciaCurvatura.estacionaria ...
+                ), ...
+                'derivativo', struct( ...
+                    'presion', sistema.Configuracion.Global.ToleranciaPresion.derivativa, ...
+                    'curvatura', sistema.Configuracion.Global.ToleranciaCurvatura.derivativa ...
+                ) ...
+            );
+
+            % 2. Estado del actuador de control
+            errorControl = struct( ...
+                'estacionario', struct( ...
+                    'presion', sistema.Estado.Global.errorEstacionario.presion, ...
+                    'curvatura', sistema.Estado.Global.errorEstacionario.curvatura ...
+                ), ...
+                'derivativo', struct( ...
+                    'presion', sistema.Estado.Global.errorDerivativo.presion, ...
+                    'curvatura', sistema.Estado.Global.errorDerivativo.curvatura ...
+                ) ...
+            );
+
+            % 3. Controlador activo
+            controlador = sistema.Configuracion.Global.controlador;
+
+            % 4. Comprobación de errores
+            actuadorControlPosicionado = true;
+
+            % Controlador: equilibrio de presiones
+            if controlador == Controlador.EquilibrioPresiones
+                if abs(errorControl.estacionario.presion) > toleranciaError.estacionario.presion | abs(errorControl.derivativo.presion) > toleranciaError.derivativo.presion
+                    actuadorControlPosicionado = false;
+                    return
+                end
+            % Controlador: curvatura
+            else
+                if abs(errorControl.estacionario.curvatura) > toleranciaError.estacionario.curvatura | abs(errorControl.derivativo.curvatura) > toleranciaError.derivativo.curvatura
+                    actuadorControlPosicionado = false;
+                    return
+                end
+            end
+        end
+
+        function actuadorSeleccionado = seleccionarActuador_Presion(obj, sistema, actuadorBus, actuadoresPosicionados)
+            % Selecciona el actuador a utilizar como referencia de control
+
+            % Inicialización de variables
+            % 1. Información de los actuadores
+            numAct = length(actuadorBus);
+            actuadorSeleccionado = obj.actuadorSeleccionado;
+            % 2. Referencias y realimentación de los actuadores
+            referencias = arrayfun(@(x) x.Configuracion.Global.Referencia.presion, actuadorBus);
+            realimentaciones = arrayfun(@(x) x.Estado.Realimentacion.presion, actuadorBus);
+            errores = referencias - realimentaciones;
+
+            % Lógica de selección
+            % 1. Si ya hay un actuador en control, se mantiene como
+            % referencia hasta que haya sido posicionado
+            if actuadorSeleccionado ~= 0 && actuadoresPosicionados(actuadorSeleccionado) ~= ActuadorPosicionado.Posicionado
+                return
+            end
+            % 2. Si todos los actuadores ya están posicionados, no se selecciona
+            % ninguno
+            if ~ismember(ActuadorPosicionado.Desposicionado, actuadoresPosicionados)
+                actuadorSeleccionado = 0;
+                return
+            end
+            % 3. Se selecciona el actuador activo con mayor error estacionario
+            maxError = double(0);
+            for act = 1:numAct
+                actError = abs(errores(act));
+                if actError > maxError && actuadoresPosicionados(act) ~= ActuadorPosicionado.Control_Manual
+                    maxError = actError;
+                    actuadorSeleccionado = act;
+                end
+            end
+        end
+
+        function actuadorSeleccionado = seleccionarActuador_Curvatura(obj, sistema, actuadorBus, actuadoresPosicionados)
+            % Selecciona el actuador a utilizar como referencia de control
+
+            % Inicialización de variables
+            % 1. Información de los actuadores
+            numAct = length(actuadorBus);
+            actuadorSeleccionado = obj.actuadorSeleccionado;
+            % 2. Estado de todos los actuadores
+            referencias = arrayfun(@(x) x.Configuracion.Global.Referencia.curvatura, actuadorBus);
+            realimentaciones = arrayfun(@(x) x.Estado.Realimentacion.curvatura, actuadorBus);
+            errores = referencias - realimentaciones;
+
+            % Lógica de selección
+            % 1. Si ya hay un actuador en control, se mantiene como
+            % referencia hasta que haya sido posicionado
+            if actuadorSeleccionado ~= 0 && actuadoresPosicionados(actuadorSeleccionado) ~= ActuadorPosicionado.Posicionado
+                return
+            end
+            % 2. Si todos los actuadores ya están posicionados, no se selecciona
+            % ninguno
+            if ~ismember(ActuadorPosicionado.Desposicionado, actuadoresPosicionados)
+                actuadorSeleccionado = 0;
+                return
+            end
+            % 3. Se selecciona el actuador activo con mayor error estacionario
+            maxError = 0;
+            for act = 1:numAct
+                actError = abs(errores(act));
+                if actError > maxError && actuadoresPosicionados(act) ~= ActuadorPosicionado.Control_Manual
+                    maxError = actError;
+                    actuadorSeleccionado = act;
+                end
+            end
+        end
+
+        function [valvulasCerradas, controlador] = estadoValvulas_Presion(obj, sistema, actuadorBus, regulador, actuadorSeleccionado)
+
+            % Inicialización de variables
+            numAct = length(actuadorBus);
+            actuadoresActivos = arrayfun(@(x) x.Configuracion.Global.activo, actuadorBus);
+            valvulasCerradas = arrayfun(@(x) x.Estado.ControlAutomatico.valvulaCerrada, actuadorBus);
+            realimentaciones = struct( ...
+                'presionRegulador', regulador.Estado.presion, ...
+                'actuador', struct( ...
+                    'presion', arrayfun(@(x) x.Estado.Realimentacion.presion, actuadorBus), ...
+                    'curvatura', arrayfun(@(x) x.Estado.Realimentacion.curvatura, actuadorBus) ...
+                ) ...
+            );
+            toleranciaEquilibrioPresiones = sistema.Configuracion.Global.toleranciaEquilibrioPresiones;
+
+            % Inicializar controlador
+            controlador = Controlador.Presion;
+
+            % Determina el estado en el que deben encontrarse las
+            % electroválvulas para el control del actuador
+            valvulasCerradas_Bloqueo = repmat(true,1,numAct);
+
+            valvulasCerradas_Control = valvulasCerradas_Bloqueo;
+            if actuadorSeleccionado ~= 0
+                valvulasCerradas_Control(actuadorSeleccionado) = false;
+            end
+
+            actuadoresNoSeleccionados = (1:numAct ~= actuadorSeleccionado);
+
+            % 1. Si hay actuadores distintos al seleccionado
+            % inyectando aire, o no hay actuadores seleccionados,
+            % se cierran todas las válvulas en esta etapa de ejecución
+            if  ismember(false, valvulasCerradas(actuadoresNoSeleccionados)) | actuadorSeleccionado == 0
+                valvulasCerradas = valvulasCerradas_Bloqueo;
+                return
+            end
+            % 2. Si todas las válvulas están cerradas, y la presión del
+            % regulador es distinta a la del actuador seleccionado, se
+            % continúa el proceso de equilibrio de presiones.
+            diferenciaPresion = abs(realimentaciones.actuador.presion(actuadorSeleccionado) - realimentaciones.presionRegulador);
+            if valvulasCerradas(actuadorSeleccionado) == true & diferenciaPresion > toleranciaEquilibrioPresiones
+                valvulasCerradas = valvulasCerradas_Bloqueo;
+                controlador = Controlador.EquilibrioPresiones;
+                return
+            end
+            % 3. En otro caso, se continúa con el control del actuador
+            valvulasCerradas = valvulasCerradas_Control;
+        end
+
+        function [valvulasCerradas, controlador] = estadoValvulas_Curvatura(obj, sistema, actuadorBus, regulador, actuadorSeleccionado)
+
+            % Inicialización de variables
+            numAct = length(actuadorBus);
+            actuadoresActivos = arrayfun(@(x) x.Configuracion.Global.activo, actuadorBus);
+            valvulasCerradas = arrayfun(@(x) x.Estado.ControlAutomatico.valvulaCerrada, actuadorBus);
+            realimentaciones = struct( ...
+                'presionRegulador', regulador.Estado.presion, ...
+                'actuador', struct( ...
+                    'presion', arrayfun(@(x) x.Estado.Realimentacion.presion, actuadorBus), ...
+                    'curvatura', arrayfun(@(x) x.Estado.Realimentacion.curvatura, actuadorBus) ...
+                ) ...
+            );
+            toleranciaEquilibrioPresiones = sistema.Configuracion.Global.toleranciaEquilibrioPresiones;
+
+            % Inicializar controlador
+            controlador = Controlador.Presion;
+
+            % Determina el estado en el que deben encontrarse las
+            % electroválvulas para el control del actuador
+            valvulasCerradas_Bloqueo = repmat(true,1,numAct);
+
+            valvulasCerradas_Control = valvulasCerradas_Bloqueo;
+            if actuadorSeleccionado ~= 0
+                valvulasCerradas_Control(actuadorSeleccionado) = false;
+            end
+
+            actuadoresNoSeleccionados = (1:numAct ~= actuadorSeleccionado);
+
+            % 1. Si hay actuadores distintos al seleccionado
+            % inyectando aire, o no hay actuadores seleccionados,
+            % se cierran/liberan todas las válvulas en esta etapa de ejecución
+            if  ismember(false, valvulasCerradas(actuadoresNoSeleccionados)) | actuadorSeleccionado == 0
+                valvulasCerradas = valvulasCerradas_Bloqueo;
+                return
+            end
+            % 2. Si todas las válvulas están cerradas, y la presión del
+            % regulador es distinta a la del actuador seleccionado, se
+            % continúa el proceso de equilibrio de presiones.
+            diferenciaPresion = abs(realimentaciones.actuador.presion(actuadorSeleccionado) - realimentaciones.presionRegulador);
+            if valvulasCerradas(actuadorSeleccionado) == true & diferenciaPresion > toleranciaEquilibrioPresiones
+                valvulasCerradas = valvulasCerradas_Bloqueo;
+                controlador = Controlador.EquilibrioPresiones;
+                return
+            end
+            % 3. En otro caso, se continúa con el control del actuador
+            valvulasCerradas = valvulasCerradas_Control;
+        end
+
+        function [referencia, realimentacion] = controlSignals(obj, actuadorBus, regulador, actuadorSeleccionado, controlador)
+
+            % Inicialización de variables
+            referencias = struct( ...
+                'presion', arrayfun(@(x) x.Configuracion.Global.Referencia.presion, actuadorBus), ...
+                'curvatura', arrayfun(@(x) x.Configuracion.Global.Referencia.curvatura, actuadorBus) ...
+            );
+            realimentaciones = struct( ...
+                'presionRegulador', regulador.Estado.presion, ...
+                'actuador', struct( ...
+                    'presion', arrayfun(@(x) x.Estado.Realimentacion.presion, actuadorBus), ...
+                    'curvatura', arrayfun(@(x) x.Estado.Realimentacion.curvatura, actuadorBus) ...
+                ) ...
+            );
+
+            % Selecciona las señales de control para realimentación y
+            % referencia, según el estado del sistema
+            % 1. No hay actuadores seleccionados
+            if actuadorSeleccionado == 0
+                realimentacion = struct( ...
+                    'presion', realimentaciones.presionRegulador, ...
+                    'curvatura', double(0) ...
+                );
+                referencia = realimentacion;
+                return
+            end
+            % 2. Equilibrio de presiones
+            if controlador == Controlador.EquilibrioPresiones
+                realimentacion = struct( ...
+                    'presion', realimentaciones.presionRegulador, ...
+                    'curvatura', realimentaciones.actuador.curvatura(actuadorSeleccionado) ...
+                );
+                referencia = struct( ...
+                    'presion', realimentaciones.actuador.presion(actuadorSeleccionado), ...
+                    'curvatura', referencias.curvatura(actuadorSeleccionado) ...
+                );
+                return
+            end
+            % 3. Control del actuador
+            realimentacion = struct( ...
+                'presion', realimentaciones.actuador.presion(actuadorSeleccionado), ...
+                'curvatura', realimentaciones.actuador.curvatura(actuadorSeleccionado) ...
+            );
+            referencia = struct( ...
+                'presion', referencias.presion(actuadorSeleccionado), ...
+                'curvatura', referencias.curvatura(actuadorSeleccionado) ...
+            );
+        end
+
+    end
+end
