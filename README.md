@@ -22,5 +22,5 @@ Implementa la lógica de control manual, en la que el usuario controla de manera
 ### sequential_autonomousControlLogic.m
 Implementa la lógica de control autónoma secuencial, en la que el sistema se encarga de posicionar todos los actuadores activos en las referencias de posición deseadas. Para ello, gestiona de manera automática el actuador
 seleccionado en cada momento y el estado de las electroválvulas.
-### elegirTensionesElectrovalvulas.m
+### selectElectrovalvesVoltage.m
 Recibe el flujo de aire deseado para cada uno de los actuadores del sistema, y determina todas las señales eléctricas que deben ser enviadas a las electroválvulas.
