@@ -1,9 +1,13 @@
 %% INICIALIZACIÓN DE BUSES DE DATOS
 % Este script se ejecuta al inicializar el modelo del sistema.
-% Genera los enmus:
+% Genera los enums:
 % - EstadoValvula
+% - ActuadorPosicionado
+% - ParametroControl
+% - ModoControl
+% - Controlador
 % Genera los buses de datos:
-% - actuadorBus (contiene los buses "actuador")
+% - actuadorBus (array con instancias del bus "actuador")
 % - sistema
 % - regulador
 % Estos buses portan la información necesaria de configuración y estado a

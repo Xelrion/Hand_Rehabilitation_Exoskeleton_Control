@@ -6,9 +6,9 @@
  *
  * Code generation for model "ControlSystem_Refactorization".
  *
- * Model version              : 2.31
+ * Model version              : 2.37
  * Simulink Coder version : 25.1 (R2025a) 21-Nov-2024
- * C source code generated on : Sat Sep 13 19:46:30 2025
+ * C source code generated on : Fri Oct  3 17:10:35 2025
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -248,24 +248,23 @@ typedef struct {
 
 #endif
 
-#ifndef struct_tag_G5Ngtf6UwfZyYzVc1FFaYG
-#define struct_tag_G5Ngtf6UwfZyYzVc1FFaYG
+#ifndef struct_tag_ZL3n9Q5Ep0XRki5EATNaWH
+#define struct_tag_ZL3n9Q5Ep0XRki5EATNaWH
 
-struct tag_G5Ngtf6UwfZyYzVc1FFaYG
+struct tag_ZL3n9Q5Ep0XRki5EATNaWH
 {
   int32_T isInitialized;
 };
 
-#endif                                 /* struct_tag_G5Ngtf6UwfZyYzVc1FFaYG */
+#endif                                 /* struct_tag_ZL3n9Q5Ep0XRki5EATNaWH */
 
-#ifndef typedef_elegirTensionesElectrovalvulas_ControlSystem_Refactorization_T
-#define typedef_elegirTensionesElectrovalvulas_ControlSystem_Refactorization_T
+#ifndef typedef_selectElectrovalvesVoltage_ControlSystem_Refactorization_T
+#define typedef_selectElectrovalvesVoltage_ControlSystem_Refactorization_T
 
-typedef struct tag_G5Ngtf6UwfZyYzVc1FFaYG
-  elegirTensionesElectrovalvulas_ControlSystem_Refactorization_T;
+typedef struct tag_ZL3n9Q5Ep0XRki5EATNaWH
+  selectElectrovalvesVoltage_ControlSystem_Refactorization_T;
 
-#endif
-    /* typedef_elegirTensionesElectrovalvulas_ControlSystem_Refactorization_T */
+#endif  /* typedef_selectElectrovalvesVoltage_ControlSystem_Refactorization_T */
 
 #ifndef struct_tag_tNTZQzHg4pRnqsm6ksfZPG
 #define struct_tag_tNTZQzHg4pRnqsm6ksfZPG
@@ -374,19 +373,19 @@ typedef struct tag_QttgpUQSlreahlCDZyHl1E
 #endif
 /* typedef_sequential_autonomousControlLogic_ControlSystem_Refactorization_T */
 
-/* Parameters for system: '<S18>/Flujo de aire en los actuadores' */
+/* Parameters for system: '<S20>/Flujo de aire en los actuadores' */
 typedef struct P_CoreSubsys_ControlSystem_Refactorization_gmy_T_
   P_CoreSubsys_ControlSystem_Refactorization_gmy_T;
 
-/* Parameters for system: '<S24>/Curvatura Actuador 5' */
+/* Parameters for system: '<S26>/Curvatura Actuador 5' */
 typedef struct P_CurvaturaActuador5_ControlSystem_Refactorization_T_
   P_CurvaturaActuador5_ControlSystem_Refactorization_T;
 
-/* Parameters for system: '<S24>/Curvatura Actuador 4' */
+/* Parameters for system: '<S26>/Curvatura Actuador 4' */
 typedef struct P_CurvaturaActuador4_ControlSystem_Refactorization_T_
   P_CurvaturaActuador4_ControlSystem_Refactorization_T;
 
-/* Parameters for system: '<S19>/Modelo de los actuadores' */
+/* Parameters for system: '<S21>/Modelo de los actuadores' */
 typedef struct P_CoreSubsys_ControlSystem_Refactorization_gmy0_T_
   P_CoreSubsys_ControlSystem_Refactorization_gmy0_T;
 

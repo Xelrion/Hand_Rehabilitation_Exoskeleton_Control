@@ -6,9 +6,9 @@
  *
  * Code generation for model "ControlSystem_Refactorization".
  *
- * Model version              : 2.31
+ * Model version              : 2.37
  * Simulink Coder version : 25.1 (R2025a) 21-Nov-2024
- * C source code generated on : Sat Sep 13 19:46:30 2025
+ * C source code generated on : Fri Oct  3 17:10:35 2025
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -24,15 +24,15 @@
 #include <emmintrin.h>
 #include <string.h>
 #include <math.h>
-#include "modo_control.h"
-#include "referencia_control.h"
 #include "controlador.h"
 #include "act_position.h"
 #include "myvalvestates.h"
+#include "modo_control.h"
+#include "referencia_control.h"
 #include "zero_crossing_types.h"
 #include "ControlSystem_Refactorization_dt.h"
 
-/* Named constants for MATLAB Function: '<S18>/MATLAB Function' */
+/* Named constants for MATLAB Function: '<S20>/MATLAB Function' */
 #define ControlSystem_Refactorization_CALL_EVENT (-1)
 
 /* options for Simulink Desktop Real-Time board 0 */
@@ -120,19 +120,12 @@ static void rate_scheduler(void)
    * counter is reset when it reaches its limit (zero means run).
    */
   (ControlSystem_Refactorization_M->Timing.TaskCounters.TID[2])++;
-  if ((ControlSystem_Refactorization_M->Timing.TaskCounters.TID[2]) > 99) {/* Sample time: [0.01s, 0.0s] */
+  if ((ControlSystem_Refactorization_M->Timing.TaskCounters.TID[2]) > 999) {/* Sample time: [0.1s, 0.0s] */
     ControlSystem_Refactorization_M->Timing.TaskCounters.TID[2] = 0;
   }
 
   ControlSystem_Refactorization_M->Timing.sampleHits[2] =
     (ControlSystem_Refactorization_M->Timing.TaskCounters.TID[2] == 0) ? 1 : 0;
-  (ControlSystem_Refactorization_M->Timing.TaskCounters.TID[3])++;
-  if ((ControlSystem_Refactorization_M->Timing.TaskCounters.TID[3]) > 999) {/* Sample time: [0.1s, 0.0s] */
-    ControlSystem_Refactorization_M->Timing.TaskCounters.TID[3] = 0;
-  }
-
-  ControlSystem_Refactorization_M->Timing.sampleHits[3] =
-    (ControlSystem_Refactorization_M->Timing.TaskCounters.TID[3] == 0) ? 1 : 0;
 }
 
 /*
@@ -218,8 +211,8 @@ static void rt_ertODEUpdateContinuousStates(RTWSolverInfo *si )
 
 /*
  * System initialize for enable system:
- *    '<S24>/Curvatura Actuador 5'
- *    '<S24>/Curvatura Actuador 1'
+ *    '<S26>/Curvatura Actuador 5'
+ *    '<S26>/Curvatura Actuador 1'
  */
 void ControlSystem_Refactorization_CurvaturaActuador5_Init
   (B_CurvaturaActuador5_ControlSystem_Refactorization_T *localB,
@@ -228,23 +221,23 @@ void ControlSystem_Refactorization_CurvaturaActuador5_Init
 {
   int_T is;
 
-  /* InitializeConditions for TransferFcn: '<S35>/Modelo de curvatura del actuador' */
+  /* InitializeConditions for TransferFcn: '<S37>/Modelo de curvatura del actuador' */
   for (is = 0; is < 5; is++) {
     localX->Modelodecurvaturadelactuador_CSTATE[is] = 0.0;
   }
 
-  /* End of InitializeConditions for TransferFcn: '<S35>/Modelo de curvatura del actuador' */
+  /* End of InitializeConditions for TransferFcn: '<S37>/Modelo de curvatura del actuador' */
 
-  /* SystemInitialize for TransferFcn: '<S35>/Modelo de curvatura del actuador' incorporates:
-   *  Outport: '<S35>/Out1'
+  /* SystemInitialize for TransferFcn: '<S37>/Modelo de curvatura del actuador' incorporates:
+   *  Outport: '<S37>/Out1'
    */
   localB->CurvAct = localP->Out1_Y0;
 }
 
 /*
  * Disable for enable system:
- *    '<S24>/Curvatura Actuador 5'
- *    '<S24>/Curvatura Actuador 1'
+ *    '<S26>/Curvatura Actuador 5'
+ *    '<S26>/Curvatura Actuador 1'
  */
 void ControlSystem_Refactorization_CurvaturaActuador5_Disable
   (DW_CurvaturaActuador5_ControlSystem_Refactorization_T *localDW)
@@ -254,15 +247,15 @@ void ControlSystem_Refactorization_CurvaturaActuador5_Disable
 
 /*
  * Start for enable system:
- *    '<S24>/Curvatura Actuador 5'
- *    '<S24>/Curvatura Actuador 1'
+ *    '<S26>/Curvatura Actuador 5'
+ *    '<S26>/Curvatura Actuador 1'
  */
 void ControlSystem_Refactorization_CurvaturaActuador5_Start
   (B_CurvaturaActuador5_ControlSystem_Refactorization_T *localB,
    DW_CurvaturaActuador5_ControlSystem_Refactorization_T *localDW,
    XDis_CurvaturaActuador5_ControlSystem_Refactorization_T *localXdis)
 {
-  /* SystemInitialize for TransferFcn: '<S35>/Modelo de curvatura del actuador' */
+  /* SystemInitialize for TransferFcn: '<S37>/Modelo de curvatura del actuador' */
   localB->CurvAct = 0.0;
   localDW->CurvaturaActuador5_MODE = false;
   (void) memset(&(localXdis->Modelodecurvaturadelactuador_CSTATE), 1,
@@ -271,8 +264,8 @@ void ControlSystem_Refactorization_CurvaturaActuador5_Start
 
 /*
  * Outputs for enable system:
- *    '<S24>/Curvatura Actuador 5'
- *    '<S24>/Curvatura Actuador 1'
+ *    '<S26>/Curvatura Actuador 5'
+ *    '<S26>/Curvatura Actuador 1'
  */
 void ControlSystem_Refactorization_CurvaturaActuador5
   (RT_MODEL_ControlSystem_Refactorization_T * const
@@ -285,8 +278,8 @@ void ControlSystem_Refactorization_CurvaturaActuador5
 {
   int_T ci;
 
-  /* Outputs for Enabled SubSystem: '<S24>/Curvatura Actuador 5' incorporates:
-   *  EnablePort: '<S35>/Enable'
+  /* Outputs for Enabled SubSystem: '<S26>/Curvatura Actuador 5' incorporates:
+   *  EnablePort: '<S37>/Enable'
    */
   if ((rtmIsMajorTimeStep(ControlSystem_Refactorization_M) &&
        ControlSystem_Refactorization_M->Timing.TaskCounters.TID[1] == 0) &&
@@ -299,7 +292,7 @@ void ControlSystem_Refactorization_CurvaturaActuador5
       }
     } else {
       /* Outputs for Enabled SubSystem: '<S7>/Control de Curvatura' incorporates:
-       *  EnablePort: '<S39>/Enable'
+       *  EnablePort: '<S41>/Enable'
        */
       if (ControlSystem_Refactorization_M->Timing.t[1] == rtmGetTStart
           (ControlSystem_Refactorization_M)) {
@@ -317,12 +310,12 @@ void ControlSystem_Refactorization_CurvaturaActuador5
   }
 
   if (localDW->CurvaturaActuador5_MODE) {
-    /* TransferFcn: '<S35>/Modelo de curvatura del actuador' */
+    /* TransferFcn: '<S37>/Modelo de curvatura del actuador' */
     localB->CurvAct = 0.0;
 
-    /* TransferFcn: '<S35>/Modelo de curvatura del actuador' */
+    /* TransferFcn: '<S37>/Modelo de curvatura del actuador' */
     for (ci = 0; ci < 5; ci++) {
-      /* TransferFcn: '<S35>/Modelo de curvatura del actuador' */
+      /* TransferFcn: '<S37>/Modelo de curvatura del actuador' */
       localB->CurvAct += localP->Modelodecurvaturadelactuador_C[ci] *
         localX->Modelodecurvaturadelactuador_CSTATE[ci];
     }
@@ -333,13 +326,13 @@ void ControlSystem_Refactorization_CurvaturaActuador5
     }
   }
 
-  /* End of Outputs for SubSystem: '<S24>/Curvatura Actuador 5' */
+  /* End of Outputs for SubSystem: '<S26>/Curvatura Actuador 5' */
 }
 
 /*
  * Derivatives for enable system:
- *    '<S24>/Curvatura Actuador 5'
- *    '<S24>/Curvatura Actuador 1'
+ *    '<S26>/Curvatura Actuador 5'
+ *    '<S26>/Curvatura Actuador 1'
  */
 void ControlSystem_Refactorization_CurvaturaActuador5_Deriv(real_T rtu_In1,
   DW_CurvaturaActuador5_ControlSystem_Refactorization_T *localDW,
@@ -350,7 +343,7 @@ void ControlSystem_Refactorization_CurvaturaActuador5_Deriv(real_T rtu_In1,
   __m128d tmp;
   int_T is;
   if (localDW->CurvaturaActuador5_MODE) {
-    /* Derivatives for TransferFcn: '<S35>/Modelo de curvatura del actuador' */
+    /* Derivatives for TransferFcn: '<S37>/Modelo de curvatura del actuador' */
     for (is = 0; is < 5; is++) {
       localXdot->Modelodecurvaturadelactuador_CSTATE[is] = 0.0;
       localXdot->Modelodecurvaturadelactuador_CSTATE[0] +=
@@ -368,7 +361,7 @@ void ControlSystem_Refactorization_CurvaturaActuador5_Deriv(real_T rtu_In1,
     _mm_storeu_pd(&localXdot->Modelodecurvaturadelactuador_CSTATE[3], tmp);
     localXdot->Modelodecurvaturadelactuador_CSTATE[0] += rtu_In1;
 
-    /* End of Derivatives for TransferFcn: '<S35>/Modelo de curvatura del actuador' */
+    /* End of Derivatives for TransferFcn: '<S37>/Modelo de curvatura del actuador' */
   } else {
     {
       real_T *dx;
@@ -383,9 +376,9 @@ void ControlSystem_Refactorization_CurvaturaActuador5_Deriv(real_T rtu_In1,
 
 /*
  * System initialize for enable system:
- *    '<S24>/Curvatura Actuador 4'
- *    '<S24>/Curvatura Actuador 3'
- *    '<S24>/Curvatura Actuador 2'
+ *    '<S26>/Curvatura Actuador 4'
+ *    '<S26>/Curvatura Actuador 3'
+ *    '<S26>/Curvatura Actuador 2'
  */
 void ControlSystem_Refactorization_CurvaturaActuador4_Init
   (B_CurvaturaActuador4_ControlSystem_Refactorization_T *localB,
@@ -394,24 +387,24 @@ void ControlSystem_Refactorization_CurvaturaActuador4_Init
 {
   int_T is;
 
-  /* InitializeConditions for TransferFcn: '<S34>/Modelo de curvatura del actuador1' */
+  /* InitializeConditions for TransferFcn: '<S36>/Modelo de curvatura del actuador1' */
   for (is = 0; is < 5; is++) {
     localX->Modelodecurvaturadelactuador1_CSTATE[is] = 0.0;
   }
 
-  /* End of InitializeConditions for TransferFcn: '<S34>/Modelo de curvatura del actuador1' */
+  /* End of InitializeConditions for TransferFcn: '<S36>/Modelo de curvatura del actuador1' */
 
-  /* SystemInitialize for TransferFcn: '<S34>/Modelo de curvatura del actuador1' incorporates:
-   *  Outport: '<S34>/Out1'
+  /* SystemInitialize for TransferFcn: '<S36>/Modelo de curvatura del actuador1' incorporates:
+   *  Outport: '<S36>/Out1'
    */
   localB->CurvAct = localP->Out1_Y0;
 }
 
 /*
  * Disable for enable system:
- *    '<S24>/Curvatura Actuador 4'
- *    '<S24>/Curvatura Actuador 3'
- *    '<S24>/Curvatura Actuador 2'
+ *    '<S26>/Curvatura Actuador 4'
+ *    '<S26>/Curvatura Actuador 3'
+ *    '<S26>/Curvatura Actuador 2'
  */
 void ControlSystem_Refactorization_CurvaturaActuador4_Disable
   (DW_CurvaturaActuador4_ControlSystem_Refactorization_T *localDW)
@@ -421,16 +414,16 @@ void ControlSystem_Refactorization_CurvaturaActuador4_Disable
 
 /*
  * Start for enable system:
- *    '<S24>/Curvatura Actuador 4'
- *    '<S24>/Curvatura Actuador 3'
- *    '<S24>/Curvatura Actuador 2'
+ *    '<S26>/Curvatura Actuador 4'
+ *    '<S26>/Curvatura Actuador 3'
+ *    '<S26>/Curvatura Actuador 2'
  */
 void ControlSystem_Refactorization_CurvaturaActuador4_Start
   (B_CurvaturaActuador4_ControlSystem_Refactorization_T *localB,
    DW_CurvaturaActuador4_ControlSystem_Refactorization_T *localDW,
    XDis_CurvaturaActuador4_ControlSystem_Refactorization_T *localXdis)
 {
-  /* SystemInitialize for TransferFcn: '<S34>/Modelo de curvatura del actuador1' */
+  /* SystemInitialize for TransferFcn: '<S36>/Modelo de curvatura del actuador1' */
   localB->CurvAct = 0.0;
   localDW->CurvaturaActuador4_MODE = false;
   (void) memset(&(localXdis->Modelodecurvaturadelactuador1_CSTATE), 1,
@@ -439,9 +432,9 @@ void ControlSystem_Refactorization_CurvaturaActuador4_Start
 
 /*
  * Outputs for enable system:
- *    '<S24>/Curvatura Actuador 4'
- *    '<S24>/Curvatura Actuador 3'
- *    '<S24>/Curvatura Actuador 2'
+ *    '<S26>/Curvatura Actuador 4'
+ *    '<S26>/Curvatura Actuador 3'
+ *    '<S26>/Curvatura Actuador 2'
  */
 void ControlSystem_Refactorization_CurvaturaActuador4
   (RT_MODEL_ControlSystem_Refactorization_T * const
@@ -454,8 +447,8 @@ void ControlSystem_Refactorization_CurvaturaActuador4
 {
   int_T ci;
 
-  /* Outputs for Enabled SubSystem: '<S24>/Curvatura Actuador 4' incorporates:
-   *  EnablePort: '<S34>/Enable'
+  /* Outputs for Enabled SubSystem: '<S26>/Curvatura Actuador 4' incorporates:
+   *  EnablePort: '<S36>/Enable'
    */
   if ((rtmIsMajorTimeStep(ControlSystem_Refactorization_M) &&
        ControlSystem_Refactorization_M->Timing.TaskCounters.TID[1] == 0) &&
@@ -468,7 +461,7 @@ void ControlSystem_Refactorization_CurvaturaActuador4
       }
     } else {
       /* Outputs for Enabled SubSystem: '<S7>/Control de Curvatura' incorporates:
-       *  EnablePort: '<S39>/Enable'
+       *  EnablePort: '<S41>/Enable'
        */
       if (ControlSystem_Refactorization_M->Timing.t[1] == rtmGetTStart
           (ControlSystem_Refactorization_M)) {
@@ -486,12 +479,12 @@ void ControlSystem_Refactorization_CurvaturaActuador4
   }
 
   if (localDW->CurvaturaActuador4_MODE) {
-    /* TransferFcn: '<S34>/Modelo de curvatura del actuador1' */
+    /* TransferFcn: '<S36>/Modelo de curvatura del actuador1' */
     localB->CurvAct = 0.0;
 
-    /* TransferFcn: '<S34>/Modelo de curvatura del actuador1' */
+    /* TransferFcn: '<S36>/Modelo de curvatura del actuador1' */
     for (ci = 0; ci < 5; ci++) {
-      /* TransferFcn: '<S34>/Modelo de curvatura del actuador1' */
+      /* TransferFcn: '<S36>/Modelo de curvatura del actuador1' */
       localB->CurvAct += localP->Modelodecurvaturadelactuador1_C[ci] *
         localX->Modelodecurvaturadelactuador1_CSTATE[ci];
     }
@@ -502,14 +495,14 @@ void ControlSystem_Refactorization_CurvaturaActuador4
     }
   }
 
-  /* End of Outputs for SubSystem: '<S24>/Curvatura Actuador 4' */
+  /* End of Outputs for SubSystem: '<S26>/Curvatura Actuador 4' */
 }
 
 /*
  * Derivatives for enable system:
- *    '<S24>/Curvatura Actuador 4'
- *    '<S24>/Curvatura Actuador 3'
- *    '<S24>/Curvatura Actuador 2'
+ *    '<S26>/Curvatura Actuador 4'
+ *    '<S26>/Curvatura Actuador 3'
+ *    '<S26>/Curvatura Actuador 2'
  */
 void ControlSystem_Refactorization_CurvaturaActuador4_Deriv(real_T rtu_In1,
   DW_CurvaturaActuador4_ControlSystem_Refactorization_T *localDW,
@@ -520,7 +513,7 @@ void ControlSystem_Refactorization_CurvaturaActuador4_Deriv(real_T rtu_In1,
   __m128d tmp;
   int_T is;
   if (localDW->CurvaturaActuador4_MODE) {
-    /* Derivatives for TransferFcn: '<S34>/Modelo de curvatura del actuador1' */
+    /* Derivatives for TransferFcn: '<S36>/Modelo de curvatura del actuador1' */
     for (is = 0; is < 5; is++) {
       localXdot->Modelodecurvaturadelactuador1_CSTATE[is] = 0.0;
       localXdot->Modelodecurvaturadelactuador1_CSTATE[0] +=
@@ -536,7 +529,7 @@ void ControlSystem_Refactorization_CurvaturaActuador4_Deriv(real_T rtu_In1,
     _mm_storeu_pd(&localXdot->Modelodecurvaturadelactuador1_CSTATE[3], tmp);
     localXdot->Modelodecurvaturadelactuador1_CSTATE[0] += rtu_In1;
 
-    /* End of Derivatives for TransferFcn: '<S34>/Modelo de curvatura del actuador1' */
+    /* End of Derivatives for TransferFcn: '<S36>/Modelo de curvatura del actuador1' */
   } else {
     {
       real_T *dx;
@@ -606,7 +599,7 @@ void ControlSystem_Refactorization_output(void)
   int32_T ForEach_itr_h;
   int32_T ForEach_itr_n;
   int32_T ForEach_itr_e;
-  int32_T ForEach_itr_c;
+  int32_T ForEach_itr_no;
   __m128d tmp_1;
   XDis_ControlSystem_Refactorization_T *_rtXdis;
   slBusActuador rtb_ImpAsg_InsertedFor_Out1_at_inport_0[4];
@@ -617,18 +610,17 @@ void ControlSystem_Refactorization_output(void)
   real_T actError;
   real_T b_varargout_4;
   real_T b_varargout_5;
+  real_T lastTime;
   real_T maxError;
-  real_T rtb_BusAssignment3_Configuracion_ControlManual_actuadorSeleccionado;
-  real_T rtb_BusAssignment3_Configuracion_Global_ToleranciaCurvatura_derivativa;
-  real_T
-    rtb_BusAssignment3_Configuracion_Global_ToleranciaCurvatura_estacionaria;
-  real_T rtb_BusAssignment3_Configuracion_Global_ToleranciaPresion_derivativa;
-  real_T rtb_BusAssignment3_Configuracion_Global_ToleranciaPresion_estacionaria;
-  real_T rtb_BusAssignment3_Configuracion_Global_simulacionActiva;
-  real_T rtb_BusAssignment3_Configuracion_Global_toleranciaEquilibrioPresiones;
   real_T rtb_DataStoreRead4_Configuracion_Global_numActuadores;
   real_T rtb_DataStoreRead4_Estado_ControlAutomatico_actuadorSeleccionado;
   real_T rtb_Derivative;
+  real_T rtb_sistema_Configuracion_ControlManual_actuadorSeleccionado;
+  real_T rtb_sistema_Configuracion_Global_ToleranciaCurvatura_derivativa;
+  real_T rtb_sistema_Configuracion_Global_ToleranciaCurvatura_estacionaria;
+  real_T rtb_sistema_Configuracion_Global_ToleranciaPresion_derivativa;
+  real_T rtb_sistema_Estado_Global_realimentacionControl;
+  real_T u0;
   real_T *lastU;
   int32_T tmp_data[4];
   int32_T b_k;
@@ -645,10 +637,10 @@ void ControlSystem_Refactorization_output(void)
   EstadoValvula estadoActuador;
   EstadoValvula
     rtb_ImpSel_InsertedFor_Actuador_at_outport_0_Configuracion_ControlManual_estadoValvula;
-  ModoControl rtb_BusAssignment3_Configuracion_Global_modoControl;
-  ParametroControl rtb_BusAssignment3_Configuracion_Global_parametroControl;
+  ModoControl rtb_sistema_Configuracion_Global_modoControl;
+  ParametroControl rtb_sistema_Configuracion_Global_parametroControl;
   boolean_T actuadoresNoSeleccionados[4];
-  boolean_T b;
+  boolean_T didZcEventOccur;
   boolean_T exitg1;
   boolean_T rtb_Compare_b;
   boolean_T tmp_0;
@@ -692,35 +684,105 @@ void ControlSystem_Refactorization_output(void)
   memcpy(&ControlSystem_Refactorization_B.DataStoreRead3[0],
          &ControlSystem_Refactorization_DW.actuadorBus[0], sizeof(slBusActuador)
          << 2U);
+  tmp_0 = (rtmIsMajorTimeStep(ControlSystem_Refactorization_M) &&
+           ControlSystem_Refactorization_M->Timing.TaskCounters.TID[1] == 0);
+  if (tmp_0) {
+    /* SignalConversion generated from: '<S1>/For Each Subsystem' incorporates:
+     *  Constant: '<S17>/RefPresion1'
+     *  Constant: '<S17>/RefPresion2'
+     *  Constant: '<S17>/RefPresion3'
+     *  Constant: '<S17>/RefPresion4'
+     */
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport2[
+      0] = ControlSystem_Refactorization_P.RefPresion1_Value;
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport2[
+      1] = ControlSystem_Refactorization_P.RefPresion2_Value;
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport2[
+      2] = ControlSystem_Refactorization_P.RefPresion3_Value;
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport2[
+      3] = ControlSystem_Refactorization_P.RefPresion4_Value;
+
+    /* SignalConversion generated from: '<S1>/For Each Subsystem' incorporates:
+     *  Constant: '<S17>/RefCurvatura1'
+     *  Constant: '<S17>/RefCurvatura2'
+     *  Constant: '<S17>/RefCurvatura3'
+     *  Constant: '<S17>/RefCurvatura4'
+     */
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport3[
+      0] = ControlSystem_Refactorization_P.RefCurvatura1_Value;
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport3[
+      1] = ControlSystem_Refactorization_P.RefCurvatura2_Value;
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport3[
+      2] = ControlSystem_Refactorization_P.RefCurvatura3_Value;
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport3[
+      3] = ControlSystem_Refactorization_P.RefCurvatura4_Value;
+
+    /* SignalConversion generated from: '<S1>/For Each Subsystem' incorporates:
+     *  Constant: '<S17>/EstadoValvula1'
+     *  Constant: '<S17>/EstadoValvula2'
+     *  Constant: '<S17>/EstadoValvula3'
+     *  Constant: '<S17>/EstadoValvula4'
+     */
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport4[
+      0] = ControlSystem_Refactorization_P.EstadoValvula1_Value;
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport4[
+      1] = ControlSystem_Refactorization_P.EstadoValvula2_Value;
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport4[
+      2] = ControlSystem_Refactorization_P.EstadoValvula3_Value;
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport4[
+      3] = ControlSystem_Refactorization_P.EstadoValvula4_Value;
+
+    /* SignalConversion generated from: '<S1>/For Each Subsystem' incorporates:
+     *  Constant: '<S17>/ActuadorActivo1'
+     *  Constant: '<S17>/ActuadorActivo2'
+     *  Constant: '<S17>/ActuadorActivo3'
+     *  Constant: '<S17>/ActuadorActivo4'
+     */
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport5[
+      0] = ControlSystem_Refactorization_P.ActuadorActivo1_Value;
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport5[
+      1] = ControlSystem_Refactorization_P.ActuadorActivo2_Value;
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport5[
+      2] = ControlSystem_Refactorization_P.ActuadorActivo3_Value;
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport5[
+      3] = ControlSystem_Refactorization_P.ActuadorActivo4_Value;
+  }
 
   /* Outputs for Iterator SubSystem: '<S1>/For Each Subsystem' incorporates:
-   *  ForEach: '<S17>/For Each'
+   *  ForEach: '<S18>/For Each'
    */
-  for (ForEach_itr_c = 0; ForEach_itr_c < 4; ForEach_itr_c++) {
-    /* ForEachSliceAssignment generated from: '<S17>/Out1' incorporates:
-     *  Constant: '<S1>/Constant7'
+  for (ForEach_itr_no = 0; ForEach_itr_no < 4; ForEach_itr_no++) {
+    /* ForEachSliceAssignment generated from: '<S18>/Out1' incorporates:
+     *  BusAssignment: '<S18>/Bus Assignment3'
      *  DataStoreRead: '<Root>/Data Store Read3'
-     *  ForEachSliceSelector generated from: '<S17>/In1'
-     *  ForEachSliceSelector generated from: '<S17>/In2'
+     *  ForEachSliceSelector generated from: '<S18>/Actuadores activos - Control autónomo'
+     *  ForEachSliceSelector generated from: '<S18>/Bus'
+     *  ForEachSliceSelector generated from: '<S18>/Estado válvulas - Control manual'
+     *  ForEachSliceSelector generated from: '<S18>/Referencias de curvatura'
+     *  ForEachSliceSelector generated from: '<S18>/Referencias de presión'
      */
-    rtb_ImpAsg_InsertedFor_Out1_at_inport_0[ForEach_itr_c].
+    rtb_ImpAsg_InsertedFor_Out1_at_inport_0[ForEach_itr_no].
       Configuracion.Global.activo =
-      ControlSystem_Refactorization_P.actuadorBus[ForEach_itr_c].
-      Configuracion.Global.activo;
-    rtb_ImpAsg_InsertedFor_Out1_at_inport_0[ForEach_itr_c].
+      ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport5
+      [ForEach_itr_no];
+    rtb_ImpAsg_InsertedFor_Out1_at_inport_0[ForEach_itr_no].
       Configuracion.Global.indice =
-      ControlSystem_Refactorization_B.DataStoreRead3[ForEach_itr_c].
+      ControlSystem_Refactorization_B.DataStoreRead3[ForEach_itr_no].
       Configuracion.Global.indice;
-    rtb_ImpAsg_InsertedFor_Out1_at_inport_0[ForEach_itr_c].
-      Configuracion.Global.Referencia =
-      ControlSystem_Refactorization_P.actuadorBus[ForEach_itr_c].
-      Configuracion.Global.Referencia;
-    rtb_ImpAsg_InsertedFor_Out1_at_inport_0[ForEach_itr_c].
-      Configuracion.ControlManual =
-      ControlSystem_Refactorization_P.actuadorBus[ForEach_itr_c].
-      Configuracion.ControlManual;
-    rtb_ImpAsg_InsertedFor_Out1_at_inport_0[ForEach_itr_c].Estado =
-      ControlSystem_Refactorization_B.DataStoreRead3[ForEach_itr_c].Estado;
+    rtb_ImpAsg_InsertedFor_Out1_at_inport_0[ForEach_itr_no].
+      Configuracion.Global.Referencia.presion =
+      ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport2
+      [ForEach_itr_no];
+    rtb_ImpAsg_InsertedFor_Out1_at_inport_0[ForEach_itr_no].
+      Configuracion.Global.Referencia.curvatura =
+      ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport3
+      [ForEach_itr_no];
+    rtb_ImpAsg_InsertedFor_Out1_at_inport_0[ForEach_itr_no].
+      Configuracion.ControlManual.estadoValvula =
+      ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport4
+      [ForEach_itr_no];
+    rtb_ImpAsg_InsertedFor_Out1_at_inport_0[ForEach_itr_no].Estado =
+      ControlSystem_Refactorization_B.DataStoreRead3[ForEach_itr_no].Estado;
   }
 
   /* End of Outputs for SubSystem: '<S1>/For Each Subsystem' */
@@ -731,33 +793,12 @@ void ControlSystem_Refactorization_output(void)
   rtb_DataStoreRead4_Estado_ControlAutomatico_actuadorSeleccionado =
     ControlSystem_Refactorization_DW.sistema.Estado.ControlAutomatico.actuadorSeleccionado;
 
-  /* BusAssignment: '<S2>/Bus Assignment3' incorporates:
-   *  Constant: '<S2>/Constant6'
-   */
-  rtb_BusAssignment3_Configuracion_Global_modoControl =
-    ControlSystem_Refactorization_P.sistema.Configuracion.Global.modoControl;
-  rtb_BusAssignment3_Configuracion_Global_ToleranciaPresion_estacionaria =
-    ControlSystem_Refactorization_P.sistema.Configuracion.Global.ToleranciaPresion.estacionaria;
-  rtb_BusAssignment3_Configuracion_Global_ToleranciaPresion_derivativa =
-    ControlSystem_Refactorization_P.sistema.Configuracion.Global.ToleranciaPresion.derivativa;
-  rtb_BusAssignment3_Configuracion_Global_ToleranciaCurvatura_estacionaria =
-    ControlSystem_Refactorization_P.sistema.Configuracion.Global.ToleranciaCurvatura.estacionaria;
-  rtb_BusAssignment3_Configuracion_Global_ToleranciaCurvatura_derivativa =
-    ControlSystem_Refactorization_P.sistema.Configuracion.Global.ToleranciaCurvatura.derivativa;
-  rtb_BusAssignment3_Configuracion_Global_parametroControl =
-    ControlSystem_Refactorization_P.sistema.Configuracion.Global.parametroControl;
-  rtb_BusAssignment3_Configuracion_Global_simulacionActiva =
-    ControlSystem_Refactorization_P.sistema.Configuracion.Global.simulacionActiva;
-  rtb_BusAssignment3_Configuracion_Global_toleranciaEquilibrioPresiones =
-    ControlSystem_Refactorization_P.sistema.Configuracion.Global.toleranciaEquilibrioPresiones;
-  rtb_BusAssignment3_Configuracion_ControlManual_actuadorSeleccionado =
-    ControlSystem_Refactorization_P.sistema.Configuracion.ControlManual.actuadorSeleccionado;
-
   /* MATLABSystem: '<S6>/ManualControlLogic' incorporates:
-   *  BusAssignment: '<S2>/Bus Assignment3'
-   *  Constant: '<S2>/Constant6'
+   *  Constant: '<S19>/Constant'
+   *  Constant: '<S19>/Constant1'
+   *  Constant: '<S19>/Constant4'
    *  DataStoreRead: '<Root>/Data Store Read5'
-   *  ForEachSliceAssignment generated from: '<S17>/Out1'
+   *  ForEachSliceAssignment generated from: '<S18>/Out1'
    */
   /*  1. INICIALIZACIÓN DE VARIABLES */
   /*  2. INICIALIZACIÓN DE SALIDAS */
@@ -765,55 +806,56 @@ void ControlSystem_Refactorization_output(void)
 
   /*  1. No hay ningún actuador seleccionado o el modo de control */
   /*  manual está deshabilitado */
-  b =
-    (ControlSystem_Refactorization_P.sistema.Configuracion.ControlManual.actuadorSeleccionado
-     == 0.0);
-  if (b || (b ||
-            (ControlSystem_Refactorization_P.sistema.Configuracion.Global.modoControl
-             != ModoControl_Manual))) {
+  rtb_Compare_b = (ControlSystem_Refactorization_P.Constant4_Value == 0.0);
+  if (rtb_Compare_b || (rtb_Compare_b ||
+                        (ControlSystem_Refactorization_P.Constant_Value !=
+                         ModoControl_Manual))) {
     b_varargout_5 = ControlSystem_Refactorization_DW.regulador.Estado.presion;
     b_varargout_4 = ControlSystem_Refactorization_DW.regulador.Estado.presion;
   } else {
     /*  2. Se escogen las señales en función del actuador */
     /*  seleccionado y del parámetro de control activo */
-    switch
-      (ControlSystem_Refactorization_P.sistema.Configuracion.Global.parametroControl)
-    {
+    switch (ControlSystem_Refactorization_P.Constant1_Value) {
      case ParametroControl_Presion:
       rtb_Controladoractivo_i = Controlador_Presion;
       b_varargout_5 = rtb_ImpAsg_InsertedFor_Out1_at_inport_0[(int32_T)
-        ControlSystem_Refactorization_P.sistema.Configuracion.ControlManual.actuadorSeleccionado
-        - 1].Configuracion.Global.Referencia.presion;
+        ControlSystem_Refactorization_P.Constant4_Value - 1].
+        Configuracion.Global.Referencia.presion;
       b_varargout_4 = rtb_ImpAsg_InsertedFor_Out1_at_inport_0[(int32_T)
-        ControlSystem_Refactorization_P.sistema.Configuracion.ControlManual.actuadorSeleccionado
-        - 1].Estado.Realimentacion.presion;
+        ControlSystem_Refactorization_P.Constant4_Value - 1].
+        Estado.Realimentacion.presion;
       break;
 
      case ParametroControl_Curvatura:
       rtb_Controladoractivo_i = Controlador_Curvatura;
       b_varargout_5 = rtb_ImpAsg_InsertedFor_Out1_at_inport_0[(int32_T)
-        ControlSystem_Refactorization_P.sistema.Configuracion.ControlManual.actuadorSeleccionado
-        - 1].Configuracion.Global.Referencia.curvatura;
+        ControlSystem_Refactorization_P.Constant4_Value - 1].
+        Configuracion.Global.Referencia.curvatura;
       b_varargout_4 = rtb_ImpAsg_InsertedFor_Out1_at_inport_0[(int32_T)
-        ControlSystem_Refactorization_P.sistema.Configuracion.ControlManual.actuadorSeleccionado
-        - 1].Estado.Realimentacion.curvatura;
+        ControlSystem_Refactorization_P.Constant4_Value - 1].
+        Estado.Realimentacion.curvatura;
       break;
     }
   }
 
   /* MATLABSystem: '<S6>/SequentialAutonomousControlLogic' incorporates:
-   *  BusAssignment: '<S2>/Bus Assignment3'
-   *  Constant: '<S2>/Constant6'
+   *  Constant: '<S19>/Constant'
+   *  Constant: '<S19>/Constant1'
+   *  Constant: '<S19>/Constant5'
+   *  Constant: '<S19>/Constant6'
+   *  Constant: '<S19>/Constant7'
+   *  Constant: '<S19>/Constant8'
+   *  Constant: '<S19>/Constant9'
    *  DataStoreRead: '<Root>/Data Store Read4'
    *  DataStoreRead: '<Root>/Data Store Read5'
-   *  ForEachSliceAssignment generated from: '<S17>/Out1'
+   *  ForEachSliceAssignment generated from: '<S18>/Out1'
    */
   /*  1. REINICIO DE ESTADO */
   /*  Se reinicia el actuador seleccionado al deshabilitar esta */
   /*  lógica de control o cambiar el parámetro de control */
   if ((!ControlSystem_Refactorization_DW.obj.controlHabilitado) ||
-      (ControlSystem_Refactorization_P.sistema.Configuracion.Global.parametroControl
-       != ControlSystem_Refactorization_DW.obj.parametroControl)) {
+      (ControlSystem_Refactorization_P.Constant1_Value !=
+       ControlSystem_Refactorization_DW.obj.parametroControl)) {
     ControlSystem_Refactorization_DW.obj.controlHabilitado = true;
     ControlSystem_Refactorization_DW.obj.actuadorSeleccionado = 0.0;
   }
@@ -821,7 +863,7 @@ void ControlSystem_Refactorization_output(void)
   /*  2. INICIALIZACIÓN DE VARIABLES */
   /*  Registra el estado actual del sistema de control */
   ControlSystem_Refactorization_DW.obj.parametroControl =
-    ControlSystem_Refactorization_P.sistema.Configuracion.Global.parametroControl;
+    ControlSystem_Refactorization_P.Constant1_Value;
   if (ControlSystem_Refactorization_DW.obj.parametroControl ==
       ParametroControl_Presion) {
     ControlSystem_Refactorization_DW.obj.referencias[0] =
@@ -845,9 +887,9 @@ void ControlSystem_Refactorization_output(void)
     ControlSystem_Refactorization_DW.obj.realimentaciones.actuador[3] =
       rtb_ImpAsg_InsertedFor_Out1_at_inport_0[3].Estado.Realimentacion.presion;
     ControlSystem_Refactorization_DW.obj.tolerancias.estacionaria =
-      ControlSystem_Refactorization_P.sistema.Configuracion.Global.ToleranciaPresion.estacionaria;
+      ControlSystem_Refactorization_P.Constant5_Value;
     ControlSystem_Refactorization_DW.obj.tolerancias.derivativa =
-      ControlSystem_Refactorization_P.sistema.Configuracion.Global.ToleranciaPresion.derivativa;
+      ControlSystem_Refactorization_P.Constant6_Value;
     b_controlador = Controlador_Presion;
   } else {
     ControlSystem_Refactorization_DW.obj.referencias[0] =
@@ -871,18 +913,18 @@ void ControlSystem_Refactorization_output(void)
     ControlSystem_Refactorization_DW.obj.realimentaciones.actuador[3] =
       rtb_ImpAsg_InsertedFor_Out1_at_inport_0[3].Estado.Realimentacion.curvatura;
     ControlSystem_Refactorization_DW.obj.tolerancias.estacionaria =
-      ControlSystem_Refactorization_P.sistema.Configuracion.Global.ToleranciaCurvatura.estacionaria;
+      ControlSystem_Refactorization_P.Constant7_Value;
     ControlSystem_Refactorization_DW.obj.tolerancias.derivativa =
-      ControlSystem_Refactorization_P.sistema.Configuracion.Global.ToleranciaCurvatura.derivativa;
+      ControlSystem_Refactorization_P.Constant8_Value;
     b_controlador = Controlador_Curvatura;
   }
 
   ControlSystem_Refactorization_DW.obj.modoControl =
-    ControlSystem_Refactorization_P.sistema.Configuracion.Global.modoControl;
+    ControlSystem_Refactorization_P.Constant_Value;
   ControlSystem_Refactorization_DW.obj.realimentaciones.presionRegulador =
     ControlSystem_Refactorization_DW.regulador.Estado.presion;
   ControlSystem_Refactorization_DW.obj.tolerancias.equilibrioPresiones =
-    ControlSystem_Refactorization_P.sistema.Configuracion.Global.toleranciaEquilibrioPresiones;
+    ControlSystem_Refactorization_P.Constant9_Value;
   ControlSystem_Refactorization_DW.obj.errorControl.estacionario =
     ControlSystem_Refactorization_DW.sistema.Estado.Global.errorEstacionario;
   ControlSystem_Refactorization_DW.obj.errorControl.derivativo =
@@ -892,7 +934,7 @@ void ControlSystem_Refactorization_output(void)
   rtb_Derivative =
     ControlSystem_Refactorization_DW.sistema.Estado.Global.realimentacionControl;
   maxError =
-    ControlSystem_Refactorization_P.sistema.Configuracion.Global.referenciaControl;
+    ControlSystem_Refactorization_DW.sistema.Configuracion.Global.referenciaControl;
   ControlSystem_Refactorization_DW.obj.realimentaciones.presionesEquilibrio[0] =
     rtb_ImpAsg_InsertedFor_Out1_at_inport_0[0].Estado.Realimentacion.presion;
   ControlSystem_Refactorization_DW.obj.actuadoresActivos[0] =
@@ -906,13 +948,13 @@ void ControlSystem_Refactorization_output(void)
   tmp[0] = ActuadorPosicionado_Desposicionado;
 
   /* Start for MATLABSystem: '<S6>/SequentialAutonomousControlLogic' incorporates:
-   *  ForEachSliceAssignment generated from: '<S17>/Out1'
+   *  ForEachSliceAssignment generated from: '<S18>/Out1'
    */
   estadoValvulas_Bloqueo[0] = rtb_ImpAsg_InsertedFor_Out1_at_inport_0[0].
     Estado.ControlAutomatico.estadoValvula;
 
   /* MATLABSystem: '<S6>/SequentialAutonomousControlLogic' incorporates:
-   *  ForEachSliceAssignment generated from: '<S17>/Out1'
+   *  ForEachSliceAssignment generated from: '<S18>/Out1'
    */
   ControlSystem_Refactorization_DW.obj.realimentaciones.presionesEquilibrio[1] =
     rtb_ImpAsg_InsertedFor_Out1_at_inport_0[1].Estado.Realimentacion.presion;
@@ -927,13 +969,13 @@ void ControlSystem_Refactorization_output(void)
   tmp[1] = ActuadorPosicionado_Desposicionado;
 
   /* Start for MATLABSystem: '<S6>/SequentialAutonomousControlLogic' incorporates:
-   *  ForEachSliceAssignment generated from: '<S17>/Out1'
+   *  ForEachSliceAssignment generated from: '<S18>/Out1'
    */
   estadoValvulas_Bloqueo[1] = rtb_ImpAsg_InsertedFor_Out1_at_inport_0[1].
     Estado.ControlAutomatico.estadoValvula;
 
   /* MATLABSystem: '<S6>/SequentialAutonomousControlLogic' incorporates:
-   *  ForEachSliceAssignment generated from: '<S17>/Out1'
+   *  ForEachSliceAssignment generated from: '<S18>/Out1'
    */
   ControlSystem_Refactorization_DW.obj.realimentaciones.presionesEquilibrio[2] =
     rtb_ImpAsg_InsertedFor_Out1_at_inport_0[2].Estado.Realimentacion.presion;
@@ -948,13 +990,13 @@ void ControlSystem_Refactorization_output(void)
   tmp[2] = ActuadorPosicionado_Desposicionado;
 
   /* Start for MATLABSystem: '<S6>/SequentialAutonomousControlLogic' incorporates:
-   *  ForEachSliceAssignment generated from: '<S17>/Out1'
+   *  ForEachSliceAssignment generated from: '<S18>/Out1'
    */
   estadoValvulas_Bloqueo[2] = rtb_ImpAsg_InsertedFor_Out1_at_inport_0[2].
     Estado.ControlAutomatico.estadoValvula;
 
   /* MATLABSystem: '<S6>/SequentialAutonomousControlLogic' incorporates:
-   *  ForEachSliceAssignment generated from: '<S17>/Out1'
+   *  ForEachSliceAssignment generated from: '<S18>/Out1'
    */
   ControlSystem_Refactorization_DW.obj.realimentaciones.presionesEquilibrio[3] =
     rtb_ImpAsg_InsertedFor_Out1_at_inport_0[3].Estado.Realimentacion.presion;
@@ -969,7 +1011,7 @@ void ControlSystem_Refactorization_output(void)
   tmp[3] = ActuadorPosicionado_Desposicionado;
 
   /* Start for MATLABSystem: '<S6>/SequentialAutonomousControlLogic' incorporates:
-   *  ForEachSliceAssignment generated from: '<S17>/Out1'
+   *  ForEachSliceAssignment generated from: '<S18>/Out1'
    */
   estadoValvulas_Bloqueo[3] = rtb_ImpAsg_InsertedFor_Out1_at_inport_0[3].
     Estado.ControlAutomatico.estadoValvula;
@@ -1034,19 +1076,19 @@ void ControlSystem_Refactorization_output(void)
     } else {
       /*  2. Si todos los actuadores ya están posicionados, no se selecciona */
       /*  ninguno */
-      b = false;
+      rtb_Compare_b = false;
       b_k = 0;
       exitg1 = false;
       while ((!exitg1) && (b_k < 4)) {
         if (tmp[b_k] == ActuadorPosicionado_Desposicionado) {
-          b = true;
+          rtb_Compare_b = true;
           exitg1 = true;
         } else {
           b_k++;
         }
       }
 
-      if (!b) {
+      if (!rtb_Compare_b) {
         rtb_Derivative = 0.0;
       } else {
         /*  3. Se selecciona el actuador activo con mayor error estacionario */
@@ -1129,7 +1171,7 @@ void ControlSystem_Refactorization_output(void)
     /*  1. Si hay actuadores distintos al seleccionado */
     /*  inyectando aire, o no hay actuadores seleccionados, */
     /*  se cierran todas las válvulas en esta etapa de ejecución */
-    b = false;
+    rtb_Compare_b = false;
     trueCount = 0;
     for (i = 0; i < 4; i++) {
       if (actuadoresNoSeleccionados[i]) {
@@ -1150,15 +1192,15 @@ void ControlSystem_Refactorization_output(void)
 
       if (ControlSystem_Refactorization_DW.obj.estadoValvulas[tmp_data[b_k]] ==
           EstadoValvula_Inyectar) {
-        b = true;
+        rtb_Compare_b = true;
         exitg1 = true;
       } else {
         b_k++;
       }
     }
 
-    if ((!b) && (!(ControlSystem_Refactorization_DW.obj.actuadorSeleccionado ==
-                   0.0))) {
+    if ((!rtb_Compare_b) &&
+        (!(ControlSystem_Refactorization_DW.obj.actuadorSeleccionado == 0.0))) {
       /*  2. Si todas las válvulas están cerradas, y la presión del */
       /*  regulador es distinta a la del actuador seleccionado, se */
       /*  continúa el proceso de equilibrio de presiones. */
@@ -1210,14 +1252,12 @@ void ControlSystem_Refactorization_output(void)
   }
 
   /* MultiPortSwitch generated from: '<S6>/Index Vector1' incorporates:
-   *  BusAssignment: '<S2>/Bus Assignment3'
-   *  Constant: '<S2>/Constant6'
-   *  ForEachSliceAssignment generated from: '<S17>/Out1'
+   *  Constant: '<S19>/Constant'
+   *  ForEachSliceAssignment generated from: '<S18>/Out1'
    *  MATLABSystem: '<S6>/ManualControlLogic'
    *  MATLABSystem: '<S6>/SequentialAutonomousControlLogic'
    * */
-  if (ControlSystem_Refactorization_P.sistema.Configuracion.Global.modoControl ==
-      ModoControl_Manual) {
+  if (ControlSystem_Refactorization_P.Constant_Value == ModoControl_Manual) {
     estadoValvulas_Control[0] = 2U;
     rtb_EstadodelaselectrovlvulasControlautnomo[0] =
       rtb_ImpAsg_InsertedFor_Out1_at_inport_0[0].
@@ -1251,7 +1291,7 @@ void ControlSystem_Refactorization_output(void)
   for (ForEach_itr_e = 0; ForEach_itr_e < 4; ForEach_itr_e++) {
     /* ForEachSliceAssignment generated from: '<S3>/actuadores' incorporates:
      *  BusAssignment: '<S3>/Bus Assignment'
-     *  ForEachSliceAssignment generated from: '<S17>/Out1'
+     *  ForEachSliceAssignment generated from: '<S18>/Out1'
      *  ForEachSliceSelector generated from: '<S3>/actuadorBus'
      *  ForEachSliceSelector generated from: '<S3>/actuadoresPosicionados'
      *  ForEachSliceSelector generated from: '<S3>/estadoElectrovalvulas_controlAutonomo'
@@ -1274,50 +1314,69 @@ void ControlSystem_Refactorization_output(void)
   /* End of Outputs for SubSystem: '<Root>/For Each Subsystem4' */
 
   /* MultiPortSwitch generated from: '<S6>/Index Vector1' incorporates:
-   *  BusAssignment: '<S2>/Bus Assignment3'
-   *  Constant: '<S2>/Constant6'
+   *  Constant: '<S19>/Constant'
    *  MATLABSystem: '<S6>/ManualControlLogic'
    *  MATLABSystem: '<S6>/SequentialAutonomousControlLogic'
    * */
-  if (ControlSystem_Refactorization_P.sistema.Configuracion.Global.modoControl ==
-      ModoControl_Manual) {
+  if (ControlSystem_Refactorization_P.Constant_Value == ModoControl_Manual) {
     rtb_Derivative = b_varargout_4;
     maxError = b_varargout_5;
   } else {
     rtb_Controladoractivo_i = b_controlador;
   }
 
-  /* BusAssignment: '<Root>/Bus Assignment' */
-  b_varargout_5 = rtb_Derivative;
+  /* BusAssignment: '<Root>/Bus Assignment' incorporates:
+   *  Constant: '<S19>/Constant'
+   *  Constant: '<S19>/Constant1'
+   *  Constant: '<S19>/Constant2'
+   *  Constant: '<S19>/Constant4'
+   *  Constant: '<S19>/Constant5'
+   *  Constant: '<S19>/Constant6'
+   *  Constant: '<S19>/Constant7'
+   *  Constant: '<S19>/Constant8'
+   *  Constant: '<S19>/Constant9'
+   */
+  rtb_sistema_Configuracion_Global_modoControl =
+    ControlSystem_Refactorization_P.Constant_Value;
+  rtb_sistema_Configuracion_Global_parametroControl =
+    ControlSystem_Refactorization_P.Constant1_Value;
+  b_varargout_5 = ControlSystem_Refactorization_P.Constant2_Value;
+  b_varargout_4 = ControlSystem_Refactorization_P.Constant9_Value;
+  actError = ControlSystem_Refactorization_P.Constant5_Value;
+  rtb_sistema_Configuracion_Global_ToleranciaPresion_derivativa =
+    ControlSystem_Refactorization_P.Constant6_Value;
+  rtb_sistema_Configuracion_Global_ToleranciaCurvatura_estacionaria =
+    ControlSystem_Refactorization_P.Constant7_Value;
+  rtb_sistema_Configuracion_Global_ToleranciaCurvatura_derivativa =
+    ControlSystem_Refactorization_P.Constant8_Value;
+  rtb_sistema_Configuracion_ControlManual_actuadorSeleccionado =
+    ControlSystem_Refactorization_P.Constant4_Value;
+  rtb_sistema_Estado_Global_realimentacionControl = rtb_Derivative;
 
   /* Logic: '<S7>/OR' incorporates:
-   *  Constant: '<S37>/Constant'
-   *  Constant: '<S38>/Constant'
-   *  RelationalOperator: '<S37>/Compare'
-   *  RelationalOperator: '<S38>/Compare'
+   *  Constant: '<S39>/Constant'
+   *  Constant: '<S40>/Constant'
+   *  RelationalOperator: '<S39>/Compare'
+   *  RelationalOperator: '<S40>/Compare'
    */
   ControlSystem_Refactorization_B.OR = ((rtb_Controladoractivo_i ==
     ControlSystem_Refactorization_P.CompareToConstant1_const) ||
     (rtb_Controladoractivo_i ==
      ControlSystem_Refactorization_P.CompareToConstant2_const));
-
-  /* RateTransition generated from: '<S8>/DATOS DE ACTUADORES' */
-  b = (rtmIsMajorTimeStep(ControlSystem_Refactorization_M) &&
-       ControlSystem_Refactorization_M->Timing.TaskCounters.TID[1] == 0);
-  if (b) {
-    /* SignalConversion generated from: '<S40>/Enable' */
+  if (tmp_0) {
+    /* SignalConversion generated from: '<S42>/Enable' */
     ControlSystem_Refactorization_B.HiddenBuf_InsertedFor_ControldePresin_at_inport_2
       = ControlSystem_Refactorization_B.OR;
 
     /* Outputs for Enabled SubSystem: '<S7>/Control de Presión' incorporates:
-     *  EnablePort: '<S40>/Enable'
+     *  EnablePort: '<S42>/Enable'
      */
     if (rtsiIsModeUpdateTimeStep(&ControlSystem_Refactorization_M->solverInfo))
     {
       if (ControlSystem_Refactorization_B.HiddenBuf_InsertedFor_ControldePresin_at_inport_2)
       {
         if (!ControlSystem_Refactorization_DW.ControldePresin_MODE) {
-          /* InitializeConditions for Derivative: '<S40>/Derivative' */
+          /* InitializeConditions for Derivative: '<S42>/Derivative' */
           ControlSystem_Refactorization_DW.TimeStampA = (rtInf);
           ControlSystem_Refactorization_DW.TimeStampB = (rtInf);
           ControlSystem_Refactorization_DW.ControldePresin_MODE = true;
@@ -1331,65 +1390,62 @@ void ControlSystem_Refactorization_output(void)
   }
 
   /* Outputs for Enabled SubSystem: '<S7>/Control de Presión' incorporates:
-   *  EnablePort: '<S40>/Enable'
+   *  EnablePort: '<S42>/Enable'
    */
   if (ControlSystem_Refactorization_DW.ControldePresin_MODE) {
-    /* Sum: '<S40>/Add' incorporates:
+    /* Sum: '<S42>/Add' incorporates:
      *  BusAssignment: '<Root>/Bus Assignment'
      */
     ControlSystem_Refactorization_B.Add = maxError - rtb_Derivative;
 
-    /* Derivative: '<S40>/Derivative' */
-    b_varargout_4 = ControlSystem_Refactorization_M->Timing.t[0];
-    if ((ControlSystem_Refactorization_DW.TimeStampA >= b_varargout_4) &&
-        (ControlSystem_Refactorization_DW.TimeStampB >= b_varargout_4)) {
-      /* Derivative: '<S40>/Derivative' */
+    /* Derivative: '<S42>/Derivative' */
+    u0 = ControlSystem_Refactorization_M->Timing.t[0];
+    if ((ControlSystem_Refactorization_DW.TimeStampA >= u0) &&
+        (ControlSystem_Refactorization_DW.TimeStampB >= u0)) {
+      /* Derivative: '<S42>/Derivative' */
       ControlSystem_Refactorization_B.Derivative = 0.0;
     } else {
-      actError = ControlSystem_Refactorization_DW.TimeStampA;
+      lastTime = ControlSystem_Refactorization_DW.TimeStampA;
       lastU = &ControlSystem_Refactorization_DW.LastUAtTimeA;
       if (ControlSystem_Refactorization_DW.TimeStampA <
           ControlSystem_Refactorization_DW.TimeStampB) {
-        if (ControlSystem_Refactorization_DW.TimeStampB < b_varargout_4) {
-          actError = ControlSystem_Refactorization_DW.TimeStampB;
+        if (ControlSystem_Refactorization_DW.TimeStampB < u0) {
+          lastTime = ControlSystem_Refactorization_DW.TimeStampB;
           lastU = &ControlSystem_Refactorization_DW.LastUAtTimeB;
         }
-      } else if (ControlSystem_Refactorization_DW.TimeStampA >= b_varargout_4) {
-        actError = ControlSystem_Refactorization_DW.TimeStampB;
+      } else if (ControlSystem_Refactorization_DW.TimeStampA >= u0) {
+        lastTime = ControlSystem_Refactorization_DW.TimeStampB;
         lastU = &ControlSystem_Refactorization_DW.LastUAtTimeB;
       }
 
-      /* Derivative: '<S40>/Derivative' */
+      /* Derivative: '<S42>/Derivative' */
       ControlSystem_Refactorization_B.Derivative =
-        (ControlSystem_Refactorization_B.Add - *lastU) / (b_varargout_4 -
-        actError);
+        (ControlSystem_Refactorization_B.Add - *lastU) / (u0 - lastTime);
     }
 
-    /* End of Derivative: '<S40>/Derivative' */
+    /* End of Derivative: '<S42>/Derivative' */
 
-    /* Gain: '<S40>/Ganancia Presión -> Tensión' incorporates:
+    /* Gain: '<S42>/Ganancia Presión -> Tensión' incorporates:
      *  BusAssignment: '<Root>/Bus Assignment'
      */
-    b_varargout_4 = ControlSystem_Refactorization_P.GananciaPresinTensin_Gain_p *
-      maxError;
+    u0 = ControlSystem_Refactorization_P.GananciaPresinTensin_Gain_p * maxError;
 
-    /* Saturate: '<S40>/Saturación de tensión' */
-    if (b_varargout_4 >
-        ControlSystem_Refactorization_P.Saturacindetensin_UpperSat_a) {
-      /* Saturate: '<S40>/Saturación de tensión' */
+    /* Saturate: '<S42>/Saturación de tensión' */
+    if (u0 > ControlSystem_Refactorization_P.Saturacindetensin_UpperSat_a) {
+      /* Saturate: '<S42>/Saturación de tensión' */
       ControlSystem_Refactorization_B.Saturacindetensin =
         ControlSystem_Refactorization_P.Saturacindetensin_UpperSat_a;
-    } else if (b_varargout_4 <
-               ControlSystem_Refactorization_P.Saturacindetensin_LowerSat_m) {
-      /* Saturate: '<S40>/Saturación de tensión' */
+    } else if (u0 < ControlSystem_Refactorization_P.Saturacindetensin_LowerSat_m)
+    {
+      /* Saturate: '<S42>/Saturación de tensión' */
       ControlSystem_Refactorization_B.Saturacindetensin =
         ControlSystem_Refactorization_P.Saturacindetensin_LowerSat_m;
     } else {
-      /* Saturate: '<S40>/Saturación de tensión' */
-      ControlSystem_Refactorization_B.Saturacindetensin = b_varargout_4;
+      /* Saturate: '<S42>/Saturación de tensión' */
+      ControlSystem_Refactorization_B.Saturacindetensin = u0;
     }
 
-    /* End of Saturate: '<S40>/Saturación de tensión' */
+    /* End of Saturate: '<S42>/Saturación de tensión' */
     if (rtsiIsModeUpdateTimeStep(&ControlSystem_Refactorization_M->solverInfo))
     {
       srUpdateBC(ControlSystem_Refactorization_DW.ControldePresin_SubsysRanBC);
@@ -1398,18 +1454,18 @@ void ControlSystem_Refactorization_output(void)
 
   /* End of Outputs for SubSystem: '<S7>/Control de Presión' */
 
-  /* RelationalOperator: '<S36>/Compare' incorporates:
-   *  Constant: '<S36>/Constant'
+  /* RelationalOperator: '<S38>/Compare' incorporates:
+   *  Constant: '<S38>/Constant'
    */
   ControlSystem_Refactorization_B.Compare = (rtb_Controladoractivo_i ==
     ControlSystem_Refactorization_P.CompareToConstant_const_b);
-  if (b) {
-    /* SignalConversion generated from: '<S39>/Enable' */
+  if (tmp_0) {
+    /* SignalConversion generated from: '<S41>/Enable' */
     ControlSystem_Refactorization_B.HiddenBuf_InsertedFor_ControldeCurvatura_at_inport_3
       = ControlSystem_Refactorization_B.Compare;
 
     /* Outputs for Enabled SubSystem: '<S7>/Control de Curvatura' incorporates:
-     *  EnablePort: '<S39>/Enable'
+     *  EnablePort: '<S41>/Enable'
      */
     if (rtsiIsModeUpdateTimeStep(&ControlSystem_Refactorization_M->solverInfo))
     {
@@ -1420,20 +1476,20 @@ void ControlSystem_Refactorization_output(void)
                         0,
                         1*sizeof(boolean_T));
 
-          /* InitializeConditions for Derivative: '<S39>/Derivative1' */
+          /* InitializeConditions for Derivative: '<S41>/Derivative1' */
           ControlSystem_Refactorization_DW.TimeStampA_b = (rtInf);
           ControlSystem_Refactorization_DW.TimeStampB_f = (rtInf);
 
-          /* SystemReset for Atomic SubSystem: '<S39>/Controlador de posición PID' */
-          /* InitializeConditions for Integrator: '<S41>/Integrator' */
+          /* SystemReset for Atomic SubSystem: '<S41>/Controlador de posición PID' */
+          /* InitializeConditions for Integrator: '<S43>/Integrator' */
           ControlSystem_Refactorization_X.Integrator_CSTATE =
             ControlSystem_Refactorization_P.Integrator_IC;
 
-          /* InitializeConditions for Derivative: '<S41>/Derivative' */
+          /* InitializeConditions for Derivative: '<S43>/Derivative' */
           ControlSystem_Refactorization_DW.TimeStampA_k = (rtInf);
           ControlSystem_Refactorization_DW.TimeStampB_b = (rtInf);
 
-          /* End of SystemReset for SubSystem: '<S39>/Controlador de posición PID' */
+          /* End of SystemReset for SubSystem: '<S41>/Controlador de posición PID' */
           ControlSystem_Refactorization_DW.ControldeCurvatura_MODE = true;
         }
       } else {
@@ -1457,34 +1513,34 @@ void ControlSystem_Refactorization_output(void)
   }
 
   /* Outputs for Enabled SubSystem: '<S7>/Control de Curvatura' incorporates:
-   *  EnablePort: '<S39>/Enable'
+   *  EnablePort: '<S41>/Enable'
    */
   if (ControlSystem_Refactorization_DW.ControldeCurvatura_MODE) {
-    /* Sum: '<S39>/Add1' incorporates:
+    /* Sum: '<S41>/Add1' incorporates:
      *  BusAssignment: '<Root>/Bus Assignment'
-     *  Sum: '<S39>/Sum'
+     *  Sum: '<S41>/Sum'
      */
     rtb_Derivative = maxError - rtb_Derivative;
 
-    /* Sum: '<S39>/Add1' */
+    /* Sum: '<S41>/Add1' */
     ControlSystem_Refactorization_B.Add1 = rtb_Derivative;
 
-    /* Gain: '<S39>/Ganancia Presión -> Tensión' */
+    /* Gain: '<S41>/Ganancia Presión -> Tensión' */
     maxError = rtb_Derivative *
       ControlSystem_Refactorization_P.GananciaPresinTensin_Gain;
 
-    /* Outputs for Atomic SubSystem: '<S39>/Controlador de posición PID' */
-    /* RelationalOperator: '<S42>/Compare' incorporates:
-     *  Constant: '<S42>/Constant'
+    /* Outputs for Atomic SubSystem: '<S41>/Controlador de posición PID' */
+    /* RelationalOperator: '<S44>/Compare' incorporates:
+     *  Constant: '<S44>/Constant'
      */
     ControlSystem_Refactorization_B.Compare_m = (rtb_Controladoractivo_i ==
       ControlSystem_Refactorization_P.CompareToConstant_const);
 
-    /* Integrator: '<S41>/Integrator' */
-    tmp_0 = rtsiIsModeUpdateTimeStep
+    /* Integrator: '<S43>/Integrator' */
+    rtb_Compare_b = rtsiIsModeUpdateTimeStep
       (&ControlSystem_Refactorization_M->solverInfo);
-    if (tmp_0) {
-      rtb_Compare_b =
+    if (rtb_Compare_b) {
+      didZcEventOccur =
         (((ControlSystem_Refactorization_PrevZCX.Integrator_Reset_ZCE ==
            POS_ZCSIG) != (int32_T)ControlSystem_Refactorization_B.Compare_m) &&
          (ControlSystem_Refactorization_PrevZCX.Integrator_Reset_ZCE !=
@@ -1493,105 +1549,100 @@ void ControlSystem_Refactorization_output(void)
         ControlSystem_Refactorization_B.Compare_m;
 
       /* evaluate zero-crossings */
-      if (rtb_Compare_b) {
+      if (didZcEventOccur) {
         ControlSystem_Refactorization_X.Integrator_CSTATE =
           ControlSystem_Refactorization_P.Integrator_IC;
       }
     }
 
-    /* Gain: '<S41>/Gain2' */
+    /* Gain: '<S43>/Gain2' */
     ControlSystem_Refactorization_B.Gain2 =
       ControlSystem_Refactorization_P.Gain2_Gain * maxError;
 
-    /* Derivative: '<S41>/Derivative' incorporates:
-     *  Derivative: '<S39>/Derivative1'
+    /* Derivative: '<S43>/Derivative' incorporates:
+     *  Derivative: '<S41>/Derivative1'
      */
-    b_varargout_4 = ControlSystem_Refactorization_M->Timing.t[0];
-    if ((ControlSystem_Refactorization_DW.TimeStampA_k >= b_varargout_4) &&
-        (ControlSystem_Refactorization_DW.TimeStampB_b >= b_varargout_4)) {
+    u0 = ControlSystem_Refactorization_M->Timing.t[0];
+    if ((ControlSystem_Refactorization_DW.TimeStampA_k >= u0) &&
+        (ControlSystem_Refactorization_DW.TimeStampB_b >= u0)) {
       rtb_Derivative = 0.0;
     } else {
-      actError = ControlSystem_Refactorization_DW.TimeStampA_k;
+      lastTime = ControlSystem_Refactorization_DW.TimeStampA_k;
       lastU = &ControlSystem_Refactorization_DW.LastUAtTimeA_g;
       if (ControlSystem_Refactorization_DW.TimeStampA_k <
           ControlSystem_Refactorization_DW.TimeStampB_b) {
-        if (ControlSystem_Refactorization_DW.TimeStampB_b < b_varargout_4) {
-          actError = ControlSystem_Refactorization_DW.TimeStampB_b;
+        if (ControlSystem_Refactorization_DW.TimeStampB_b < u0) {
+          lastTime = ControlSystem_Refactorization_DW.TimeStampB_b;
           lastU = &ControlSystem_Refactorization_DW.LastUAtTimeB_c;
         }
-      } else if (ControlSystem_Refactorization_DW.TimeStampA_k >= b_varargout_4)
-      {
-        actError = ControlSystem_Refactorization_DW.TimeStampB_b;
+      } else if (ControlSystem_Refactorization_DW.TimeStampA_k >= u0) {
+        lastTime = ControlSystem_Refactorization_DW.TimeStampB_b;
         lastU = &ControlSystem_Refactorization_DW.LastUAtTimeB_c;
       }
 
-      rtb_Derivative = (ControlSystem_Refactorization_B.Gain2 - *lastU) /
-        (b_varargout_4 - actError);
+      rtb_Derivative = (ControlSystem_Refactorization_B.Gain2 - *lastU) / (u0 -
+        lastTime);
     }
 
-    /* End of Derivative: '<S41>/Derivative' */
+    /* End of Derivative: '<S43>/Derivative' */
 
-    /* Gain: '<S41>/Gain1' */
+    /* Gain: '<S43>/Gain1' */
     ControlSystem_Refactorization_B.Gain1 =
       ControlSystem_Refactorization_P.Gain1_Gain * maxError;
 
-    /* End of Outputs for SubSystem: '<S39>/Controlador de posición PID' */
+    /* End of Outputs for SubSystem: '<S41>/Controlador de posición PID' */
 
-    /* Derivative: '<S39>/Derivative1' */
-    if ((ControlSystem_Refactorization_DW.TimeStampA_b >= b_varargout_4) &&
-        (ControlSystem_Refactorization_DW.TimeStampB_f >= b_varargout_4)) {
-      /* Derivative: '<S39>/Derivative1' */
+    /* Derivative: '<S41>/Derivative1' */
+    if ((ControlSystem_Refactorization_DW.TimeStampA_b >= u0) &&
+        (ControlSystem_Refactorization_DW.TimeStampB_f >= u0)) {
+      /* Derivative: '<S41>/Derivative1' */
       ControlSystem_Refactorization_B.Derivative1 = 0.0;
     } else {
-      actError = ControlSystem_Refactorization_DW.TimeStampA_b;
+      lastTime = ControlSystem_Refactorization_DW.TimeStampA_b;
       lastU = &ControlSystem_Refactorization_DW.LastUAtTimeA_e;
       if (ControlSystem_Refactorization_DW.TimeStampA_b <
           ControlSystem_Refactorization_DW.TimeStampB_f) {
-        if (ControlSystem_Refactorization_DW.TimeStampB_f < b_varargout_4) {
-          actError = ControlSystem_Refactorization_DW.TimeStampB_f;
+        if (ControlSystem_Refactorization_DW.TimeStampB_f < u0) {
+          lastTime = ControlSystem_Refactorization_DW.TimeStampB_f;
           lastU = &ControlSystem_Refactorization_DW.LastUAtTimeB_k;
         }
-      } else if (ControlSystem_Refactorization_DW.TimeStampA_b >= b_varargout_4)
-      {
-        actError = ControlSystem_Refactorization_DW.TimeStampB_f;
+      } else if (ControlSystem_Refactorization_DW.TimeStampA_b >= u0) {
+        lastTime = ControlSystem_Refactorization_DW.TimeStampB_f;
         lastU = &ControlSystem_Refactorization_DW.LastUAtTimeB_k;
       }
 
-      /* Derivative: '<S39>/Derivative1' */
+      /* Derivative: '<S41>/Derivative1' */
       ControlSystem_Refactorization_B.Derivative1 =
-        (ControlSystem_Refactorization_B.Add1 - *lastU) / (b_varargout_4 -
-        actError);
+        (ControlSystem_Refactorization_B.Add1 - *lastU) / (u0 - lastTime);
     }
 
-    /* Outputs for Atomic SubSystem: '<S39>/Controlador de posición PID' */
-    /* Sum: '<S41>/Add' incorporates:
-     *  Gain: '<S41>/Gain'
-     *  Integrator: '<S41>/Integrator'
+    /* Outputs for Atomic SubSystem: '<S41>/Controlador de posición PID' */
+    /* Sum: '<S43>/Add' incorporates:
+     *  Gain: '<S43>/Gain'
+     *  Integrator: '<S43>/Integrator'
      */
-    b_varargout_4 = (ControlSystem_Refactorization_P.Gain_Gain * maxError +
-                     ControlSystem_Refactorization_X.Integrator_CSTATE) +
-      rtb_Derivative;
+    u0 = (ControlSystem_Refactorization_P.Gain_Gain * maxError +
+          ControlSystem_Refactorization_X.Integrator_CSTATE) + rtb_Derivative;
 
-    /* End of Outputs for SubSystem: '<S39>/Controlador de posición PID' */
+    /* End of Outputs for SubSystem: '<S41>/Controlador de posición PID' */
 
-    /* Saturate: '<S39>/Saturación de tensión' */
-    if (b_varargout_4 >
-        ControlSystem_Refactorization_P.Saturacindetensin_UpperSat) {
-      /* Saturate: '<S39>/Saturación de tensión' */
+    /* Saturate: '<S41>/Saturación de tensión' */
+    if (u0 > ControlSystem_Refactorization_P.Saturacindetensin_UpperSat) {
+      /* Saturate: '<S41>/Saturación de tensión' */
       ControlSystem_Refactorization_B.Saturacindetensin_k =
         ControlSystem_Refactorization_P.Saturacindetensin_UpperSat;
-    } else if (b_varargout_4 <
-               ControlSystem_Refactorization_P.Saturacindetensin_LowerSat) {
-      /* Saturate: '<S39>/Saturación de tensión' */
+    } else if (u0 < ControlSystem_Refactorization_P.Saturacindetensin_LowerSat)
+    {
+      /* Saturate: '<S41>/Saturación de tensión' */
       ControlSystem_Refactorization_B.Saturacindetensin_k =
         ControlSystem_Refactorization_P.Saturacindetensin_LowerSat;
     } else {
-      /* Saturate: '<S39>/Saturación de tensión' */
-      ControlSystem_Refactorization_B.Saturacindetensin_k = b_varargout_4;
+      /* Saturate: '<S41>/Saturación de tensión' */
+      ControlSystem_Refactorization_B.Saturacindetensin_k = u0;
     }
 
-    /* End of Saturate: '<S39>/Saturación de tensión' */
-    if (tmp_0) {
+    /* End of Saturate: '<S41>/Saturación de tensión' */
+    if (rtb_Compare_b) {
       srUpdateBC(ControlSystem_Refactorization_DW.ControldeCurvatura_SubsysRanBC);
     }
   }
@@ -1645,27 +1696,27 @@ void ControlSystem_Refactorization_output(void)
   ControlSystem_Refactorization_B.sistema.Configuracion.Global.numActuadores =
     rtb_DataStoreRead4_Configuracion_Global_numActuadores;
   ControlSystem_Refactorization_B.sistema.Configuracion.Global.modoControl =
-    rtb_BusAssignment3_Configuracion_Global_modoControl;
+    rtb_sistema_Configuracion_Global_modoControl;
   ControlSystem_Refactorization_B.sistema.Configuracion.Global.parametroControl =
-    rtb_BusAssignment3_Configuracion_Global_parametroControl;
+    rtb_sistema_Configuracion_Global_parametroControl;
   ControlSystem_Refactorization_B.sistema.Configuracion.Global.controlador =
     rtb_Controladoractivo_i;
   ControlSystem_Refactorization_B.sistema.Configuracion.Global.simulacionActiva =
-    rtb_BusAssignment3_Configuracion_Global_simulacionActiva;
-  ControlSystem_Refactorization_B.sistema.Configuracion.Global.toleranciaEquilibrioPresiones
-    = rtb_BusAssignment3_Configuracion_Global_toleranciaEquilibrioPresiones;
-  ControlSystem_Refactorization_B.sistema.Configuracion.Global.ToleranciaPresion.estacionaria
-    = rtb_BusAssignment3_Configuracion_Global_ToleranciaPresion_estacionaria;
-  ControlSystem_Refactorization_B.sistema.Configuracion.Global.ToleranciaPresion.derivativa
-    = rtb_BusAssignment3_Configuracion_Global_ToleranciaPresion_derivativa;
-  ControlSystem_Refactorization_B.sistema.Configuracion.Global.ToleranciaCurvatura.estacionaria
-    = rtb_BusAssignment3_Configuracion_Global_ToleranciaCurvatura_estacionaria;
-  ControlSystem_Refactorization_B.sistema.Configuracion.Global.ToleranciaCurvatura.derivativa
-    = rtb_BusAssignment3_Configuracion_Global_ToleranciaCurvatura_derivativa;
-  ControlSystem_Refactorization_B.sistema.Configuracion.ControlManual.actuadorSeleccionado
-    = rtb_BusAssignment3_Configuracion_ControlManual_actuadorSeleccionado;
-  ControlSystem_Refactorization_B.sistema.Estado.Global.realimentacionControl =
     b_varargout_5;
+  ControlSystem_Refactorization_B.sistema.Configuracion.Global.toleranciaEquilibrioPresiones
+    = b_varargout_4;
+  ControlSystem_Refactorization_B.sistema.Configuracion.Global.ToleranciaPresion.estacionaria
+    = actError;
+  ControlSystem_Refactorization_B.sistema.Configuracion.Global.ToleranciaPresion.derivativa
+    = rtb_sistema_Configuracion_Global_ToleranciaPresion_derivativa;
+  ControlSystem_Refactorization_B.sistema.Configuracion.Global.ToleranciaCurvatura.estacionaria
+    = rtb_sistema_Configuracion_Global_ToleranciaCurvatura_estacionaria;
+  ControlSystem_Refactorization_B.sistema.Configuracion.Global.ToleranciaCurvatura.derivativa
+    = rtb_sistema_Configuracion_Global_ToleranciaCurvatura_derivativa;
+  ControlSystem_Refactorization_B.sistema.Configuracion.ControlManual.actuadorSeleccionado
+    = rtb_sistema_Configuracion_ControlManual_actuadorSeleccionado;
+  ControlSystem_Refactorization_B.sistema.Estado.Global.realimentacionControl =
+    rtb_sistema_Estado_Global_realimentacionControl;
   ControlSystem_Refactorization_B.sistema.Estado.ControlAutomatico.actuadorSeleccionado
     = rtb_DataStoreRead4_Estado_ControlAutomatico_actuadorSeleccionado;
 
@@ -1676,13 +1727,13 @@ void ControlSystem_Refactorization_output(void)
   ControlSystem_Refactorization_B.NOT =
     !(ControlSystem_Refactorization_B.sistema.Configuracion.Global.simulacionActiva
       != 0.0);
-  if (b) {
-    /* SignalConversion generated from: '<S18>/Enable' */
+  if (tmp_0) {
+    /* SignalConversion generated from: '<S20>/Enable' */
     ControlSystem_Refactorization_B.HiddenBuf_InsertedFor_DAQ_at_inport_4 =
       ControlSystem_Refactorization_B.NOT;
 
     /* Outputs for Enabled SubSystem: '<S5>/DAQ' incorporates:
-     *  EnablePort: '<S18>/Enable'
+     *  EnablePort: '<S20>/Enable'
      */
     if (rtsiIsModeUpdateTimeStep(&ControlSystem_Refactorization_M->solverInfo))
     {
@@ -1694,17 +1745,17 @@ void ControlSystem_Refactorization_output(void)
   }
 
   /* Outputs for Enabled SubSystem: '<S5>/DAQ' incorporates:
-   *  EnablePort: '<S18>/Enable'
+   *  EnablePort: '<S20>/Enable'
    */
   if (ControlSystem_Refactorization_DW.DAQ_MODE) {
-    /* MATLABSystem: '<S18>/MATLAB System' */
+    /* MATLABSystem: '<S20>/MATLAB System' */
     /*  Implement algorithm. Calculate y as a function of input u and */
     /*  internal states. */
     /*  Inicialización de variables */
     memset(&ControlSystem_Refactorization_B.MATLABSystem[0], 0, sizeof(real_T) <<
            3U);
 
-    /* MATLABSystem: '<S18>/MATLAB System' incorporates:
+    /* MATLABSystem: '<S20>/MATLAB System' incorporates:
      *  DataStoreRead: '<Root>/Data Store Read6'
      *  ForEachSliceAssignment generated from: '<S3>/actuadores'
      */
@@ -1762,11 +1813,12 @@ void ControlSystem_Refactorization_output(void)
       }
     }
 
-    tmp_0 = (rtmIsMajorTimeStep(ControlSystem_Refactorization_M) &&
-             ControlSystem_Refactorization_M->Timing.TaskCounters.TID[3] == 0);
-    if (tmp_0) {
-      /* S-Function (sldrtai): '<S18>/Analog Input' */
-      /* S-Function Block: <S18>/Analog Input */
+    rtb_Compare_b = (rtmIsMajorTimeStep(ControlSystem_Refactorization_M) &&
+                     ControlSystem_Refactorization_M->Timing.TaskCounters.TID[2]
+                     == 0);
+    if (rtb_Compare_b) {
+      /* S-Function (sldrtai): '<S20>/Analog Input' */
+      /* S-Function Block: <S20>/Analog Input */
       {
         ANALOGIOPARM parm;
         parm.mode = (RANGEMODE)
@@ -1777,8 +1829,8 @@ void ControlSystem_Refactorization_output(void)
                        &rtb_Tensin, &parm);
       }
 
-      /* S-Function (sldrtai): '<S18>/Analog Input1' */
-      /* S-Function Block: <S18>/Analog Input1 */
+      /* S-Function (sldrtai): '<S20>/Analog Input1' */
+      /* S-Function Block: <S20>/Analog Input1 */
       {
         ANALOGIOPARM parm;
         parm.mode = (RANGEMODE)
@@ -1789,22 +1841,22 @@ void ControlSystem_Refactorization_output(void)
                        &rtb_Tensin_g[0], &parm);
       }
 
-      /* MATLAB Function: '<S18>/MATLAB Function' */
+      /* MATLAB Function: '<S20>/MATLAB Function' */
       ControlSystem_Refactorization_DW.sfEvent_d =
         ControlSystem_Refactorization_CALL_EVENT;
       ControlSystem_Refactorization_B.press = (rtb_Tensin - 0.9836) /
         0.81400000000000006;
     }
 
-    /* Outputs for Iterator SubSystem: '<S18>/Flujo de aire en los actuadores' incorporates:
-     *  ForEach: '<S20>/For Each'
+    /* Outputs for Iterator SubSystem: '<S20>/Flujo de aire en los actuadores' incorporates:
+     *  ForEach: '<S22>/For Each'
      */
     for (ForEach_itr_h = 0; ForEach_itr_h < 4; ForEach_itr_h++) {
-      /* Switch: '<S20>/Switch' incorporates:
-       *  Constant: '<S23>/Constant'
+      /* Switch: '<S22>/Switch' incorporates:
+       *  Constant: '<S25>/Constant'
        *  ForEachSliceAssignment generated from: '<S3>/actuadores'
-       *  ForEachSliceSelector generated from: '<S20>/Actuador'
-       *  RelationalOperator: '<S23>/Compare'
+       *  ForEachSliceSelector generated from: '<S22>/Actuador'
+       *  RelationalOperator: '<S25>/Compare'
        */
       if (ControlSystem_Refactorization_B.sistema.Configuracion.Global.modoControl
           ==
@@ -1819,14 +1871,14 @@ void ControlSystem_Refactorization_output(void)
           [ForEach_itr_h].Estado.ControlAutomatico.estadoValvula;
       }
 
-      /* MultiPortSwitch: '<S20>/Index Vector1' incorporates:
-       *  Switch: '<S20>/Switch'
+      /* MultiPortSwitch: '<S22>/Index Vector1' incorporates:
+       *  Switch: '<S22>/Switch'
        */
       switch (estadoActuador) {
        case EstadoValvula_Bloquear:
-        /* ForEachSliceAssignment generated from: '<S20>/Presión actuadores' incorporates:
+        /* ForEachSliceAssignment generated from: '<S22>/Presión actuadores' incorporates:
          *  ForEachSliceAssignment generated from: '<S3>/actuadores'
-         *  ForEachSliceSelector generated from: '<S20>/Actuador'
+         *  ForEachSliceSelector generated from: '<S22>/Actuador'
          */
         ControlSystem_Refactorization_B.ImpAsg_InsertedFor_Presinactuadores_at_inport_0_h
           [ForEach_itr_h] =
@@ -1835,14 +1887,14 @@ void ControlSystem_Refactorization_output(void)
         break;
 
        case EstadoValvula_Inyectar:
-        /* ForEachSliceAssignment generated from: '<S20>/Presión actuadores' */
+        /* ForEachSliceAssignment generated from: '<S22>/Presión actuadores' */
         ControlSystem_Refactorization_B.ImpAsg_InsertedFor_Presinactuadores_at_inport_0_h
           [ForEach_itr_h] = ControlSystem_Refactorization_B.press;
         break;
 
        default:
-        /* ForEachSliceAssignment generated from: '<S20>/Presión actuadores' incorporates:
-         *  Constant: '<S20>/Constant'
+        /* ForEachSliceAssignment generated from: '<S22>/Presión actuadores' incorporates:
+         *  Constant: '<S22>/Constant'
          */
         ControlSystem_Refactorization_B.ImpAsg_InsertedFor_Presinactuadores_at_inport_0_h
           [ForEach_itr_h] =
@@ -1850,25 +1902,25 @@ void ControlSystem_Refactorization_output(void)
         break;
       }
 
-      /* End of MultiPortSwitch: '<S20>/Index Vector1' */
+      /* End of MultiPortSwitch: '<S22>/Index Vector1' */
     }
 
-    /* End of Outputs for SubSystem: '<S18>/Flujo de aire en los actuadores' */
-    if (tmp_0) {
-      /* MATLAB Function: '<S18>/MATLAB Function1' */
+    /* End of Outputs for SubSystem: '<S20>/Flujo de aire en los actuadores' */
+    if (rtb_Compare_b) {
+      /* MATLAB Function: '<S20>/MATLAB Function1' */
       ControlSystem_Refactorization_DW.sfEvent =
         ControlSystem_Refactorization_CALL_EVENT;
       tmp_1 = _mm_div_pd(_mm_sub_pd(_mm_loadu_pd(&rtb_Tensin_g[0]), _mm_set_pd
         (2.3916, 2.3357)), _mm_set_pd(63.6333, 62.6723));
       _mm_storeu_pd(&ControlSystem_Refactorization_B.curv[0], tmp_1);
 
-      /* MATLAB Function: '<S18>/MATLAB Function1' */
+      /* MATLAB Function: '<S20>/MATLAB Function1' */
       tmp_1 = _mm_div_pd(_mm_sub_pd(_mm_loadu_pd(&rtb_Tensin_g[2]), _mm_set_pd
         (2.4385, 2.4152)), _mm_set_pd(62.6754, 63.6685));
       _mm_storeu_pd(&ControlSystem_Refactorization_B.curv[2], tmp_1);
 
-      /* S-Function (sldrtdo): '<S18>/Digital Output' */
-      /* S-Function Block: <S18>/Digital Output */
+      /* S-Function (sldrtdo): '<S20>/Digital Output' */
+      /* S-Function Block: <S20>/Digital Output */
       {
         RTBIO_DriverIO(0, DIGITALOUTPUT, IOWRITE, 8,
                        ControlSystem_Refactorization_P.DigitalOutput_Channels,
@@ -1876,8 +1928,8 @@ void ControlSystem_Refactorization_output(void)
                        &ControlSystem_Refactorization_P.DigitalOutput_BitMode);
       }
 
-      /* S-Function (sldrtao): '<S18>/Analog Output' */
-      /* S-Function Block: <S18>/Analog Output */
+      /* S-Function (sldrtao): '<S20>/Analog Output' */
+      /* S-Function Block: <S20>/Analog Output */
       {
         {
           ANALOGIOPARM parm;
@@ -1900,13 +1952,13 @@ void ControlSystem_Refactorization_output(void)
   }
 
   /* End of Outputs for SubSystem: '<S5>/DAQ' */
-  if (b) {
-    /* SignalConversion generated from: '<S19>/Enable' */
+  if (tmp_0) {
+    /* SignalConversion generated from: '<S21>/Enable' */
     ControlSystem_Refactorization_B.HiddenBuf_InsertedFor_Simulacin_at_inport_3 =
       ControlSystem_Refactorization_B.sistema.Configuracion.Global.simulacionActiva;
 
     /* Outputs for Enabled SubSystem: '<S5>/Simulación' incorporates:
-     *  EnablePort: '<S19>/Enable'
+     *  EnablePort: '<S21>/Enable'
      */
     if (rtsiIsModeUpdateTimeStep(&ControlSystem_Refactorization_M->solverInfo))
     {
@@ -1921,7 +1973,7 @@ void ControlSystem_Refactorization_output(void)
         }
       } else {
         /* Outputs for Enabled SubSystem: '<S7>/Control de Curvatura' incorporates:
-         *  EnablePort: '<S39>/Enable'
+         *  EnablePort: '<S41>/Enable'
          */
         if (ControlSystem_Refactorization_M->Timing.t[1] == rtmGetTStart
             (ControlSystem_Refactorization_M)) {
@@ -1938,9 +1990,9 @@ void ControlSystem_Refactorization_output(void)
              1,
              102*sizeof(boolean_T));
 
-          /* Disable for Iterator SubSystem: '<S19>/Modelo de los actuadores' */
+          /* Disable for Iterator SubSystem: '<S21>/Modelo de los actuadores' */
           for (ForEach_itr_d = 0; ForEach_itr_d < 4; ForEach_itr_d++) {
-            /* Disable for Enabled SubSystem: '<S24>/Curvatura Actuador 1' */
+            /* Disable for Enabled SubSystem: '<S26>/Curvatura Actuador 1' */
             if (ControlSystem_Refactorization_DW.CoreSubsys_pnae[ForEach_itr_d].
                 CurvaturaActuador1.CurvaturaActuador5_MODE) {
               ControlSystem_Refactorization_CurvaturaActuador5_Disable
@@ -1948,9 +2000,9 @@ void ControlSystem_Refactorization_output(void)
                  .CurvaturaActuador1);
             }
 
-            /* End of Disable for SubSystem: '<S24>/Curvatura Actuador 1' */
+            /* End of Disable for SubSystem: '<S26>/Curvatura Actuador 1' */
 
-            /* Disable for Enabled SubSystem: '<S24>/Curvatura Actuador 2' */
+            /* Disable for Enabled SubSystem: '<S26>/Curvatura Actuador 2' */
             if (ControlSystem_Refactorization_DW.CoreSubsys_pnae[ForEach_itr_d].
                 CurvaturaActuador2.CurvaturaActuador4_MODE) {
               ControlSystem_Refactorization_CurvaturaActuador4_Disable
@@ -1958,9 +2010,9 @@ void ControlSystem_Refactorization_output(void)
                  .CurvaturaActuador2);
             }
 
-            /* End of Disable for SubSystem: '<S24>/Curvatura Actuador 2' */
+            /* End of Disable for SubSystem: '<S26>/Curvatura Actuador 2' */
 
-            /* Disable for Enabled SubSystem: '<S24>/Curvatura Actuador 3' */
+            /* Disable for Enabled SubSystem: '<S26>/Curvatura Actuador 3' */
             if (ControlSystem_Refactorization_DW.CoreSubsys_pnae[ForEach_itr_d].
                 CurvaturaActuador3.CurvaturaActuador4_MODE) {
               ControlSystem_Refactorization_CurvaturaActuador4_Disable
@@ -1968,9 +2020,9 @@ void ControlSystem_Refactorization_output(void)
                  .CurvaturaActuador3);
             }
 
-            /* End of Disable for SubSystem: '<S24>/Curvatura Actuador 3' */
+            /* End of Disable for SubSystem: '<S26>/Curvatura Actuador 3' */
 
-            /* Disable for Enabled SubSystem: '<S24>/Curvatura Actuador 4' */
+            /* Disable for Enabled SubSystem: '<S26>/Curvatura Actuador 4' */
             if (ControlSystem_Refactorization_DW.CoreSubsys_pnae[ForEach_itr_d].
                 CurvaturaActuador4.CurvaturaActuador4_MODE) {
               ControlSystem_Refactorization_CurvaturaActuador4_Disable
@@ -1978,9 +2030,9 @@ void ControlSystem_Refactorization_output(void)
                  .CurvaturaActuador4);
             }
 
-            /* End of Disable for SubSystem: '<S24>/Curvatura Actuador 4' */
+            /* End of Disable for SubSystem: '<S26>/Curvatura Actuador 4' */
 
-            /* Disable for Enabled SubSystem: '<S24>/Curvatura Actuador 5' */
+            /* Disable for Enabled SubSystem: '<S26>/Curvatura Actuador 5' */
             if (ControlSystem_Refactorization_DW.CoreSubsys_pnae[ForEach_itr_d].
                 CurvaturaActuador5.CurvaturaActuador5_MODE) {
               ControlSystem_Refactorization_CurvaturaActuador5_Disable
@@ -1988,10 +2040,10 @@ void ControlSystem_Refactorization_output(void)
                  .CurvaturaActuador5);
             }
 
-            /* End of Disable for SubSystem: '<S24>/Curvatura Actuador 5' */
+            /* End of Disable for SubSystem: '<S26>/Curvatura Actuador 5' */
           }
 
-          /* End of Disable for SubSystem: '<S19>/Modelo de los actuadores' */
+          /* End of Disable for SubSystem: '<S21>/Modelo de los actuadores' */
           ControlSystem_Refactorization_DW.Simulacin_MODE = false;
         }
       }
@@ -2001,10 +2053,10 @@ void ControlSystem_Refactorization_output(void)
   }
 
   /* Outputs for Enabled SubSystem: '<S5>/Simulación' incorporates:
-   *  EnablePort: '<S19>/Enable'
+   *  EnablePort: '<S21>/Enable'
    */
   if (ControlSystem_Refactorization_DW.Simulacin_MODE) {
-    /* TransferFcn: '<S19>/Modelo del regulador de presión electrónico' */
+    /* TransferFcn: '<S21>/Modelo del regulador de presión electrónico' */
     ControlSystem_Refactorization_B.Modelodelreguladordepresinelectrnico = 0.0;
     ControlSystem_Refactorization_B.Modelodelreguladordepresinelectrnico +=
       ControlSystem_Refactorization_P.Modelodelreguladordepresinelectrnico_C[0] *
@@ -2015,11 +2067,11 @@ void ControlSystem_Refactorization_output(void)
       ControlSystem_Refactorization_X.Modelodelreguladordepresinelectrnico_CSTATE
       [1];
 
-    /* Outputs for Iterator SubSystem: '<S19>/Modelo de los actuadores' incorporates:
-     *  ForEach: '<S24>/For Each'
+    /* Outputs for Iterator SubSystem: '<S21>/Modelo de los actuadores' incorporates:
+     *  ForEach: '<S26>/For Each'
      */
     for (ForEach_itr_d = 0; ForEach_itr_d < 4; ForEach_itr_d++) {
-      /* ForEachSliceSelector generated from: '<S24>/Actuador' incorporates:
+      /* ForEachSliceSelector generated from: '<S26>/Actuador' incorporates:
        *  ForEachSliceAssignment generated from: '<S3>/actuadores'
        */
       rtb_DataStoreRead4_Configuracion_Global_numActuadores =
@@ -2036,58 +2088,58 @@ void ControlSystem_Refactorization_output(void)
         ControlSystem_Refactorization_B.ImpAsg_InsertedFor_actuadores_at_inport_0
         [ForEach_itr_d].Estado.Realimentacion.presion;
 
-      /* RelationalOperator: '<S25>/Compare' incorporates:
-       *  Constant: '<S25>/Constant'
+      /* RelationalOperator: '<S27>/Compare' incorporates:
+       *  Constant: '<S27>/Constant'
        *  ForEachSliceAssignment generated from: '<S3>/actuadores'
-       *  ForEachSliceSelector generated from: '<S24>/Actuador'
+       *  ForEachSliceSelector generated from: '<S26>/Actuador'
        */
       ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].Compare =
         (ControlSystem_Refactorization_B.ImpAsg_InsertedFor_actuadores_at_inport_0
          [ForEach_itr_d].Configuracion.Global.indice ==
          ControlSystem_Refactorization_P.CoreSubsys_pnae.CompareToConstant_const);
 
-      /* RelationalOperator: '<S26>/Compare' incorporates:
-       *  Constant: '<S26>/Constant'
+      /* RelationalOperator: '<S28>/Compare' incorporates:
+       *  Constant: '<S28>/Constant'
        *  ForEachSliceAssignment generated from: '<S3>/actuadores'
-       *  ForEachSliceSelector generated from: '<S24>/Actuador'
+       *  ForEachSliceSelector generated from: '<S26>/Actuador'
        */
       ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].Compare_c =
         (ControlSystem_Refactorization_B.ImpAsg_InsertedFor_actuadores_at_inport_0
          [ForEach_itr_d].Configuracion.Global.indice ==
          ControlSystem_Refactorization_P.CoreSubsys_pnae.CompareToConstant1_const);
 
-      /* RelationalOperator: '<S27>/Compare' incorporates:
-       *  Constant: '<S27>/Constant'
+      /* RelationalOperator: '<S29>/Compare' incorporates:
+       *  Constant: '<S29>/Constant'
        *  ForEachSliceAssignment generated from: '<S3>/actuadores'
-       *  ForEachSliceSelector generated from: '<S24>/Actuador'
+       *  ForEachSliceSelector generated from: '<S26>/Actuador'
        */
       ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].Compare_n =
         (ControlSystem_Refactorization_B.ImpAsg_InsertedFor_actuadores_at_inport_0
          [ForEach_itr_d].Configuracion.Global.indice ==
          ControlSystem_Refactorization_P.CoreSubsys_pnae.CompareToConstant2_const);
 
-      /* RelationalOperator: '<S28>/Compare' incorporates:
-       *  Constant: '<S28>/Constant'
+      /* RelationalOperator: '<S30>/Compare' incorporates:
+       *  Constant: '<S30>/Constant'
        *  ForEachSliceAssignment generated from: '<S3>/actuadores'
-       *  ForEachSliceSelector generated from: '<S24>/Actuador'
+       *  ForEachSliceSelector generated from: '<S26>/Actuador'
        */
       ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].Compare_i =
         (ControlSystem_Refactorization_B.ImpAsg_InsertedFor_actuadores_at_inport_0
          [ForEach_itr_d].Configuracion.Global.indice ==
          ControlSystem_Refactorization_P.CoreSubsys_pnae.CompareToConstant3_const);
 
-      /* RelationalOperator: '<S29>/Compare' incorporates:
-       *  Constant: '<S29>/Constant'
+      /* RelationalOperator: '<S31>/Compare' incorporates:
+       *  Constant: '<S31>/Constant'
        *  ForEachSliceAssignment generated from: '<S3>/actuadores'
-       *  ForEachSliceSelector generated from: '<S24>/Actuador'
+       *  ForEachSliceSelector generated from: '<S26>/Actuador'
        */
       ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].Compare_a =
         (ControlSystem_Refactorization_B.ImpAsg_InsertedFor_actuadores_at_inport_0
          [ForEach_itr_d].Configuracion.Global.indice ==
          ControlSystem_Refactorization_P.CoreSubsys_pnae.CompareToConstant4_const);
 
-      /* RelationalOperator: '<S30>/Compare' incorporates:
-       *  Constant: '<S30>/Constant'
+      /* RelationalOperator: '<S32>/Compare' incorporates:
+       *  Constant: '<S32>/Constant'
        */
       rtb_Compare_b =
         (ControlSystem_Refactorization_B.sistema.Configuracion.Global.modoControl
@@ -2096,13 +2148,13 @@ void ControlSystem_Refactorization_output(void)
       tmp_0 = (rtmIsMajorTimeStep(ControlSystem_Refactorization_M) &&
                ControlSystem_Refactorization_M->Timing.TaskCounters.TID[1] == 0);
       if (tmp_0) {
-        /* SignalConversion generated from: '<S31>/Enable' */
+        /* SignalConversion generated from: '<S33>/Enable' */
         ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
           HiddenBuf_InsertedFor_CurvaturaActuador1_at_inport_1 =
           ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].Compare;
       }
 
-      /* Outputs for Enabled SubSystem: '<S24>/Curvatura Actuador 1' */
+      /* Outputs for Enabled SubSystem: '<S26>/Curvatura Actuador 1' */
       ControlSystem_Refactorization_CurvaturaActuador5
         (ControlSystem_Refactorization_M,
          ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
@@ -2116,16 +2168,16 @@ void ControlSystem_Refactorization_output(void)
          CurvaturaActuador1, &_rtXdis->CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador1);
 
-      /* End of Outputs for SubSystem: '<S24>/Curvatura Actuador 1' */
+      /* End of Outputs for SubSystem: '<S26>/Curvatura Actuador 1' */
       if (tmp_0) {
-        /* SignalConversion generated from: '<S32>/Enable' */
+        /* SignalConversion generated from: '<S34>/Enable' */
         ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
           HiddenBuf_InsertedFor_CurvaturaActuador2_at_inport_1 =
           ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
           Compare_c;
       }
 
-      /* Outputs for Enabled SubSystem: '<S24>/Curvatura Actuador 2' */
+      /* Outputs for Enabled SubSystem: '<S26>/Curvatura Actuador 2' */
       ControlSystem_Refactorization_CurvaturaActuador4
         (ControlSystem_Refactorization_M,
          ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
@@ -2139,16 +2191,16 @@ void ControlSystem_Refactorization_output(void)
          CurvaturaActuador2, &_rtXdis->CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador2);
 
-      /* End of Outputs for SubSystem: '<S24>/Curvatura Actuador 2' */
+      /* End of Outputs for SubSystem: '<S26>/Curvatura Actuador 2' */
       if (tmp_0) {
-        /* SignalConversion generated from: '<S33>/Enable' */
+        /* SignalConversion generated from: '<S35>/Enable' */
         ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
           HiddenBuf_InsertedFor_CurvaturaActuador3_at_inport_1 =
           ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
           Compare_n;
       }
 
-      /* Outputs for Enabled SubSystem: '<S24>/Curvatura Actuador 3' */
+      /* Outputs for Enabled SubSystem: '<S26>/Curvatura Actuador 3' */
       ControlSystem_Refactorization_CurvaturaActuador4
         (ControlSystem_Refactorization_M,
          ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
@@ -2162,16 +2214,16 @@ void ControlSystem_Refactorization_output(void)
          CurvaturaActuador3, &_rtXdis->CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador3);
 
-      /* End of Outputs for SubSystem: '<S24>/Curvatura Actuador 3' */
+      /* End of Outputs for SubSystem: '<S26>/Curvatura Actuador 3' */
       if (tmp_0) {
-        /* SignalConversion generated from: '<S34>/Enable' */
+        /* SignalConversion generated from: '<S36>/Enable' */
         ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
           HiddenBuf_InsertedFor_CurvaturaActuador4_at_inport_1 =
           ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
           Compare_i;
       }
 
-      /* Outputs for Enabled SubSystem: '<S24>/Curvatura Actuador 4' */
+      /* Outputs for Enabled SubSystem: '<S26>/Curvatura Actuador 4' */
       ControlSystem_Refactorization_CurvaturaActuador4
         (ControlSystem_Refactorization_M,
          ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
@@ -2185,16 +2237,16 @@ void ControlSystem_Refactorization_output(void)
          CurvaturaActuador4, &_rtXdis->CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador4);
 
-      /* End of Outputs for SubSystem: '<S24>/Curvatura Actuador 4' */
+      /* End of Outputs for SubSystem: '<S26>/Curvatura Actuador 4' */
       if (tmp_0) {
-        /* SignalConversion generated from: '<S35>/Enable' */
+        /* SignalConversion generated from: '<S37>/Enable' */
         ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
           HiddenBuf_InsertedFor_CurvaturaActuador5_at_inport_1 =
           ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
           Compare_a;
       }
 
-      /* Outputs for Enabled SubSystem: '<S24>/Curvatura Actuador 5' */
+      /* Outputs for Enabled SubSystem: '<S26>/Curvatura Actuador 5' */
       ControlSystem_Refactorization_CurvaturaActuador5
         (ControlSystem_Refactorization_M,
          ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
@@ -2208,14 +2260,14 @@ void ControlSystem_Refactorization_output(void)
          CurvaturaActuador5, &_rtXdis->CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador5);
 
-      /* End of Outputs for SubSystem: '<S24>/Curvatura Actuador 5' */
+      /* End of Outputs for SubSystem: '<S26>/Curvatura Actuador 5' */
 
-      /* MultiPortSwitch: '<S24>/Index Vector2' incorporates:
-       *  ForEachSliceSelector generated from: '<S24>/Actuador'
+      /* MultiPortSwitch: '<S26>/Index Vector2' incorporates:
+       *  ForEachSliceSelector generated from: '<S26>/Actuador'
        */
       switch ((int32_T)rtb_DataStoreRead4_Configuracion_Global_numActuadores) {
        case 1:
-        /* ForEachSliceAssignment generated from: '<S24>/Curvatura Actuador' */
+        /* ForEachSliceAssignment generated from: '<S26>/Curvatura Actuador' */
         ControlSystem_Refactorization_B.ImpAsg_InsertedFor_CurvaturaActuador_at_inport_0
           [ForEach_itr_d] =
           ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
@@ -2223,7 +2275,7 @@ void ControlSystem_Refactorization_output(void)
         break;
 
        case 2:
-        /* ForEachSliceAssignment generated from: '<S24>/Curvatura Actuador' */
+        /* ForEachSliceAssignment generated from: '<S26>/Curvatura Actuador' */
         ControlSystem_Refactorization_B.ImpAsg_InsertedFor_CurvaturaActuador_at_inport_0
           [ForEach_itr_d] =
           ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
@@ -2231,7 +2283,7 @@ void ControlSystem_Refactorization_output(void)
         break;
 
        case 3:
-        /* ForEachSliceAssignment generated from: '<S24>/Curvatura Actuador' */
+        /* ForEachSliceAssignment generated from: '<S26>/Curvatura Actuador' */
         ControlSystem_Refactorization_B.ImpAsg_InsertedFor_CurvaturaActuador_at_inport_0
           [ForEach_itr_d] =
           ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
@@ -2239,7 +2291,7 @@ void ControlSystem_Refactorization_output(void)
         break;
 
        case 4:
-        /* ForEachSliceAssignment generated from: '<S24>/Curvatura Actuador' */
+        /* ForEachSliceAssignment generated from: '<S26>/Curvatura Actuador' */
         ControlSystem_Refactorization_B.ImpAsg_InsertedFor_CurvaturaActuador_at_inport_0
           [ForEach_itr_d] =
           ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
@@ -2247,7 +2299,7 @@ void ControlSystem_Refactorization_output(void)
         break;
 
        default:
-        /* ForEachSliceAssignment generated from: '<S24>/Curvatura Actuador' */
+        /* ForEachSliceAssignment generated from: '<S26>/Curvatura Actuador' */
         ControlSystem_Refactorization_B.ImpAsg_InsertedFor_CurvaturaActuador_at_inport_0
           [ForEach_itr_d] =
           ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
@@ -2255,23 +2307,23 @@ void ControlSystem_Refactorization_output(void)
         break;
       }
 
-      /* End of MultiPortSwitch: '<S24>/Index Vector2' */
+      /* End of MultiPortSwitch: '<S26>/Index Vector2' */
 
-      /* Switch: '<S24>/Switch' incorporates:
-       *  ForEachSliceSelector generated from: '<S24>/Actuador'
+      /* Switch: '<S26>/Switch' incorporates:
+       *  ForEachSliceSelector generated from: '<S26>/Actuador'
        */
       if (rtb_Compare_b) {
         estadoActuador =
           rtb_ImpSel_InsertedFor_Actuador_at_outport_0_Configuracion_ControlManual_estadoValvula;
       }
 
-      /* MultiPortSwitch: '<S24>/Index Vector1' incorporates:
-       *  Switch: '<S24>/Switch'
+      /* MultiPortSwitch: '<S26>/Index Vector1' incorporates:
+       *  Switch: '<S26>/Switch'
        */
       switch (estadoActuador) {
        case EstadoValvula_Bloquear:
-        /* MultiPortSwitch: '<S24>/Index Vector1' incorporates:
-         *  ForEachSliceSelector generated from: '<S24>/Actuador'
+        /* MultiPortSwitch: '<S26>/Index Vector1' incorporates:
+         *  ForEachSliceSelector generated from: '<S26>/Actuador'
          */
         ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
           IndexVector1 =
@@ -2279,15 +2331,15 @@ void ControlSystem_Refactorization_output(void)
         break;
 
        case EstadoValvula_Inyectar:
-        /* MultiPortSwitch: '<S24>/Index Vector1' */
+        /* MultiPortSwitch: '<S26>/Index Vector1' */
         ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
           IndexVector1 =
           ControlSystem_Refactorization_B.Modelodelreguladordepresinelectrnico;
         break;
 
        default:
-        /* MultiPortSwitch: '<S24>/Index Vector1' incorporates:
-         *  Constant: '<S24>/Constant'
+        /* MultiPortSwitch: '<S26>/Index Vector1' incorporates:
+         *  Constant: '<S26>/Constant'
          */
         ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
           IndexVector1 =
@@ -2295,16 +2347,16 @@ void ControlSystem_Refactorization_output(void)
         break;
       }
 
-      /* End of MultiPortSwitch: '<S24>/Index Vector1' */
+      /* End of MultiPortSwitch: '<S26>/Index Vector1' */
 
-      /* ForEachSliceAssignment generated from: '<S24>/Presión Actuador' */
+      /* ForEachSliceAssignment generated from: '<S26>/Presión Actuador' */
       ControlSystem_Refactorization_B.ImpAsg_InsertedFor_PresinActuador_at_inport_0
         [ForEach_itr_d] =
         ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
         IndexVector1;
     }
 
-    /* End of Outputs for SubSystem: '<S19>/Modelo de los actuadores' */
+    /* End of Outputs for SubSystem: '<S21>/Modelo de los actuadores' */
     if (rtsiIsModeUpdateTimeStep(&ControlSystem_Refactorization_M->solverInfo))
     {
       srUpdateBC(ControlSystem_Refactorization_DW.Simulacin_SubsysRanBC);
@@ -2314,9 +2366,9 @@ void ControlSystem_Refactorization_output(void)
   /* End of Outputs for SubSystem: '<S5>/Simulación' */
 
   /* MultiPortSwitch generated from: '<S5>/Index Vector1' incorporates:
-   *  ForEachSliceAssignment generated from: '<S20>/Presión actuadores'
-   *  ForEachSliceAssignment generated from: '<S24>/Curvatura Actuador'
-   *  ForEachSliceAssignment generated from: '<S24>/Presión Actuador'
+   *  ForEachSliceAssignment generated from: '<S22>/Presión actuadores'
+   *  ForEachSliceAssignment generated from: '<S26>/Curvatura Actuador'
+   *  ForEachSliceAssignment generated from: '<S26>/Presión Actuador'
    */
   if ((int32_T)
       ControlSystem_Refactorization_B.sistema.Configuracion.Global.simulacionActiva
@@ -2422,28 +2474,28 @@ void ControlSystem_Refactorization_output(void)
   ControlSystem_Refactorization_DW.electroValvulas = rtb_DataStoreRead6;
 
   /* Outputs for Iterator SubSystem: '<S8>/DATOS DE ACTUADORES' incorporates:
-   *  ForEach: '<S43>/For Each'
+   *  ForEach: '<S45>/For Each'
    */
   for (ForEach_itr = 0; ForEach_itr < 4; ForEach_itr++) {
-    /* ForEachSliceAssignment generated from: '<S43>/Presión actuadores' incorporates:
+    /* ForEachSliceAssignment generated from: '<S45>/Presión actuadores' incorporates:
      *  ForEachSliceAssignment generated from: '<S4>/actuadores'
-     *  ForEachSliceSelector generated from: '<S43>/actuadores'
+     *  ForEachSliceSelector generated from: '<S45>/actuadores'
      */
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_Presinactuadores_at_inport_0
       [ForEach_itr] = rtb_ImpAsg_InsertedFor_actuadores_at_inport_0[ForEach_itr]
       .Estado.Realimentacion.presion;
 
-    /* ForEachSliceAssignment generated from: '<S43>/Curvatura actuadores' incorporates:
+    /* ForEachSliceAssignment generated from: '<S45>/Curvatura actuadores' incorporates:
      *  ForEachSliceAssignment generated from: '<S4>/actuadores'
-     *  ForEachSliceSelector generated from: '<S43>/actuadores'
+     *  ForEachSliceSelector generated from: '<S45>/actuadores'
      */
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_Curvaturaactuadores_at_inport_0
       [ForEach_itr] = rtb_ImpAsg_InsertedFor_actuadores_at_inport_0[ForEach_itr]
       .Estado.Realimentacion.curvatura;
 
-    /* ForEachSliceAssignment generated from: '<S43>/Actuadores posicionados' incorporates:
+    /* ForEachSliceAssignment generated from: '<S45>/Actuadores posicionados' incorporates:
      *  ForEachSliceAssignment generated from: '<S4>/actuadores'
-     *  ForEachSliceSelector generated from: '<S43>/actuadores'
+     *  ForEachSliceSelector generated from: '<S45>/actuadores'
      */
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_Actuadoresposicionados_at_inport_0
       [ForEach_itr] = rtb_ImpAsg_InsertedFor_actuadores_at_inport_0[ForEach_itr]
@@ -2451,44 +2503,6 @@ void ControlSystem_Refactorization_output(void)
   }
 
   /* End of Outputs for SubSystem: '<S8>/DATOS DE ACTUADORES' */
-
-  /* RateTransition generated from: '<S8>/DATOS DE ACTUADORES' */
-  if (b) {
-    /* RateTransition generated from: '<S8>/DATOS DE ACTUADORES' incorporates:
-     *  ForEachSliceAssignment generated from: '<S43>/Curvatura actuadores'
-     */
-    ControlSystem_Refactorization_B.HiddenRateTransitionForToWks_InsertedFor_TAQSigLogging_InsertedFor_DATOSDEACTUADORES_at_outport
-      [0] =
-      ControlSystem_Refactorization_B.ImpAsg_InsertedFor_Curvaturaactuadores_at_inport_0
-      [0];
-    ControlSystem_Refactorization_B.HiddenRateTransitionForToWks_InsertedFor_TAQSigLogging_InsertedFor_DATOSDEACTUADORES_at_outport
-      [1] =
-      ControlSystem_Refactorization_B.ImpAsg_InsertedFor_Curvaturaactuadores_at_inport_0
-      [1];
-    ControlSystem_Refactorization_B.HiddenRateTransitionForToWks_InsertedFor_TAQSigLogging_InsertedFor_DATOSDEACTUADORES_at_outport
-      [2] =
-      ControlSystem_Refactorization_B.ImpAsg_InsertedFor_Curvaturaactuadores_at_inport_0
-      [2];
-    ControlSystem_Refactorization_B.HiddenRateTransitionForToWks_InsertedFor_TAQSigLogging_InsertedFor_DATOSDEACTUADORES_at_outport
-      [3] =
-      ControlSystem_Refactorization_B.ImpAsg_InsertedFor_Curvaturaactuadores_at_inport_0
-      [3];
-  }
-
-  if (rtmIsMajorTimeStep(ControlSystem_Refactorization_M) &&
-      ControlSystem_Refactorization_M->Timing.TaskCounters.TID[2] == 0) {
-    /* ToAsyncQueueBlock generated from: '<S8>/DATOS DE ACTUADORES' */
-    if (rtmIsMajorTimeStep(ControlSystem_Refactorization_M)) {
-      {
-        double time = ControlSystem_Refactorization_M->Timing.t[2];
-        void *pData = (void *)
-          &ControlSystem_Refactorization_B.HiddenRateTransitionForToWks_InsertedFor_TAQSigLogging_InsertedFor_DATOSDEACTUADORES_at_outport
-          [0];
-        int32_T size = 4*sizeof(real_T);
-        sendToAsyncQueueTgtAppSvc(4045461849U, time, pData, size);
-      }
-    }
-  }
 }
 
 /* Model update function */
@@ -2497,10 +2511,10 @@ void ControlSystem_Refactorization_update(void)
   real_T *lastU;
 
   /* Update for Enabled SubSystem: '<S7>/Control de Presión' incorporates:
-   *  EnablePort: '<S40>/Enable'
+   *  EnablePort: '<S42>/Enable'
    */
   if (ControlSystem_Refactorization_DW.ControldePresin_MODE) {
-    /* Update for Derivative: '<S40>/Derivative' */
+    /* Update for Derivative: '<S42>/Derivative' */
     if (ControlSystem_Refactorization_DW.TimeStampA == (rtInf)) {
       ControlSystem_Refactorization_DW.TimeStampA =
         ControlSystem_Refactorization_M->Timing.t[0];
@@ -2522,17 +2536,17 @@ void ControlSystem_Refactorization_update(void)
 
     *lastU = ControlSystem_Refactorization_B.Add;
 
-    /* End of Update for Derivative: '<S40>/Derivative' */
+    /* End of Update for Derivative: '<S42>/Derivative' */
   }
 
   /* End of Update for SubSystem: '<S7>/Control de Presión' */
 
   /* Update for Enabled SubSystem: '<S7>/Control de Curvatura' incorporates:
-   *  EnablePort: '<S39>/Enable'
+   *  EnablePort: '<S41>/Enable'
    */
   if (ControlSystem_Refactorization_DW.ControldeCurvatura_MODE) {
-    /* Update for Atomic SubSystem: '<S39>/Controlador de posición PID' */
-    /* Update for Derivative: '<S41>/Derivative' */
+    /* Update for Atomic SubSystem: '<S41>/Controlador de posición PID' */
+    /* Update for Derivative: '<S43>/Derivative' */
     if (ControlSystem_Refactorization_DW.TimeStampA_k == (rtInf)) {
       ControlSystem_Refactorization_DW.TimeStampA_k =
         ControlSystem_Refactorization_M->Timing.t[0];
@@ -2554,10 +2568,10 @@ void ControlSystem_Refactorization_update(void)
 
     *lastU = ControlSystem_Refactorization_B.Gain2;
 
-    /* End of Update for Derivative: '<S41>/Derivative' */
-    /* End of Update for SubSystem: '<S39>/Controlador de posición PID' */
+    /* End of Update for Derivative: '<S43>/Derivative' */
+    /* End of Update for SubSystem: '<S41>/Controlador de posición PID' */
 
-    /* Update for Derivative: '<S39>/Derivative1' */
+    /* Update for Derivative: '<S41>/Derivative1' */
     if (ControlSystem_Refactorization_DW.TimeStampA_b == (rtInf)) {
       ControlSystem_Refactorization_DW.TimeStampA_b =
         ControlSystem_Refactorization_M->Timing.t[0];
@@ -2579,7 +2593,7 @@ void ControlSystem_Refactorization_update(void)
 
     *lastU = ControlSystem_Refactorization_B.Add1;
 
-    /* End of Update for Derivative: '<S39>/Derivative1' */
+    /* End of Update for Derivative: '<S41>/Derivative1' */
   }
 
   /* End of Update for SubSystem: '<S7>/Control de Curvatura' */
@@ -2626,7 +2640,7 @@ void ControlSystem_Refactorization_update(void)
 
   if (rtmIsMajorTimeStep(ControlSystem_Refactorization_M) &&
       ControlSystem_Refactorization_M->Timing.TaskCounters.TID[2] == 0) {
-    /* Update absolute timer for sample time: [0.01s, 0.0s] */
+    /* Update absolute timer for sample time: [0.1s, 0.0s] */
     /* The "clockTick2" counts the number of times the code of this task has
      * been executed. The absolute time is the multiplication of "clockTick2"
      * and "Timing.stepSize2". Size of "clockTick2" ensures timer will not
@@ -2646,28 +2660,6 @@ void ControlSystem_Refactorization_update(void)
       ControlSystem_Refactorization_M->Timing.stepSize2 * 4294967296.0;
   }
 
-  if (rtmIsMajorTimeStep(ControlSystem_Refactorization_M) &&
-      ControlSystem_Refactorization_M->Timing.TaskCounters.TID[3] == 0) {
-    /* Update absolute timer for sample time: [0.1s, 0.0s] */
-    /* The "clockTick3" counts the number of times the code of this task has
-     * been executed. The absolute time is the multiplication of "clockTick3"
-     * and "Timing.stepSize3". Size of "clockTick3" ensures timer will not
-     * overflow during the application lifespan selected.
-     * Timer of this task consists of two 32 bit unsigned integers.
-     * The two integers represent the low bits Timing.clockTick3 and the high bits
-     * Timing.clockTickH3. When the low bit overflows to 0, the high bits increment.
-     */
-    if (!(++ControlSystem_Refactorization_M->Timing.clockTick3)) {
-      ++ControlSystem_Refactorization_M->Timing.clockTickH3;
-    }
-
-    ControlSystem_Refactorization_M->Timing.t[3] =
-      ControlSystem_Refactorization_M->Timing.clockTick3 *
-      ControlSystem_Refactorization_M->Timing.stepSize3 +
-      ControlSystem_Refactorization_M->Timing.clockTickH3 *
-      ControlSystem_Refactorization_M->Timing.stepSize3 * 4294967296.0;
-  }
-
   rate_scheduler();
 }
 
@@ -2683,11 +2675,11 @@ void ControlSystem_Refactorization_derivatives(void)
 
   /* Derivatives for Enabled SubSystem: '<S7>/Control de Curvatura' */
   if (ControlSystem_Refactorization_DW.ControldeCurvatura_MODE) {
-    /* Derivatives for Atomic SubSystem: '<S39>/Controlador de posición PID' */
-    /* Derivatives for Integrator: '<S41>/Integrator' */
+    /* Derivatives for Atomic SubSystem: '<S41>/Controlador de posición PID' */
+    /* Derivatives for Integrator: '<S43>/Integrator' */
     _rtXdot->Integrator_CSTATE = ControlSystem_Refactorization_B.Gain1;
 
-    /* End of Derivatives for SubSystem: '<S39>/Controlador de posición PID' */
+    /* End of Derivatives for SubSystem: '<S41>/Controlador de posición PID' */
   } else {
     ((XDot_ControlSystem_Refactorization_T *)
       ControlSystem_Refactorization_M->derivs)->Integrator_CSTATE = 0.0;
@@ -2697,7 +2689,7 @@ void ControlSystem_Refactorization_derivatives(void)
 
   /* Derivatives for Enabled SubSystem: '<S5>/Simulación' */
   if (ControlSystem_Refactorization_DW.Simulacin_MODE) {
-    /* Derivatives for TransferFcn: '<S19>/Modelo del regulador de presión electrónico' */
+    /* Derivatives for TransferFcn: '<S21>/Modelo del regulador de presión electrónico' */
     _rtXdot->Modelodelreguladordepresinelectrnico_CSTATE[0] = 0.0;
     _rtXdot->Modelodelreguladordepresinelectrnico_CSTATE[0] +=
       ControlSystem_Refactorization_P.Modelodelreguladordepresinelectrnico_A[0] *
@@ -2717,10 +2709,10 @@ void ControlSystem_Refactorization_derivatives(void)
     _rtXdot->Modelodelreguladordepresinelectrnico_CSTATE[1] = tmp[0];
     _rtXdot->Modelodelreguladordepresinelectrnico_CSTATE[0] = tmp[1];
 
-    /* Derivatives for Iterator SubSystem: '<S19>/Modelo de los actuadores' */
+    /* Derivatives for Iterator SubSystem: '<S21>/Modelo de los actuadores' */
     for (ForEach_itr_d = 0; ForEach_itr_d < 4; ForEach_itr_d++) {
-      /* Derivatives for Iterator SubSystem: '<S19>/Modelo de los actuadores' */
-      /* Derivatives for Enabled SubSystem: '<S24>/Curvatura Actuador 1' */
+      /* Derivatives for Iterator SubSystem: '<S21>/Modelo de los actuadores' */
+      /* Derivatives for Enabled SubSystem: '<S26>/Curvatura Actuador 1' */
       ControlSystem_Refactorization_CurvaturaActuador5_Deriv
         (ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
          IndexVector1,
@@ -2731,9 +2723,9 @@ void ControlSystem_Refactorization_derivatives(void)
          CurvaturaActuador1, &_rtXdot->CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador1);
 
-      /* End of Derivatives for SubSystem: '<S24>/Curvatura Actuador 1' */
+      /* End of Derivatives for SubSystem: '<S26>/Curvatura Actuador 1' */
 
-      /* Derivatives for Enabled SubSystem: '<S24>/Curvatura Actuador 2' */
+      /* Derivatives for Enabled SubSystem: '<S26>/Curvatura Actuador 2' */
       ControlSystem_Refactorization_CurvaturaActuador4_Deriv
         (ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
          IndexVector1,
@@ -2744,9 +2736,9 @@ void ControlSystem_Refactorization_derivatives(void)
          CurvaturaActuador2, &_rtXdot->CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador2);
 
-      /* End of Derivatives for SubSystem: '<S24>/Curvatura Actuador 2' */
+      /* End of Derivatives for SubSystem: '<S26>/Curvatura Actuador 2' */
 
-      /* Derivatives for Enabled SubSystem: '<S24>/Curvatura Actuador 3' */
+      /* Derivatives for Enabled SubSystem: '<S26>/Curvatura Actuador 3' */
       ControlSystem_Refactorization_CurvaturaActuador4_Deriv
         (ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
          IndexVector1,
@@ -2757,9 +2749,9 @@ void ControlSystem_Refactorization_derivatives(void)
          CurvaturaActuador3, &_rtXdot->CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador3);
 
-      /* End of Derivatives for SubSystem: '<S24>/Curvatura Actuador 3' */
+      /* End of Derivatives for SubSystem: '<S26>/Curvatura Actuador 3' */
 
-      /* Derivatives for Enabled SubSystem: '<S24>/Curvatura Actuador 4' */
+      /* Derivatives for Enabled SubSystem: '<S26>/Curvatura Actuador 4' */
       ControlSystem_Refactorization_CurvaturaActuador4_Deriv
         (ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
          IndexVector1,
@@ -2770,9 +2762,9 @@ void ControlSystem_Refactorization_derivatives(void)
          CurvaturaActuador4, &_rtXdot->CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador4);
 
-      /* End of Derivatives for SubSystem: '<S24>/Curvatura Actuador 4' */
+      /* End of Derivatives for SubSystem: '<S26>/Curvatura Actuador 4' */
 
-      /* Derivatives for Enabled SubSystem: '<S24>/Curvatura Actuador 5' */
+      /* Derivatives for Enabled SubSystem: '<S26>/Curvatura Actuador 5' */
       ControlSystem_Refactorization_CurvaturaActuador5_Deriv
         (ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
          IndexVector1,
@@ -2783,11 +2775,11 @@ void ControlSystem_Refactorization_derivatives(void)
          CurvaturaActuador5, &_rtXdot->CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador5);
 
-      /* End of Derivatives for SubSystem: '<S24>/Curvatura Actuador 5' */
-      /* End of Derivatives for SubSystem: '<S19>/Modelo de los actuadores' */
+      /* End of Derivatives for SubSystem: '<S26>/Curvatura Actuador 5' */
+      /* End of Derivatives for SubSystem: '<S21>/Modelo de los actuadores' */
     }
 
-    /* End of Derivatives for SubSystem: '<S19>/Modelo de los actuadores' */
+    /* End of Derivatives for SubSystem: '<S21>/Modelo de los actuadores' */
   } else {
     {
       real_T *dx;
@@ -2840,20 +2832,20 @@ void ControlSystem_Refactorization_initialize(void)
     /* Start for Enabled SubSystem: '<S5>/DAQ' */
     ControlSystem_Refactorization_DW.DAQ_MODE = false;
 
-    /* Start for MATLABSystem: '<S18>/MATLAB System' */
+    /* Start for MATLABSystem: '<S20>/MATLAB System' */
     ControlSystem_Refactorization_DW.objisempty_h = true;
     ControlSystem_Refactorization_DW.obj_b.isInitialized = 1;
 
-    /* Start for S-Function (sldrtdo): '<S18>/Digital Output' */
+    /* Start for S-Function (sldrtdo): '<S20>/Digital Output' */
     /*  Perform one-time calculations, such as computing constants */
 
-    /* S-Function Block: <S18>/Digital Output */
+    /* S-Function Block: <S20>/Digital Output */
 
     /* no initial value required */
 
-    /* Start for S-Function (sldrtao): '<S18>/Analog Output' */
+    /* Start for S-Function (sldrtao): '<S20>/Analog Output' */
 
-    /* S-Function Block: <S18>/Analog Output */
+    /* S-Function Block: <S20>/Analog Output */
 
     /* no initial value required */
 
@@ -2866,53 +2858,53 @@ void ControlSystem_Refactorization_initialize(void)
        1,
        102*sizeof(boolean_T));
 
-    /* Start for Iterator SubSystem: '<S19>/Modelo de los actuadores' */
+    /* Start for Iterator SubSystem: '<S21>/Modelo de los actuadores' */
     for (ForEach_itr_d = 0; ForEach_itr_d < 4; ForEach_itr_d++) {
-      /* Start for RelationalOperator: '<S25>/Compare' */
+      /* Start for RelationalOperator: '<S27>/Compare' */
       ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].Compare =
         false;
 
-      /* Start for RelationalOperator: '<S26>/Compare' */
+      /* Start for RelationalOperator: '<S28>/Compare' */
       ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].Compare_c =
         false;
 
-      /* Start for RelationalOperator: '<S27>/Compare' */
+      /* Start for RelationalOperator: '<S29>/Compare' */
       ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].Compare_n =
         false;
 
-      /* Start for RelationalOperator: '<S28>/Compare' */
+      /* Start for RelationalOperator: '<S30>/Compare' */
       ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].Compare_i =
         false;
 
-      /* Start for RelationalOperator: '<S29>/Compare' */
+      /* Start for RelationalOperator: '<S31>/Compare' */
       ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].Compare_a =
         false;
 
-      /* Start for SignalConversion generated from: '<S31>/Enable' */
+      /* Start for SignalConversion generated from: '<S33>/Enable' */
       ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
         HiddenBuf_InsertedFor_CurvaturaActuador1_at_inport_1 = false;
 
-      /* Start for SignalConversion generated from: '<S32>/Enable' */
+      /* Start for SignalConversion generated from: '<S34>/Enable' */
       ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
         HiddenBuf_InsertedFor_CurvaturaActuador2_at_inport_1 = false;
 
-      /* Start for SignalConversion generated from: '<S33>/Enable' */
+      /* Start for SignalConversion generated from: '<S35>/Enable' */
       ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
         HiddenBuf_InsertedFor_CurvaturaActuador3_at_inport_1 = false;
 
-      /* Start for SignalConversion generated from: '<S34>/Enable' */
+      /* Start for SignalConversion generated from: '<S36>/Enable' */
       ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
         HiddenBuf_InsertedFor_CurvaturaActuador4_at_inport_1 = false;
 
-      /* Start for SignalConversion generated from: '<S35>/Enable' */
+      /* Start for SignalConversion generated from: '<S37>/Enable' */
       ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
         HiddenBuf_InsertedFor_CurvaturaActuador5_at_inport_1 = false;
 
-      /* Start for MultiPortSwitch: '<S24>/Index Vector1' */
+      /* Start for MultiPortSwitch: '<S26>/Index Vector1' */
       ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
         IndexVector1 = 0.0;
 
-      /* Start for Enabled SubSystem: '<S24>/Curvatura Actuador 1' */
+      /* Start for Enabled SubSystem: '<S26>/Curvatura Actuador 1' */
       ControlSystem_Refactorization_CurvaturaActuador5_Start
         (&ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador1,
@@ -2920,9 +2912,9 @@ void ControlSystem_Refactorization_initialize(void)
          CurvaturaActuador1, &_rtXdis->CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador1);
 
-      /* End of Start for SubSystem: '<S24>/Curvatura Actuador 1' */
+      /* End of Start for SubSystem: '<S26>/Curvatura Actuador 1' */
 
-      /* Start for Enabled SubSystem: '<S24>/Curvatura Actuador 2' */
+      /* Start for Enabled SubSystem: '<S26>/Curvatura Actuador 2' */
       ControlSystem_Refactorization_CurvaturaActuador4_Start
         (&ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador2,
@@ -2930,9 +2922,9 @@ void ControlSystem_Refactorization_initialize(void)
          CurvaturaActuador2, &_rtXdis->CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador2);
 
-      /* End of Start for SubSystem: '<S24>/Curvatura Actuador 2' */
+      /* End of Start for SubSystem: '<S26>/Curvatura Actuador 2' */
 
-      /* Start for Enabled SubSystem: '<S24>/Curvatura Actuador 3' */
+      /* Start for Enabled SubSystem: '<S26>/Curvatura Actuador 3' */
       ControlSystem_Refactorization_CurvaturaActuador4_Start
         (&ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador3,
@@ -2940,9 +2932,9 @@ void ControlSystem_Refactorization_initialize(void)
          CurvaturaActuador3, &_rtXdis->CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador3);
 
-      /* End of Start for SubSystem: '<S24>/Curvatura Actuador 3' */
+      /* End of Start for SubSystem: '<S26>/Curvatura Actuador 3' */
 
-      /* Start for Enabled SubSystem: '<S24>/Curvatura Actuador 4' */
+      /* Start for Enabled SubSystem: '<S26>/Curvatura Actuador 4' */
       ControlSystem_Refactorization_CurvaturaActuador4_Start
         (&ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador4,
@@ -2950,9 +2942,9 @@ void ControlSystem_Refactorization_initialize(void)
          CurvaturaActuador4, &_rtXdis->CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador4);
 
-      /* End of Start for SubSystem: '<S24>/Curvatura Actuador 4' */
+      /* End of Start for SubSystem: '<S26>/Curvatura Actuador 4' */
 
-      /* Start for Enabled SubSystem: '<S24>/Curvatura Actuador 5' */
+      /* Start for Enabled SubSystem: '<S26>/Curvatura Actuador 5' */
       ControlSystem_Refactorization_CurvaturaActuador5_Start
         (&ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador5,
@@ -2960,11 +2952,12 @@ void ControlSystem_Refactorization_initialize(void)
          CurvaturaActuador5, &_rtXdis->CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador5);
 
-      /* End of Start for SubSystem: '<S24>/Curvatura Actuador 5' */
+      /* End of Start for SubSystem: '<S26>/Curvatura Actuador 5' */
     }
 
-    /* End of Start for SubSystem: '<S19>/Modelo de los actuadores' */
+    /* End of Start for SubSystem: '<S21>/Modelo de los actuadores' */
     /* End of Start for SubSystem: '<S5>/Simulación' */
+
     /* Start for DataStoreMemory: '<Root>/Data Store Memory' */
     memcpy(&ControlSystem_Refactorization_DW.actuadorBus[0],
            &ControlSystem_Refactorization_P.actuadorBus[0], sizeof(slBusActuador)
@@ -2991,24 +2984,24 @@ void ControlSystem_Refactorization_initialize(void)
     int32_T ForEach_itr_d;
 
     /* SystemInitialize for Enabled SubSystem: '<S7>/Control de Presión' */
-    /* InitializeConditions for Derivative: '<S40>/Derivative' */
+    /* InitializeConditions for Derivative: '<S42>/Derivative' */
     ControlSystem_Refactorization_DW.TimeStampA = (rtInf);
     ControlSystem_Refactorization_DW.TimeStampB = (rtInf);
 
-    /* SystemInitialize for Saturate: '<S40>/Saturación de tensión' incorporates:
-     *  Outport: '<S40>/SeñalControl'
+    /* SystemInitialize for Saturate: '<S42>/Saturación de tensión' incorporates:
+     *  Outport: '<S42>/SeñalControl'
      */
     ControlSystem_Refactorization_B.Saturacindetensin =
       ControlSystem_Refactorization_P.SealControl_Y0_p;
 
-    /* SystemInitialize for Sum: '<S40>/Add' incorporates:
-     *  Outport: '<S40>/Error estacionario'
+    /* SystemInitialize for Sum: '<S42>/Add' incorporates:
+     *  Outport: '<S42>/Error estacionario'
      */
     ControlSystem_Refactorization_B.Add =
       ControlSystem_Refactorization_P.Errorestacionario_Y0_m;
 
-    /* SystemInitialize for Derivative: '<S40>/Derivative' incorporates:
-     *  Outport: '<S40>/Error derivativo'
+    /* SystemInitialize for Derivative: '<S42>/Derivative' incorporates:
+     *  Outport: '<S42>/Error derivativo'
      */
     ControlSystem_Refactorization_B.Derivative =
       ControlSystem_Refactorization_P.Errorderivativo_Y0_b;
@@ -3016,35 +3009,35 @@ void ControlSystem_Refactorization_initialize(void)
     /* End of SystemInitialize for SubSystem: '<S7>/Control de Presión' */
 
     /* SystemInitialize for Enabled SubSystem: '<S7>/Control de Curvatura' */
-    /* InitializeConditions for Derivative: '<S39>/Derivative1' */
+    /* InitializeConditions for Derivative: '<S41>/Derivative1' */
     ControlSystem_Refactorization_DW.TimeStampA_b = (rtInf);
     ControlSystem_Refactorization_DW.TimeStampB_f = (rtInf);
 
-    /* SystemInitialize for Atomic SubSystem: '<S39>/Controlador de posición PID' */
-    /* InitializeConditions for Integrator: '<S41>/Integrator' */
+    /* SystemInitialize for Atomic SubSystem: '<S41>/Controlador de posición PID' */
+    /* InitializeConditions for Integrator: '<S43>/Integrator' */
     ControlSystem_Refactorization_X.Integrator_CSTATE =
       ControlSystem_Refactorization_P.Integrator_IC;
 
-    /* InitializeConditions for Derivative: '<S41>/Derivative' */
+    /* InitializeConditions for Derivative: '<S43>/Derivative' */
     ControlSystem_Refactorization_DW.TimeStampA_k = (rtInf);
     ControlSystem_Refactorization_DW.TimeStampB_b = (rtInf);
 
-    /* End of SystemInitialize for SubSystem: '<S39>/Controlador de posición PID' */
+    /* End of SystemInitialize for SubSystem: '<S41>/Controlador de posición PID' */
 
-    /* SystemInitialize for Saturate: '<S39>/Saturación de tensión' incorporates:
-     *  Outport: '<S39>/SeñalControl'
+    /* SystemInitialize for Saturate: '<S41>/Saturación de tensión' incorporates:
+     *  Outport: '<S41>/SeñalControl'
      */
     ControlSystem_Refactorization_B.Saturacindetensin_k =
       ControlSystem_Refactorization_P.SealControl_Y0;
 
-    /* SystemInitialize for Sum: '<S39>/Add1' incorporates:
-     *  Outport: '<S39>/Error estacionario'
+    /* SystemInitialize for Sum: '<S41>/Add1' incorporates:
+     *  Outport: '<S41>/Error estacionario'
      */
     ControlSystem_Refactorization_B.Add1 =
       ControlSystem_Refactorization_P.Errorestacionario_Y0;
 
-    /* SystemInitialize for Derivative: '<S39>/Derivative1' incorporates:
-     *  Outport: '<S39>/Error derivativo'
+    /* SystemInitialize for Derivative: '<S41>/Derivative1' incorporates:
+     *  Outport: '<S41>/Error derivativo'
      */
     ControlSystem_Refactorization_B.Derivative1 =
       ControlSystem_Refactorization_P.Errorderivativo_Y0;
@@ -3052,62 +3045,62 @@ void ControlSystem_Refactorization_initialize(void)
     /* End of SystemInitialize for SubSystem: '<S7>/Control de Curvatura' */
 
     /* SystemInitialize for Enabled SubSystem: '<S5>/DAQ' */
-    /* SystemInitialize for MATLAB Function: '<S18>/MATLAB Function' */
+    /* SystemInitialize for MATLAB Function: '<S20>/MATLAB Function' */
     ControlSystem_Refactorization_DW.sfEvent_d =
       ControlSystem_Refactorization_CALL_EVENT;
 
-    /* SystemInitialize for MATLAB Function: '<S18>/MATLAB Function1' */
+    /* SystemInitialize for MATLAB Function: '<S20>/MATLAB Function1' */
     ControlSystem_Refactorization_DW.sfEvent =
       ControlSystem_Refactorization_CALL_EVENT;
 
-    /* SystemInitialize for Outport: '<S18>/Presión Regulador' */
+    /* SystemInitialize for Outport: '<S20>/Presión Regulador' */
     ControlSystem_Refactorization_B.press =
       ControlSystem_Refactorization_P.PresinRegulador_Y0;
 
-    /* SystemInitialize for ForEachSliceAssignment generated from: '<S20>/Presión actuadores' incorporates:
-     *  Outport: '<S18>/Presión Actuadores'
+    /* SystemInitialize for ForEachSliceAssignment generated from: '<S22>/Presión actuadores' incorporates:
+     *  Outport: '<S20>/Presión Actuadores'
      */
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_Presinactuadores_at_inport_0_h
       [0] = ControlSystem_Refactorization_P.PresinActuadores_Y0;
 
-    /* SystemInitialize for Outport: '<S18>/Curvatura Actuadores' */
+    /* SystemInitialize for Outport: '<S20>/Curvatura Actuadores' */
     ControlSystem_Refactorization_B.curv[0] =
       ControlSystem_Refactorization_P.CurvaturaActuadores_Y0;
 
-    /* SystemInitialize for ForEachSliceAssignment generated from: '<S20>/Presión actuadores' incorporates:
-     *  Outport: '<S18>/Presión Actuadores'
+    /* SystemInitialize for ForEachSliceAssignment generated from: '<S22>/Presión actuadores' incorporates:
+     *  Outport: '<S20>/Presión Actuadores'
      */
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_Presinactuadores_at_inport_0_h
       [1] = ControlSystem_Refactorization_P.PresinActuadores_Y0;
 
-    /* SystemInitialize for Outport: '<S18>/Curvatura Actuadores' */
+    /* SystemInitialize for Outport: '<S20>/Curvatura Actuadores' */
     ControlSystem_Refactorization_B.curv[1] =
       ControlSystem_Refactorization_P.CurvaturaActuadores_Y0;
 
-    /* SystemInitialize for ForEachSliceAssignment generated from: '<S20>/Presión actuadores' incorporates:
-     *  Outport: '<S18>/Presión Actuadores'
+    /* SystemInitialize for ForEachSliceAssignment generated from: '<S22>/Presión actuadores' incorporates:
+     *  Outport: '<S20>/Presión Actuadores'
      */
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_Presinactuadores_at_inport_0_h
       [2] = ControlSystem_Refactorization_P.PresinActuadores_Y0;
 
-    /* SystemInitialize for Outport: '<S18>/Curvatura Actuadores' */
+    /* SystemInitialize for Outport: '<S20>/Curvatura Actuadores' */
     ControlSystem_Refactorization_B.curv[2] =
       ControlSystem_Refactorization_P.CurvaturaActuadores_Y0;
 
-    /* SystemInitialize for ForEachSliceAssignment generated from: '<S20>/Presión actuadores' incorporates:
-     *  Outport: '<S18>/Presión Actuadores'
+    /* SystemInitialize for ForEachSliceAssignment generated from: '<S22>/Presión actuadores' incorporates:
+     *  Outport: '<S20>/Presión Actuadores'
      */
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_Presinactuadores_at_inport_0_h
       [3] = ControlSystem_Refactorization_P.PresinActuadores_Y0;
 
-    /* SystemInitialize for Outport: '<S18>/Curvatura Actuadores' */
+    /* SystemInitialize for Outport: '<S20>/Curvatura Actuadores' */
     ControlSystem_Refactorization_B.curv[3] =
       ControlSystem_Refactorization_P.CurvaturaActuadores_Y0;
 
     /* End of SystemInitialize for SubSystem: '<S5>/DAQ' */
 
     /* SystemInitialize for Enabled SubSystem: '<S5>/Simulación' */
-    /* InitializeConditions for TransferFcn: '<S19>/Modelo del regulador de presión electrónico' */
+    /* InitializeConditions for TransferFcn: '<S21>/Modelo del regulador de presión electrónico' */
     ControlSystem_Refactorization_X.Modelodelreguladordepresinelectrnico_CSTATE
       [0] = 0.0;
     ControlSystem_Refactorization_X.Modelodelreguladordepresinelectrnico_CSTATE
@@ -3115,11 +3108,11 @@ void ControlSystem_Refactorization_initialize(void)
 
     /* End of SystemInitialize for SubSystem: '<S5>/Simulación' */
     /* SystemInitialize for Enabled SubSystem: '<S5>/Simulación' */
-    /* SystemInitialize for Iterator SubSystem: '<S19>/Modelo de los actuadores' */
+    /* SystemInitialize for Iterator SubSystem: '<S21>/Modelo de los actuadores' */
     for (ForEach_itr_d = 0; ForEach_itr_d < 4; ForEach_itr_d++) {
       /* SystemInitialize for Enabled SubSystem: '<S5>/Simulación' */
-      /* SystemInitialize for Iterator SubSystem: '<S19>/Modelo de los actuadores' */
-      /* SystemInitialize for Enabled SubSystem: '<S24>/Curvatura Actuador 1' */
+      /* SystemInitialize for Iterator SubSystem: '<S21>/Modelo de los actuadores' */
+      /* SystemInitialize for Enabled SubSystem: '<S26>/Curvatura Actuador 1' */
       ControlSystem_Refactorization_CurvaturaActuador5_Init
         (&ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador1,
@@ -3127,9 +3120,9 @@ void ControlSystem_Refactorization_initialize(void)
          &ControlSystem_Refactorization_X.CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador1);
 
-      /* End of SystemInitialize for SubSystem: '<S24>/Curvatura Actuador 1' */
+      /* End of SystemInitialize for SubSystem: '<S26>/Curvatura Actuador 1' */
 
-      /* SystemInitialize for Enabled SubSystem: '<S24>/Curvatura Actuador 2' */
+      /* SystemInitialize for Enabled SubSystem: '<S26>/Curvatura Actuador 2' */
       ControlSystem_Refactorization_CurvaturaActuador4_Init
         (&ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador2,
@@ -3137,9 +3130,9 @@ void ControlSystem_Refactorization_initialize(void)
          &ControlSystem_Refactorization_X.CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador2);
 
-      /* End of SystemInitialize for SubSystem: '<S24>/Curvatura Actuador 2' */
+      /* End of SystemInitialize for SubSystem: '<S26>/Curvatura Actuador 2' */
 
-      /* SystemInitialize for Enabled SubSystem: '<S24>/Curvatura Actuador 3' */
+      /* SystemInitialize for Enabled SubSystem: '<S26>/Curvatura Actuador 3' */
       ControlSystem_Refactorization_CurvaturaActuador4_Init
         (&ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador3,
@@ -3147,9 +3140,9 @@ void ControlSystem_Refactorization_initialize(void)
          &ControlSystem_Refactorization_X.CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador3);
 
-      /* End of SystemInitialize for SubSystem: '<S24>/Curvatura Actuador 3' */
+      /* End of SystemInitialize for SubSystem: '<S26>/Curvatura Actuador 3' */
 
-      /* SystemInitialize for Enabled SubSystem: '<S24>/Curvatura Actuador 4' */
+      /* SystemInitialize for Enabled SubSystem: '<S26>/Curvatura Actuador 4' */
       ControlSystem_Refactorization_CurvaturaActuador4_Init
         (&ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador4,
@@ -3157,9 +3150,9 @@ void ControlSystem_Refactorization_initialize(void)
          &ControlSystem_Refactorization_X.CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador4);
 
-      /* End of SystemInitialize for SubSystem: '<S24>/Curvatura Actuador 4' */
+      /* End of SystemInitialize for SubSystem: '<S26>/Curvatura Actuador 4' */
 
-      /* SystemInitialize for Enabled SubSystem: '<S24>/Curvatura Actuador 5' */
+      /* SystemInitialize for Enabled SubSystem: '<S26>/Curvatura Actuador 5' */
       ControlSystem_Refactorization_CurvaturaActuador5_Init
         (&ControlSystem_Refactorization_B.CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador5,
@@ -3167,64 +3160,64 @@ void ControlSystem_Refactorization_initialize(void)
          &ControlSystem_Refactorization_X.CoreSubsys_pnae[ForEach_itr_d].
          CurvaturaActuador5);
 
-      /* End of SystemInitialize for SubSystem: '<S24>/Curvatura Actuador 5' */
-      /* End of SystemInitialize for SubSystem: '<S19>/Modelo de los actuadores' */
+      /* End of SystemInitialize for SubSystem: '<S26>/Curvatura Actuador 5' */
+      /* End of SystemInitialize for SubSystem: '<S21>/Modelo de los actuadores' */
       /* End of SystemInitialize for SubSystem: '<S5>/Simulación' */
     }
 
-    /* End of SystemInitialize for SubSystem: '<S19>/Modelo de los actuadores' */
+    /* End of SystemInitialize for SubSystem: '<S21>/Modelo de los actuadores' */
     /* End of SystemInitialize for SubSystem: '<S5>/Simulación' */
     /* SystemInitialize for Enabled SubSystem: '<S5>/Simulación' */
-    /* SystemInitialize for TransferFcn: '<S19>/Modelo del regulador de presión electrónico' incorporates:
-     *  Outport: '<S19>/Presión Regulador'
+    /* SystemInitialize for TransferFcn: '<S21>/Modelo del regulador de presión electrónico' incorporates:
+     *  Outport: '<S21>/Presión Regulador'
      */
     ControlSystem_Refactorization_B.Modelodelreguladordepresinelectrnico =
       ControlSystem_Refactorization_P.PresinRegulador_Y0_f;
 
-    /* SystemInitialize for ForEachSliceAssignment generated from: '<S24>/Presión Actuador' incorporates:
-     *  Outport: '<S19>/Presión Actuadores'
+    /* SystemInitialize for ForEachSliceAssignment generated from: '<S26>/Presión Actuador' incorporates:
+     *  Outport: '<S21>/Presión Actuadores'
      */
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_PresinActuador_at_inport_0
       [0] = ControlSystem_Refactorization_P.PresinActuadores_Y0_o;
 
-    /* SystemInitialize for ForEachSliceAssignment generated from: '<S24>/Curvatura Actuador' incorporates:
-     *  Outport: '<S19>/Curvatura Actuadores'
+    /* SystemInitialize for ForEachSliceAssignment generated from: '<S26>/Curvatura Actuador' incorporates:
+     *  Outport: '<S21>/Curvatura Actuadores'
      */
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_CurvaturaActuador_at_inport_0
       [0] = ControlSystem_Refactorization_P.CurvaturaActuadores_Y0_i;
 
-    /* SystemInitialize for ForEachSliceAssignment generated from: '<S24>/Presión Actuador' incorporates:
-     *  Outport: '<S19>/Presión Actuadores'
+    /* SystemInitialize for ForEachSliceAssignment generated from: '<S26>/Presión Actuador' incorporates:
+     *  Outport: '<S21>/Presión Actuadores'
      */
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_PresinActuador_at_inport_0
       [1] = ControlSystem_Refactorization_P.PresinActuadores_Y0_o;
 
-    /* SystemInitialize for ForEachSliceAssignment generated from: '<S24>/Curvatura Actuador' incorporates:
-     *  Outport: '<S19>/Curvatura Actuadores'
+    /* SystemInitialize for ForEachSliceAssignment generated from: '<S26>/Curvatura Actuador' incorporates:
+     *  Outport: '<S21>/Curvatura Actuadores'
      */
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_CurvaturaActuador_at_inport_0
       [1] = ControlSystem_Refactorization_P.CurvaturaActuadores_Y0_i;
 
-    /* SystemInitialize for ForEachSliceAssignment generated from: '<S24>/Presión Actuador' incorporates:
-     *  Outport: '<S19>/Presión Actuadores'
+    /* SystemInitialize for ForEachSliceAssignment generated from: '<S26>/Presión Actuador' incorporates:
+     *  Outport: '<S21>/Presión Actuadores'
      */
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_PresinActuador_at_inport_0
       [2] = ControlSystem_Refactorization_P.PresinActuadores_Y0_o;
 
-    /* SystemInitialize for ForEachSliceAssignment generated from: '<S24>/Curvatura Actuador' incorporates:
-     *  Outport: '<S19>/Curvatura Actuadores'
+    /* SystemInitialize for ForEachSliceAssignment generated from: '<S26>/Curvatura Actuador' incorporates:
+     *  Outport: '<S21>/Curvatura Actuadores'
      */
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_CurvaturaActuador_at_inport_0
       [2] = ControlSystem_Refactorization_P.CurvaturaActuadores_Y0_i;
 
-    /* SystemInitialize for ForEachSliceAssignment generated from: '<S24>/Presión Actuador' incorporates:
-     *  Outport: '<S19>/Presión Actuadores'
+    /* SystemInitialize for ForEachSliceAssignment generated from: '<S26>/Presión Actuador' incorporates:
+     *  Outport: '<S21>/Presión Actuadores'
      */
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_PresinActuador_at_inport_0
       [3] = ControlSystem_Refactorization_P.PresinActuadores_Y0_o;
 
-    /* SystemInitialize for ForEachSliceAssignment generated from: '<S24>/Curvatura Actuador' incorporates:
-     *  Outport: '<S19>/Curvatura Actuadores'
+    /* SystemInitialize for ForEachSliceAssignment generated from: '<S26>/Curvatura Actuador' incorporates:
+     *  Outport: '<S21>/Curvatura Actuadores'
      */
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_CurvaturaActuador_at_inport_0
       [3] = ControlSystem_Refactorization_P.CurvaturaActuadores_Y0_i;
@@ -3237,15 +3230,15 @@ void ControlSystem_Refactorization_initialize(void)
 void ControlSystem_Refactorization_terminate(void)
 {
   /* Terminate for Enabled SubSystem: '<S5>/DAQ' */
-  /* Terminate for S-Function (sldrtdo): '<S18>/Digital Output' */
+  /* Terminate for S-Function (sldrtdo): '<S20>/Digital Output' */
 
-  /* S-Function Block: <S18>/Digital Output */
+  /* S-Function Block: <S20>/Digital Output */
 
   /* no final value required */
 
-  /* Terminate for S-Function (sldrtao): '<S18>/Analog Output' */
+  /* Terminate for S-Function (sldrtao): '<S20>/Analog Output' */
 
-  /* S-Function Block: <S18>/Analog Output */
+  /* S-Function Block: <S20>/Analog Output */
 
   /* no final value required */
 
@@ -3381,7 +3374,6 @@ RT_MODEL_ControlSystem_Refactorization_T *ControlSystem_Refactorization(void)
     mdlTsMap[0] = 0;
     mdlTsMap[1] = 1;
     mdlTsMap[2] = 2;
-    mdlTsMap[3] = 3;
     ControlSystem_Refactorization_M->Timing.sampleTimeTaskIDPtr = (&mdlTsMap[0]);
     ControlSystem_Refactorization_M->Timing.sampleTimes =
       (&ControlSystem_Refactorization_M->Timing.sampleTimesArray[0]);
@@ -3391,14 +3383,12 @@ RT_MODEL_ControlSystem_Refactorization_T *ControlSystem_Refactorization(void)
     /* task periods */
     ControlSystem_Refactorization_M->Timing.sampleTimes[0] = (0.0);
     ControlSystem_Refactorization_M->Timing.sampleTimes[1] = (0.0001);
-    ControlSystem_Refactorization_M->Timing.sampleTimes[2] = (0.01);
-    ControlSystem_Refactorization_M->Timing.sampleTimes[3] = (0.1);
+    ControlSystem_Refactorization_M->Timing.sampleTimes[2] = (0.1);
 
     /* task offsets */
     ControlSystem_Refactorization_M->Timing.offsetTimes[0] = (0.0);
     ControlSystem_Refactorization_M->Timing.offsetTimes[1] = (0.0);
     ControlSystem_Refactorization_M->Timing.offsetTimes[2] = (0.0);
-    ControlSystem_Refactorization_M->Timing.offsetTimes[3] = (0.0);
   }
 
   rtmSetTPtr(ControlSystem_Refactorization_M,
@@ -3410,26 +3400,24 @@ RT_MODEL_ControlSystem_Refactorization_T *ControlSystem_Refactorization(void)
     mdlSampleHits[0] = 1;
     mdlSampleHits[1] = 1;
     mdlSampleHits[2] = 1;
-    mdlSampleHits[3] = 1;
     ControlSystem_Refactorization_M->Timing.sampleHits = (&mdlSampleHits[0]);
   }
 
   rtmSetTFinal(ControlSystem_Refactorization_M, -1);
   ControlSystem_Refactorization_M->Timing.stepSize0 = 0.0001;
   ControlSystem_Refactorization_M->Timing.stepSize1 = 0.0001;
-  ControlSystem_Refactorization_M->Timing.stepSize2 = 0.01;
-  ControlSystem_Refactorization_M->Timing.stepSize3 = 0.1;
+  ControlSystem_Refactorization_M->Timing.stepSize2 = 0.1;
 
   /* External mode info */
-  ControlSystem_Refactorization_M->Sizes.checksums[0] = (1389072018U);
-  ControlSystem_Refactorization_M->Sizes.checksums[1] = (3441213144U);
-  ControlSystem_Refactorization_M->Sizes.checksums[2] = (1047358506U);
-  ControlSystem_Refactorization_M->Sizes.checksums[3] = (3239108108U);
+  ControlSystem_Refactorization_M->Sizes.checksums[0] = (3003190588U);
+  ControlSystem_Refactorization_M->Sizes.checksums[1] = (2619320984U);
+  ControlSystem_Refactorization_M->Sizes.checksums[2] = (1265173108U);
+  ControlSystem_Refactorization_M->Sizes.checksums[3] = (3562307661U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
     static RTWExtModeInfo rt_ExtModeInfo;
-    static const sysRanDType *systemRan[28];
+    static const sysRanDType *systemRan[30];
     ControlSystem_Refactorization_M->extModeInfo = (&rt_ExtModeInfo);
     rteiSetSubSystemActiveVectorAddresses(&rt_ExtModeInfo, systemRan);
     systemRan[0] = &rtAlwaysEnabled;
@@ -3439,10 +3427,8 @@ RT_MODEL_ControlSystem_Refactorization_T *ControlSystem_Refactorization(void)
     systemRan[4] = &rtAlwaysEnabled;
     systemRan[5] = &rtAlwaysEnabled;
     systemRan[6] = &rtAlwaysEnabled;
-    systemRan[7] = (sysRanDType *)
-      &ControlSystem_Refactorization_DW.DAQ_SubsysRanBC;
-    systemRan[8] = (sysRanDType *)
-      &ControlSystem_Refactorization_DW.DAQ_SubsysRanBC;
+    systemRan[7] = &rtAlwaysEnabled;
+    systemRan[8] = &rtAlwaysEnabled;
     systemRan[9] = (sysRanDType *)
       &ControlSystem_Refactorization_DW.DAQ_SubsysRanBC;
     systemRan[10] = (sysRanDType *)
@@ -3452,36 +3438,40 @@ RT_MODEL_ControlSystem_Refactorization_T *ControlSystem_Refactorization(void)
     systemRan[12] = (sysRanDType *)
       &ControlSystem_Refactorization_DW.DAQ_SubsysRanBC;
     systemRan[13] = (sysRanDType *)
-      &ControlSystem_Refactorization_DW.CoreSubsys_pnae[3].
-      CurvaturaActuador5.CurvaturaActuador5_SubsysRanBC;
+      &ControlSystem_Refactorization_DW.DAQ_SubsysRanBC;
     systemRan[14] = (sysRanDType *)
-      &ControlSystem_Refactorization_DW.CoreSubsys_pnae[3].
-      CurvaturaActuador4.CurvaturaActuador4_SubsysRanBC;
+      &ControlSystem_Refactorization_DW.DAQ_SubsysRanBC;
     systemRan[15] = (sysRanDType *)
       &ControlSystem_Refactorization_DW.CoreSubsys_pnae[3].
-      CurvaturaActuador3.CurvaturaActuador4_SubsysRanBC;
+      CurvaturaActuador5.CurvaturaActuador5_SubsysRanBC;
     systemRan[16] = (sysRanDType *)
       &ControlSystem_Refactorization_DW.CoreSubsys_pnae[3].
-      CurvaturaActuador2.CurvaturaActuador4_SubsysRanBC;
+      CurvaturaActuador4.CurvaturaActuador4_SubsysRanBC;
     systemRan[17] = (sysRanDType *)
       &ControlSystem_Refactorization_DW.CoreSubsys_pnae[3].
-      CurvaturaActuador1.CurvaturaActuador5_SubsysRanBC;
+      CurvaturaActuador3.CurvaturaActuador4_SubsysRanBC;
     systemRan[18] = (sysRanDType *)
-      &ControlSystem_Refactorization_DW.Simulacin_SubsysRanBC;
+      &ControlSystem_Refactorization_DW.CoreSubsys_pnae[3].
+      CurvaturaActuador2.CurvaturaActuador4_SubsysRanBC;
     systemRan[19] = (sysRanDType *)
-      &ControlSystem_Refactorization_DW.Simulacin_SubsysRanBC;
+      &ControlSystem_Refactorization_DW.CoreSubsys_pnae[3].
+      CurvaturaActuador1.CurvaturaActuador5_SubsysRanBC;
     systemRan[20] = (sysRanDType *)
       &ControlSystem_Refactorization_DW.Simulacin_SubsysRanBC;
-    systemRan[21] = &rtAlwaysEnabled;
-    systemRan[22] = &rtAlwaysEnabled;
-    systemRan[23] = (sysRanDType *)
-      &ControlSystem_Refactorization_DW.ControldeCurvatura_SubsysRanBC;
-    systemRan[24] = (sysRanDType *)
-      &ControlSystem_Refactorization_DW.ControldeCurvatura_SubsysRanBC;
+    systemRan[21] = (sysRanDType *)
+      &ControlSystem_Refactorization_DW.Simulacin_SubsysRanBC;
+    systemRan[22] = (sysRanDType *)
+      &ControlSystem_Refactorization_DW.Simulacin_SubsysRanBC;
+    systemRan[23] = &rtAlwaysEnabled;
+    systemRan[24] = &rtAlwaysEnabled;
     systemRan[25] = (sysRanDType *)
+      &ControlSystem_Refactorization_DW.ControldeCurvatura_SubsysRanBC;
+    systemRan[26] = (sysRanDType *)
+      &ControlSystem_Refactorization_DW.ControldeCurvatura_SubsysRanBC;
+    systemRan[27] = (sysRanDType *)
       &ControlSystem_Refactorization_DW.ControldePresin_SubsysRanBC;
-    systemRan[26] = &rtAlwaysEnabled;
-    systemRan[27] = &rtAlwaysEnabled;
+    systemRan[28] = &rtAlwaysEnabled;
+    systemRan[29] = &rtAlwaysEnabled;
     rteiSetModelMappingInfoPtr(ControlSystem_Refactorization_M->extModeInfo,
       &ControlSystem_Refactorization_M->SpecialInfo.mappingInfo);
     rteiSetChecksumsPtr(ControlSystem_Refactorization_M->extModeInfo,
@@ -3520,6 +3510,14 @@ RT_MODEL_ControlSystem_Refactorization_T *ControlSystem_Refactorization(void)
       = ControlSystem_Refactorization_rtZslBusActuador;
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_actuadores_at_inport_0[3]
       = ControlSystem_Refactorization_rtZslBusActuador;
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport4[
+      0] = EstadoValvula_Bloquear;
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport4[
+      1] = EstadoValvula_Bloquear;
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport4[
+      2] = EstadoValvula_Bloquear;
+    ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport4[
+      3] = EstadoValvula_Bloquear;
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_Actuadoresposicionados_at_inport_0
       [0] = ActuadorPosicionado_Desposicionado;
     ControlSystem_Refactorization_B.ImpAsg_InsertedFor_Actuadoresposicionados_at_inport_0
@@ -3580,10 +3578,10 @@ RT_MODEL_ControlSystem_Refactorization_T *ControlSystem_Refactorization(void)
   ControlSystem_Refactorization_M->Sizes.numY = (0);/* Number of model outputs */
   ControlSystem_Refactorization_M->Sizes.numU = (0);/* Number of model inputs */
   ControlSystem_Refactorization_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
-  ControlSystem_Refactorization_M->Sizes.numSampTimes = (4);/* Number of sample times */
-  ControlSystem_Refactorization_M->Sizes.numBlocks = (160);/* Number of blocks */
-  ControlSystem_Refactorization_M->Sizes.numBlockIO = (46);/* Number of block outputs */
-  ControlSystem_Refactorization_M->Sizes.numBlockPrms = (130);/* Sum of parameter "widths" */
+  ControlSystem_Refactorization_M->Sizes.numSampTimes = (3);/* Number of sample times */
+  ControlSystem_Refactorization_M->Sizes.numBlocks = (190);/* Number of blocks */
+  ControlSystem_Refactorization_M->Sizes.numBlockIO = (49);/* Number of block outputs */
+  ControlSystem_Refactorization_M->Sizes.numBlockPrms = (155);/* Sum of parameter "widths" */
   return ControlSystem_Refactorization_M;
 }
 
