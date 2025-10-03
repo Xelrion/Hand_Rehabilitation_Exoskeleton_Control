@@ -6,9 +6,9 @@
  *
  * Code generation for model "ControlSystem_Refactorization".
  *
- * Model version              : 2.9
+ * Model version              : 2.13
  * Simulink Coder version : 25.1 (R2025a) 21-Nov-2024
- * C source code generated on : Sun Sep 14 20:33:31 2025
+ * C source code generated on : Fri Oct  3 17:02:47 2025
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -229,48 +229,127 @@ P_ControlSystem_Refactorization_T ControlSystem_Refactorization_P = {
     }
   },
 
+  /* Mask Parameter: AnalogOutput_MaxMissedTicks
+   * Referenced by: '<S21>/Analog Output'
+   */
+  10.0,
+
+  /* Mask Parameter: DigitalOutput_MaxMissedTicks
+   * Referenced by: '<S21>/Digital Output'
+   */
+  10.0,
+
+  /* Mask Parameter: AnalogInput_MaxMissedTicks
+   * Referenced by: '<S21>/Analog Input'
+   */
+  10.0,
+
+  /* Mask Parameter: AnalogInput1_MaxMissedTicks
+   * Referenced by: '<S21>/Analog Input1'
+   */
+  10.0,
+
+  /* Mask Parameter: AnalogOutput_YieldWhenWaiting
+   * Referenced by: '<S21>/Analog Output'
+   */
+  0.0,
+
+  /* Mask Parameter: DigitalOutput_YieldWhenWaiting
+   * Referenced by: '<S21>/Digital Output'
+   */
+  0.0,
+
+  /* Mask Parameter: AnalogInput_YieldWhenWaiting
+   * Referenced by: '<S21>/Analog Input'
+   */
+  0.0,
+
+  /* Mask Parameter: AnalogInput1_YieldWhenWaiting
+   * Referenced by: '<S21>/Analog Input1'
+   */
+  0.0,
+
+  /* Mask Parameter: DigitalOutput_BitMode
+   * Referenced by: '<S21>/Digital Output'
+   */
+  0,
+
+  /* Mask Parameter: AnalogOutput_Channels
+   * Referenced by: '<S21>/Analog Output'
+   */
+  0,
+
+  /* Mask Parameter: DigitalOutput_Channels
+   * Referenced by: '<S21>/Digital Output'
+   */
+  { 0, 1, 2, 3, 4, 5, 6, 7 },
+
+  /* Mask Parameter: AnalogInput_Channels
+   * Referenced by: '<S21>/Analog Input'
+   */
+  0,
+
+  /* Mask Parameter: AnalogInput1_Channels
+   * Referenced by: '<S21>/Analog Input1'
+   */
+  { 1, 2, 3, 4 },
+
+  /* Mask Parameter: AnalogOutput_RangeMode
+   * Referenced by: '<S21>/Analog Output'
+   */
+  0,
+
+  /* Mask Parameter: AnalogInput_RangeMode
+   * Referenced by: '<S21>/Analog Input'
+   */
+  0,
+
+  /* Mask Parameter: AnalogInput1_RangeMode
+   * Referenced by: '<S21>/Analog Input1'
+   */
+  0,
+
+  /* Mask Parameter: AnalogOutput_VoltRange
+   * Referenced by: '<S21>/Analog Output'
+   */
+  0,
+
+  /* Mask Parameter: AnalogInput_VoltRange
+   * Referenced by: '<S21>/Analog Input'
+   */
+  0,
+
+  /* Mask Parameter: AnalogInput1_VoltRange
+   * Referenced by: '<S21>/Analog Input1'
+   */
+  0,
+
   /* Mask Parameter: CompareToConstant_const
-   * Referenced by: '<S47>/Constant'
+   * Referenced by: '<S48>/Constant'
    */
   Controlador_Curvatura,
 
   /* Mask Parameter: CompareToConstant1_const
-   * Referenced by: '<S42>/Constant'
+   * Referenced by: '<S43>/Constant'
    */
   Controlador_Presion,
 
   /* Mask Parameter: CompareToConstant4_const
-   * Referenced by: '<S43>/Constant'
+   * Referenced by: '<S44>/Constant'
    */
   Controlador_EquilibrioPresiones,
 
   /* Mask Parameter: CompareToConstant_const_b
-   * Referenced by: '<S41>/Constant'
+   * Referenced by: '<S42>/Constant'
    */
   Controlador_Curvatura,
 
   /* Mask Parameter: CompareToConstant7_const
-   * Referenced by: '<S48>/Constant'
+   * Referenced by: '<S49>/Constant'
    */
   false,
 
   /* Computed Parameter: Errorestacionario_Y0
-   * Referenced by: '<S44>/Error estacionario'
-   */
-  {
-    0.0,                               /* presion */
-    0.0                                /* curvatura */
-  },
-
-  /* Computed Parameter: Errorderivativo_Y0
-   * Referenced by: '<S44>/Error derivativo'
-   */
-  {
-    0.0,                               /* presion */
-    0.0                                /* curvatura */
-  },
-
-  /* Computed Parameter: Errorestacionario_Y0_i
    * Referenced by: '<S45>/Error estacionario'
    */
   {
@@ -278,8 +357,24 @@ P_ControlSystem_Refactorization_T ControlSystem_Refactorization_P = {
     0.0                                /* curvatura */
   },
 
-  /* Computed Parameter: Errorderivativo_Y0_b
+  /* Computed Parameter: Errorderivativo_Y0
    * Referenced by: '<S45>/Error derivativo'
+   */
+  {
+    0.0,                               /* presion */
+    0.0                                /* curvatura */
+  },
+
+  /* Computed Parameter: Errorestacionario_Y0_i
+   * Referenced by: '<S46>/Error estacionario'
+   */
+  {
+    0.0,                               /* presion */
+    0.0                                /* curvatura */
+  },
+
+  /* Computed Parameter: Errorderivativo_Y0_b
+   * Referenced by: '<S46>/Error derivativo'
    */
   {
     0.0,                               /* presion */
@@ -366,10 +461,10 @@ P_ControlSystem_Refactorization_T ControlSystem_Refactorization_P = {
    */
   0.0,
 
-  /* Expression: zeros(1,length(actuadorBus))
-   * Referenced by: '<S21>/Constant'
+  /* Computed Parameter: CurvaturaActuadores_Y0
+   * Referenced by: '<S21>/Curvatura Actuadores'
    */
-  { 0.0, 0.0, 0.0, 0.0 },
+  0.0,
 
   /* Computed Parameter: PresinActuadores_Y0_o
    * Referenced by: '<S22>/Presión Actuadores'
@@ -381,7 +476,7 @@ P_ControlSystem_Refactorization_T ControlSystem_Refactorization_P = {
    */
   0.0,
 
-  /* Computed Parameter: CurvaturaActuadores_Y0
+  /* Computed Parameter: CurvaturaActuadores_Y0_i
    * Referenced by: '<S22>/Curvatura Actuadores'
    */
   0.0,
@@ -397,56 +492,26 @@ P_ControlSystem_Refactorization_T ControlSystem_Refactorization_P = {
   { 0.0, 152.48 },
 
   /* Expression: 65
-   * Referenced by: '<S46>/Gain'
+   * Referenced by: '<S47>/Gain'
    */
   65.0,
 
   /* Expression: 0
-   * Referenced by: '<S46>/Integrator'
+   * Referenced by: '<S47>/Integrator'
    */
   0.0,
 
   /* Expression: 1.25
-   * Referenced by: '<S46>/Gain2'
+   * Referenced by: '<S47>/Gain2'
    */
   1.25,
 
   /* Expression: 233.3
-   * Referenced by: '<S46>/Gain1'
+   * Referenced by: '<S47>/Gain1'
    */
   233.3,
 
   /* Computed Parameter: SealControl_Y0
-   * Referenced by: '<S44>/SeñalControl'
-   */
-  0.0,
-
-  /* Expression: 0
-   * Referenced by: '<S44>/Constant'
-   */
-  0.0,
-
-  /* Expression: 0
-   * Referenced by: '<S44>/Constant1'
-   */
-  0.0,
-
-  /* Expression: 10
-   * Referenced by: '<S44>/Ganancia Presión -> Tensión'
-   */
-  10.0,
-
-  /* Expression: 10
-   * Referenced by: '<S44>/Saturación de tensión'
-   */
-  10.0,
-
-  /* Expression: -10
-   * Referenced by: '<S44>/Saturación de tensión'
-   */
-  -10.0,
-
-  /* Computed Parameter: SealControl_Y0_p
    * Referenced by: '<S45>/SeñalControl'
    */
   0.0,
@@ -473,6 +538,36 @@ P_ControlSystem_Refactorization_T ControlSystem_Refactorization_P = {
 
   /* Expression: -10
    * Referenced by: '<S45>/Saturación de tensión'
+   */
+  -10.0,
+
+  /* Computed Parameter: SealControl_Y0_p
+   * Referenced by: '<S46>/SeñalControl'
+   */
+  0.0,
+
+  /* Expression: 0
+   * Referenced by: '<S46>/Constant'
+   */
+  0.0,
+
+  /* Expression: 0
+   * Referenced by: '<S46>/Constant1'
+   */
+  0.0,
+
+  /* Expression: 10
+   * Referenced by: '<S46>/Ganancia Presión -> Tensión'
+   */
+  10.0,
+
+  /* Expression: 10
+   * Referenced by: '<S46>/Saturación de tensión'
+   */
+  10.0,
+
+  /* Expression: -10
+   * Referenced by: '<S46>/Saturación de tensión'
    */
   -10.0,
 
@@ -531,70 +626,49 @@ P_ControlSystem_Refactorization_T ControlSystem_Refactorization_P = {
    */
   true,
 
-  /* Start of '<S27>/CoreSubsys' */
+  /* Start of '<S28>/CoreSubsys' */
   {
     /* Mask Parameter: CompareToConstant_const
-     * Referenced by: '<S28>/Constant'
+     * Referenced by: '<S29>/Constant'
      */
     1.0,
 
     /* Mask Parameter: CompareToConstant1_const
-     * Referenced by: '<S29>/Constant'
+     * Referenced by: '<S30>/Constant'
      */
     2.0,
 
     /* Mask Parameter: CompareToConstant2_const
-     * Referenced by: '<S30>/Constant'
+     * Referenced by: '<S31>/Constant'
      */
     3.0,
 
     /* Mask Parameter: CompareToConstant3_const
-     * Referenced by: '<S31>/Constant'
+     * Referenced by: '<S32>/Constant'
      */
     4.0,
 
     /* Mask Parameter: CompareToConstant4_const
-     * Referenced by: '<S32>/Constant'
+     * Referenced by: '<S33>/Constant'
      */
     5.0,
 
     /* Mask Parameter: CompareToConstant5_const
-     * Referenced by: '<S33>/Constant'
+     * Referenced by: '<S34>/Constant'
      */
     ModoControl_Manual,
 
     /* Mask Parameter: CompareToConstant6_const
-     * Referenced by: '<S34>/Constant'
-     */
-    false,
-
-    /* Mask Parameter: CompareToConstant7_const
      * Referenced by: '<S35>/Constant'
      */
     false,
 
-    /* Start of '<S27>/Curvatura Actuador 1' */
-    {
-      /* Computed Parameter: Curvatura_Y0
-       * Referenced by: '<S36>/Curvatura'
-       */
-      0.0,
+    /* Mask Parameter: CompareToConstant7_const
+     * Referenced by: '<S36>/Constant'
+     */
+    false,
 
-      /* Computed Parameter: Modelodecurvaturadelactuador_A
-       * Referenced by: '<S36>/Modelo de curvatura del actuador'
-       */
-      { -11410.0, -74880.0, -72390.0, -14230.0, -143.0 },
-
-      /* Computed Parameter: Modelodecurvaturadelactuador_C
-       * Referenced by: '<S36>/Modelo de curvatura del actuador'
-       */
-      { 0.0, 995.3, 1595.0, 424.3, 7.903 }
-    }
-    ,
-
-    /* End of '<S27>/Curvatura Actuador 1' */
-
-    /* Start of '<S27>/Curvatura Actuador 2' */
+    /* Start of '<S28>/Curvatura Actuador 1' */
     {
       /* Computed Parameter: Curvatura_Y0
        * Referenced by: '<S37>/Curvatura'
@@ -613,9 +687,9 @@ P_ControlSystem_Refactorization_T ControlSystem_Refactorization_P = {
     }
     ,
 
-    /* End of '<S27>/Curvatura Actuador 2' */
+    /* End of '<S28>/Curvatura Actuador 1' */
 
-    /* Start of '<S27>/Curvatura Actuador 3' */
+    /* Start of '<S28>/Curvatura Actuador 2' */
     {
       /* Computed Parameter: Curvatura_Y0
        * Referenced by: '<S38>/Curvatura'
@@ -634,9 +708,9 @@ P_ControlSystem_Refactorization_T ControlSystem_Refactorization_P = {
     }
     ,
 
-    /* End of '<S27>/Curvatura Actuador 3' */
+    /* End of '<S28>/Curvatura Actuador 2' */
 
-    /* Start of '<S27>/Curvatura Actuador 4' */
+    /* Start of '<S28>/Curvatura Actuador 3' */
     {
       /* Computed Parameter: Curvatura_Y0
        * Referenced by: '<S39>/Curvatura'
@@ -655,9 +729,9 @@ P_ControlSystem_Refactorization_T ControlSystem_Refactorization_P = {
     }
     ,
 
-    /* End of '<S27>/Curvatura Actuador 4' */
+    /* End of '<S28>/Curvatura Actuador 3' */
 
-    /* Start of '<S27>/Curvatura Actuador 5' */
+    /* Start of '<S28>/Curvatura Actuador 4' */
     {
       /* Computed Parameter: Curvatura_Y0
        * Referenced by: '<S40>/Curvatura'
@@ -674,21 +748,42 @@ P_ControlSystem_Refactorization_T ControlSystem_Refactorization_P = {
        */
       { 0.0, 995.3, 1595.0, 424.3, 7.903 }
     }
-    /* End of '<S27>/Curvatura Actuador 5' */
+    ,
+
+    /* End of '<S28>/Curvatura Actuador 4' */
+
+    /* Start of '<S28>/Curvatura Actuador 5' */
+    {
+      /* Computed Parameter: Curvatura_Y0
+       * Referenced by: '<S41>/Curvatura'
+       */
+      0.0,
+
+      /* Computed Parameter: Modelodecurvaturadelactuador_A
+       * Referenced by: '<S41>/Modelo de curvatura del actuador'
+       */
+      { -11410.0, -74880.0, -72390.0, -14230.0, -143.0 },
+
+      /* Computed Parameter: Modelodecurvaturadelactuador_C
+       * Referenced by: '<S41>/Modelo de curvatura del actuador'
+       */
+      { 0.0, 995.3, 1595.0, 424.3, 7.903 }
+    }
+    /* End of '<S28>/Curvatura Actuador 5' */
   }
   ,
 
-  /* End of '<S27>/CoreSubsys' */
+  /* End of '<S28>/CoreSubsys' */
 
   /* Start of '<S23>/CoreSubsys' */
   {
     /* Mask Parameter: CompareToConstant5_const
-     * Referenced by: '<S25>/Constant'
+     * Referenced by: '<S26>/Constant'
      */
     ModoControl_Manual,
 
     /* Mask Parameter: CompareToConstant6_const
-     * Referenced by: '<S26>/Constant'
+     * Referenced by: '<S27>/Constant'
      */
     false
   }

@@ -6,9 +6,9 @@
  *
  * Code generation for model "ControlSystem_Refactorization".
  *
- * Model version              : 2.9
+ * Model version              : 2.13
  * Simulink Coder version : 25.1 (R2025a) 21-Nov-2024
- * C source code generated on : Sun Sep 14 20:33:31 2025
+ * C source code generated on : Fri Oct  3 17:02:47 2025
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -289,24 +289,23 @@ typedef struct {
 
 #endif
 
-#ifndef struct_tag_G5Ngtf6UwfZyYzVc1FFaYG
-#define struct_tag_G5Ngtf6UwfZyYzVc1FFaYG
+#ifndef struct_tag_ZL3n9Q5Ep0XRki5EATNaWH
+#define struct_tag_ZL3n9Q5Ep0XRki5EATNaWH
 
-struct tag_G5Ngtf6UwfZyYzVc1FFaYG
+struct tag_ZL3n9Q5Ep0XRki5EATNaWH
 {
   int32_T isInitialized;
 };
 
-#endif                                 /* struct_tag_G5Ngtf6UwfZyYzVc1FFaYG */
+#endif                                 /* struct_tag_ZL3n9Q5Ep0XRki5EATNaWH */
 
-#ifndef typedef_elegirTensionesElectrovalvulas_ControlSystem_Refactorization_T
-#define typedef_elegirTensionesElectrovalvulas_ControlSystem_Refactorization_T
+#ifndef typedef_selectElectrovalvesVoltage_ControlSystem_Refactorization_T
+#define typedef_selectElectrovalvesVoltage_ControlSystem_Refactorization_T
 
-typedef struct tag_G5Ngtf6UwfZyYzVc1FFaYG
-  elegirTensionesElectrovalvulas_ControlSystem_Refactorization_T;
+typedef struct tag_ZL3n9Q5Ep0XRki5EATNaWH
+  selectElectrovalvesVoltage_ControlSystem_Refactorization_T;
 
-#endif
-    /* typedef_elegirTensionesElectrovalvulas_ControlSystem_Refactorization_T */
+#endif  /* typedef_selectElectrovalvesVoltage_ControlSystem_Refactorization_T */
 
 #ifndef struct_tag_tNTZQzHg4pRnqsm6ksfZPG
 #define struct_tag_tNTZQzHg4pRnqsm6ksfZPG
@@ -352,7 +351,7 @@ typedef struct tag_GvdguwzjehF0xqhwdOmYeH
 typedef struct P_CoreSubsys_ControlSystem_Refactorization_gmy_T_
   P_CoreSubsys_ControlSystem_Refactorization_gmy_T;
 
-/* Parameters for system: '<S27>/Curvatura Actuador 5' */
+/* Parameters for system: '<S28>/Curvatura Actuador 5' */
 typedef struct P_CurvaturaActuador5_ControlSystem_Refactorization_T_
   P_CurvaturaActuador5_ControlSystem_Refactorization_T;
 

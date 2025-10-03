@@ -6,9 +6,9 @@
  *
  * Code generation for model "ControlSystem_Refactorization".
  *
- * Model version              : 2.9
+ * Model version              : 2.13
  * Simulink Coder version : 25.1 (R2025a) 21-Nov-2024
- * C source code generated on : Sun Sep 14 20:33:31 2025
+ * C source code generated on : Fri Oct  3 17:02:47 2025
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -644,11 +644,11 @@
 #endif
 
 #ifndef rtmGetTaskCounters
-#define rtmGetTaskCounters(rtm)        ()
+#define rtmGetTaskCounters(rtm)        ((rtm)->Timing.TaskCounters)
 #endif
 
 #ifndef rtmSetTaskCounters
-#define rtmSetTaskCounters(rtm, val)   ()
+#define rtmSetTaskCounters(rtm, val)   ((rtm)->Timing.TaskCounters = (val))
 #endif
 
 #ifndef rtmGetTaskTimeArray
@@ -884,90 +884,90 @@
 /* Definition for use in the target main file */
 #define ControlSystem_Refactorization_rtModel RT_MODEL_ControlSystem_Refactorization_T
 
-/* Block signals for system '<S27>/Curvatura Actuador 5' */
+/* Block signals for system '<S28>/Curvatura Actuador 5' */
 typedef struct {
-  real_T CurvAct;                 /* '<S40>/Modelo de curvatura del actuador' */
+  real_T CurvAct;                 /* '<S41>/Modelo de curvatura del actuador' */
 } B_CurvaturaActuador5_ControlSystem_Refactorization_T;
 
-/* Block states (default storage) for system '<S27>/Curvatura Actuador 5' */
+/* Block states (default storage) for system '<S28>/Curvatura Actuador 5' */
 typedef struct {
-  int8_T CurvaturaActuador5_SubsysRanBC;/* '<S27>/Curvatura Actuador 5' */
-  boolean_T CurvaturaActuador5_MODE;   /* '<S27>/Curvatura Actuador 5' */
+  int8_T CurvaturaActuador5_SubsysRanBC;/* '<S28>/Curvatura Actuador 5' */
+  boolean_T CurvaturaActuador5_MODE;   /* '<S28>/Curvatura Actuador 5' */
 } DW_CurvaturaActuador5_ControlSystem_Refactorization_T;
 
-/* Continuous states for system '<S27>/Curvatura Actuador 5' */
+/* Continuous states for system '<S28>/Curvatura Actuador 5' */
 typedef struct {
   real_T Modelodecurvaturadelactuador_CSTATE[5];
-                                  /* '<S40>/Modelo de curvatura del actuador' */
+                                  /* '<S41>/Modelo de curvatura del actuador' */
 } X_CurvaturaActuador5_ControlSystem_Refactorization_T;
 
-/* State derivatives for system '<S27>/Curvatura Actuador 5' */
+/* State derivatives for system '<S28>/Curvatura Actuador 5' */
 typedef struct {
   real_T Modelodecurvaturadelactuador_CSTATE[5];
-                                  /* '<S40>/Modelo de curvatura del actuador' */
+                                  /* '<S41>/Modelo de curvatura del actuador' */
 } XDot_CurvaturaActuador5_ControlSystem_Refactorization_T;
 
-/* State Disabled for system '<S27>/Curvatura Actuador 5' */
+/* State Disabled for system '<S28>/Curvatura Actuador 5' */
 typedef struct {
   boolean_T Modelodecurvaturadelactuador_CSTATE[5];
-                                  /* '<S40>/Modelo de curvatura del actuador' */
+                                  /* '<S41>/Modelo de curvatura del actuador' */
 } XDis_CurvaturaActuador5_ControlSystem_Refactorization_T;
 
 /* Block signals for system '<S22>/Modelo de los actuadores' */
 typedef struct {
-  real_T Constant;                     /* '<S35>/Constant' */
-  real_T EstadoValvula_o;              /* '<S27>/Switch1' */
-  boolean_T Compare;                   /* '<S28>/Compare' */
-  boolean_T Compare_g;                 /* '<S29>/Compare' */
-  boolean_T Compare_e;                 /* '<S30>/Compare' */
-  boolean_T Compare_d;                 /* '<S31>/Compare' */
-  boolean_T Compare_i;                 /* '<S32>/Compare' */
-  boolean_T HiddenBuf_InsertedFor_CurvaturaActuador1_at_inport_1;/* '<S27>/Compare To Constant' */
-  boolean_T HiddenBuf_InsertedFor_CurvaturaActuador2_at_inport_1;/* '<S27>/Compare To Constant1' */
-  boolean_T HiddenBuf_InsertedFor_CurvaturaActuador3_at_inport_1;/* '<S27>/Compare To Constant2' */
-  boolean_T HiddenBuf_InsertedFor_CurvaturaActuador4_at_inport_1;/* '<S27>/Compare To Constant3' */
-  boolean_T HiddenBuf_InsertedFor_CurvaturaActuador5_at_inport_1;/* '<S27>/Compare To Constant4' */
-  B_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador1;/* '<S27>/Curvatura Actuador 1' */
-  B_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador2;/* '<S27>/Curvatura Actuador 2' */
-  B_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador3;/* '<S27>/Curvatura Actuador 3' */
-  B_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador4;/* '<S27>/Curvatura Actuador 4' */
-  B_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador5;/* '<S27>/Curvatura Actuador 5' */
+  real_T Constant;                     /* '<S36>/Constant' */
+  real_T EstadoValvula_o;              /* '<S28>/Switch1' */
+  boolean_T Compare;                   /* '<S29>/Compare' */
+  boolean_T Compare_g;                 /* '<S30>/Compare' */
+  boolean_T Compare_e;                 /* '<S31>/Compare' */
+  boolean_T Compare_d;                 /* '<S32>/Compare' */
+  boolean_T Compare_i;                 /* '<S33>/Compare' */
+  boolean_T HiddenBuf_InsertedFor_CurvaturaActuador1_at_inport_1;/* '<S28>/Compare To Constant' */
+  boolean_T HiddenBuf_InsertedFor_CurvaturaActuador2_at_inport_1;/* '<S28>/Compare To Constant1' */
+  boolean_T HiddenBuf_InsertedFor_CurvaturaActuador3_at_inport_1;/* '<S28>/Compare To Constant2' */
+  boolean_T HiddenBuf_InsertedFor_CurvaturaActuador4_at_inport_1;/* '<S28>/Compare To Constant3' */
+  boolean_T HiddenBuf_InsertedFor_CurvaturaActuador5_at_inport_1;/* '<S28>/Compare To Constant4' */
+  B_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador1;/* '<S28>/Curvatura Actuador 1' */
+  B_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador2;/* '<S28>/Curvatura Actuador 2' */
+  B_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador3;/* '<S28>/Curvatura Actuador 3' */
+  B_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador4;/* '<S28>/Curvatura Actuador 4' */
+  B_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador5;/* '<S28>/Curvatura Actuador 5' */
 } B_CoreSubsys_ControlSystem_Refactorization_caua_T;
 
 /* Block states (default storage) for system '<S22>/Modelo de los actuadores' */
 typedef struct {
-  DW_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador1;/* '<S27>/Curvatura Actuador 1' */
-  DW_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador2;/* '<S27>/Curvatura Actuador 2' */
-  DW_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador3;/* '<S27>/Curvatura Actuador 3' */
-  DW_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador4;/* '<S27>/Curvatura Actuador 4' */
-  DW_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador5;/* '<S27>/Curvatura Actuador 5' */
+  DW_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador1;/* '<S28>/Curvatura Actuador 1' */
+  DW_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador2;/* '<S28>/Curvatura Actuador 2' */
+  DW_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador3;/* '<S28>/Curvatura Actuador 3' */
+  DW_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador4;/* '<S28>/Curvatura Actuador 4' */
+  DW_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador5;/* '<S28>/Curvatura Actuador 5' */
 } DW_CoreSubsys_ControlSystem_Refactorization_fwu4_T;
 
 /* Continuous states for system '<S22>/Modelo de los actuadores' */
 typedef struct {
-  X_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador1;/* '<S27>/Curvatura Actuador 5' */
-  X_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador2;/* '<S27>/Curvatura Actuador 5' */
-  X_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador3;/* '<S27>/Curvatura Actuador 5' */
-  X_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador4;/* '<S27>/Curvatura Actuador 5' */
-  X_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador5;/* '<S27>/Curvatura Actuador 5' */
+  X_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador1;/* '<S28>/Curvatura Actuador 5' */
+  X_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador2;/* '<S28>/Curvatura Actuador 5' */
+  X_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador3;/* '<S28>/Curvatura Actuador 5' */
+  X_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador4;/* '<S28>/Curvatura Actuador 5' */
+  X_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador5;/* '<S28>/Curvatura Actuador 5' */
 } X_CoreSubsys_ControlSystem_Refactorization_nymf_T;
 
 /* State derivatives for system '<S22>/Modelo de los actuadores' */
 typedef struct {
-  XDot_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador1;/* '<S27>/Curvatura Actuador 5' */
-  XDot_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador2;/* '<S27>/Curvatura Actuador 5' */
-  XDot_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador3;/* '<S27>/Curvatura Actuador 5' */
-  XDot_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador4;/* '<S27>/Curvatura Actuador 5' */
-  XDot_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador5;/* '<S27>/Curvatura Actuador 5' */
+  XDot_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador1;/* '<S28>/Curvatura Actuador 5' */
+  XDot_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador2;/* '<S28>/Curvatura Actuador 5' */
+  XDot_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador3;/* '<S28>/Curvatura Actuador 5' */
+  XDot_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador4;/* '<S28>/Curvatura Actuador 5' */
+  XDot_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador5;/* '<S28>/Curvatura Actuador 5' */
 } XDot_CoreSubsys_ControlSystem_Refactorization_n1mv_T;
 
 /* State Disabled for system '<S22>/Modelo de los actuadores' */
 typedef struct {
-  XDis_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador1;/* '<S27>/Curvatura Actuador 5' */
-  XDis_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador2;/* '<S27>/Curvatura Actuador 5' */
-  XDis_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador3;/* '<S27>/Curvatura Actuador 5' */
-  XDis_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador4;/* '<S27>/Curvatura Actuador 5' */
-  XDis_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador5;/* '<S27>/Curvatura Actuador 5' */
+  XDis_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador1;/* '<S28>/Curvatura Actuador 5' */
+  XDis_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador2;/* '<S28>/Curvatura Actuador 5' */
+  XDis_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador3;/* '<S28>/Curvatura Actuador 5' */
+  XDis_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador4;/* '<S28>/Curvatura Actuador 5' */
+  XDis_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador5;/* '<S28>/Curvatura Actuador 5' */
 } XDis_CoreSubsys_ControlSystem_Refactorization_nenc_T;
 
 /* Block signals (default storage) */
@@ -977,42 +977,43 @@ typedef struct {
   slBusActuador ImpAsg_InsertedFor_actuadores_at_inport_0[4];/* '<S3>/Bus Assignment' */
   real_T TmpSignalConversionAtForEachSubsystemInport2[4];/* '<S1>/Configuración de usuario' */
   real_T TmpSignalConversionAtForEachSubsystemInport3[4];/* '<S1>/Configuración de usuario' */
-  real_T Constant;                     /* '<S48>/Constant' */
+  real_T Constant;                     /* '<S49>/Constant' */
   real_T PresinRegulador;              /* '<S8>/Switch2' */
   real_T ImpAsg_InsertedFor_Presinactuadores_at_inport_0[4];
   real_T ImpAsg_InsertedFor_Curvaturaactuadores_at_inport_0[4];
-  real_T Add;                          /* '<S45>/Add' */
-  real_T Derivative;                   /* '<S45>/Derivative' */
-  real_T presion;                      /* '<S45>/Saturación de tensión' */
-  real_T curvatura;                    /* '<S45>/Constant1' */
-  real_T curvatura_g;                  /* '<S45>/Constant' */
-  real_T Add1;                         /* '<S44>/Add1' */
-  real_T Derivative1;                  /* '<S44>/Derivative1' */
-  real_T Saturacindetensin;            /* '<S44>/Saturación de tensión' */
-  real_T presion_b;                    /* '<S44>/Constant1' */
-  real_T presion_bl;                   /* '<S44>/Constant' */
-  real_T Gain2;                        /* '<S46>/Gain2' */
-  real_T Gain1;                        /* '<S46>/Gain1' */
+  real_T Add;                          /* '<S46>/Add' */
+  real_T Derivative;                   /* '<S46>/Derivative' */
+  real_T presion;                      /* '<S46>/Saturación de tensión' */
+  real_T curvatura;                    /* '<S46>/Constant1' */
+  real_T curvatura_g;                  /* '<S46>/Constant' */
+  real_T Add1;                         /* '<S45>/Add1' */
+  real_T Derivative1;                  /* '<S45>/Derivative1' */
+  real_T Saturacindetensin;            /* '<S45>/Saturación de tensión' */
+  real_T presion_b;                    /* '<S45>/Constant1' */
+  real_T presion_bl;                   /* '<S45>/Constant' */
+  real_T Gain2;                        /* '<S47>/Gain2' */
+  real_T Gain1;                        /* '<S47>/Gain1' */
   real_T Abs;                          /* '<S22>/Abs' */
   real_T Modelodelreguladordepresinelectrnico;
                        /* '<S22>/Modelo del regulador de presión electrónico' */
   real_T ImpAsg_InsertedFor_PresinActuador_at_inport_0[4];
   real_T ImpAsg_InsertedFor_CurvaturaActuador_at_inport_0[4];
-  real_T OutportBufferForCurvaturaActuadores[4];
-  real_T press;                        /* '<S21>/MATLAB Function' */
+  real_T Abs_a;                        /* '<S21>/Abs' */
+  real_T MATLABSystem[8];              /* '<S21>/MATLAB System' */
+  real_T curv[4];                      /* '<S21>/MATLAB Function2' */
+  real_T press;                        /* '<S21>/MATLAB Function1' */
   real_T ImpAsg_InsertedFor_Out1_at_inport_0[4];
-  real_T Constant_j[4];                /* '<S21>/Constant' */
   boolean_T TmpSignalConversionAtForEachSubsystemInport4[4];/* '<S1>/Configuración de usuario' */
   boolean_T TmpSignalConversionAtForEachSubsystemInport5[4];/* '<S1>/Configuración de usuario' */
   boolean_T OR1;                       /* '<S7>/OR1' */
   boolean_T HiddenBuf_InsertedFor_ControldePresin_at_inport_2;/* '<S7>/OR1' */
-  boolean_T Compare;                   /* '<S41>/Compare' */
+  boolean_T Compare;                   /* '<S42>/Compare' */
   boolean_T HiddenBuf_InsertedFor_ControldeCurvatura_at_inport_3;/* '<S7>/Compare To Constant' */
   boolean_T NOT;                       /* '<S5>/NOT' */
   boolean_T HiddenBuf_InsertedFor_DAQ_at_inport_3;/* '<S5>/NOT' */
   boolean_T HiddenBuf_InsertedFor_Simulacin_at_inport_2;
   boolean_T simulacionActiva;
-  boolean_T Compare_k;                 /* '<S47>/Compare' */
+  boolean_T Compare_k;                 /* '<S48>/Compare' */
   ModoControl modoControl;
   ActuadorPosicionado ImpAsg_InsertedFor_Actuadoresposicionados_at_inport_0[4];
   B_CoreSubsys_ControlSystem_Refactorization_caua_T CoreSubsys_pnae[4];/* '<S22>/Modelo de los actuadores' */
@@ -1024,21 +1025,26 @@ typedef struct {
   slBusActuador actuadorBus[4];        /* '<Root>/Data Store Memory' */
   slBusElectroValvulas electroValvulas;/* '<Root>/Data Store Memory3' */
   sequential_autonomousControlLogic_ControlSystem_Refactorization_T obj;/* '<S6>/MATLAB System1' */
-  real_T TimeStampA;                   /* '<S45>/Derivative' */
-  real_T LastUAtTimeA;                 /* '<S45>/Derivative' */
-  real_T TimeStampB;                   /* '<S45>/Derivative' */
-  real_T LastUAtTimeB;                 /* '<S45>/Derivative' */
-  real_T TimeStampA_b;                 /* '<S44>/Derivative1' */
-  real_T LastUAtTimeA_e;               /* '<S44>/Derivative1' */
-  real_T TimeStampB_f;                 /* '<S44>/Derivative1' */
-  real_T LastUAtTimeB_k;               /* '<S44>/Derivative1' */
-  real_T TimeStampA_k;                 /* '<S46>/Derivative' */
-  real_T LastUAtTimeA_g;               /* '<S46>/Derivative' */
-  real_T TimeStampB_b;                 /* '<S46>/Derivative' */
-  real_T LastUAtTimeB_c;               /* '<S46>/Derivative' */
+  real_T TimeStampA;                   /* '<S46>/Derivative' */
+  real_T LastUAtTimeA;                 /* '<S46>/Derivative' */
+  real_T TimeStampB;                   /* '<S46>/Derivative' */
+  real_T LastUAtTimeB;                 /* '<S46>/Derivative' */
+  real_T TimeStampA_b;                 /* '<S45>/Derivative1' */
+  real_T LastUAtTimeA_e;               /* '<S45>/Derivative1' */
+  real_T TimeStampB_f;                 /* '<S45>/Derivative1' */
+  real_T LastUAtTimeB_k;               /* '<S45>/Derivative1' */
+  real_T TimeStampA_k;                 /* '<S47>/Derivative' */
+  real_T LastUAtTimeA_g;               /* '<S47>/Derivative' */
+  real_T TimeStampB_b;                 /* '<S47>/Derivative' */
+  real_T LastUAtTimeB_c;               /* '<S47>/Derivative' */
   slBusRegulador regulador;            /* '<Root>/Data Store Memory2' */
-  int32_T sfEvent;                     /* '<S21>/MATLAB Function' */
-  elegirTensionesElectrovalvulas_ControlSystem_Refactorization_T obj_b;/* '<S21>/MATLAB System' */
+  void *AnalogOutput_PWORK;            /* '<S21>/Analog Output' */
+  void *DigitalOutput_PWORK;           /* '<S21>/Digital Output' */
+  void *AnalogInput_PWORK;             /* '<S21>/Analog Input' */
+  void *AnalogInput1_PWORK;            /* '<S21>/Analog Input1' */
+  int32_T sfEvent;                     /* '<S21>/MATLAB Function2' */
+  int32_T sfEvent_e;                   /* '<S21>/MATLAB Function1' */
+  selectElectrovalvesVoltage_ControlSystem_Refactorization_T obj_b;/* '<S21>/MATLAB System' */
   manualControlLogic_ControlSystem_Refactorization_T obj_k;/* '<S6>/MATLAB System' */
   int8_T ControldePresin_SubsysRanBC;  /* '<S7>/Control de Presión' */
   int8_T ControldeCurvatura_SubsysRanBC;/* '<S7>/Control de Curvatura' */
@@ -1047,7 +1053,8 @@ typedef struct {
   boolean_T objisempty;                /* '<S6>/MATLAB System1' */
   boolean_T objisempty_e;              /* '<S6>/MATLAB System' */
   boolean_T objisempty_h;              /* '<S21>/MATLAB System' */
-  boolean_T doneDoubleBufferReInit;    /* '<S21>/MATLAB Function' */
+  boolean_T doneDoubleBufferReInit;    /* '<S21>/MATLAB Function2' */
+  boolean_T doneDoubleBufferReInit_n;  /* '<S21>/MATLAB Function1' */
   boolean_T ControldePresin_MODE;      /* '<S7>/Control de Presión' */
   boolean_T ControldeCurvatura_MODE;   /* '<S7>/Control de Curvatura' */
   boolean_T Simulacin_MODE;            /* '<S5>/Simulación' */
@@ -1057,31 +1064,31 @@ typedef struct {
 
 /* Continuous states (default storage) */
 typedef struct {
-  real_T Integrator_CSTATE;            /* '<S46>/Integrator' */
+  real_T Integrator_CSTATE;            /* '<S47>/Integrator' */
   real_T Modelodelreguladordepresinelectrnico_CSTATE[2];
                        /* '<S22>/Modelo del regulador de presión electrónico' */
-  X_CoreSubsys_ControlSystem_Refactorization_nymf_T CoreSubsys_pnae[4];/* '<S27>/CoreSubsys' */
+  X_CoreSubsys_ControlSystem_Refactorization_nymf_T CoreSubsys_pnae[4];/* '<S28>/CoreSubsys' */
 } X_ControlSystem_Refactorization_T;
 
 /* State derivatives (default storage) */
 typedef struct {
-  real_T Integrator_CSTATE;            /* '<S46>/Integrator' */
+  real_T Integrator_CSTATE;            /* '<S47>/Integrator' */
   real_T Modelodelreguladordepresinelectrnico_CSTATE[2];
                        /* '<S22>/Modelo del regulador de presión electrónico' */
-  XDot_CoreSubsys_ControlSystem_Refactorization_n1mv_T CoreSubsys_pnae[4];/* '<S27>/CoreSubsys' */
+  XDot_CoreSubsys_ControlSystem_Refactorization_n1mv_T CoreSubsys_pnae[4];/* '<S28>/CoreSubsys' */
 } XDot_ControlSystem_Refactorization_T;
 
 /* State disabled  */
 typedef struct {
-  boolean_T Integrator_CSTATE;         /* '<S46>/Integrator' */
+  boolean_T Integrator_CSTATE;         /* '<S47>/Integrator' */
   boolean_T Modelodelreguladordepresinelectrnico_CSTATE[2];
                        /* '<S22>/Modelo del regulador de presión electrónico' */
-  XDis_CoreSubsys_ControlSystem_Refactorization_nenc_T CoreSubsys_pnae[4];/* '<S27>/CoreSubsys' */
+  XDis_CoreSubsys_ControlSystem_Refactorization_nenc_T CoreSubsys_pnae[4];/* '<S28>/CoreSubsys' */
 } XDis_ControlSystem_Refactorization_T;
 
 /* Zero-crossing (trigger) state */
 typedef struct {
-  ZCSigState Integrator_Reset_ZCE;     /* '<S46>/Integrator' */
+  ZCSigState Integrator_Reset_ZCE;     /* '<S47>/Integrator' */
 } PrevZCX_ControlSystem_Refactorization_T;
 
 #ifndef ODE3_INTG
@@ -1115,60 +1122,60 @@ typedef struct {
 struct P_CoreSubsys_ControlSystem_Refactorization_gmy_T_ {
   ModoControl CompareToConstant5_const;
                                      /* Mask Parameter: CompareToConstant5_const
-                                      * Referenced by: '<S25>/Constant'
+                                      * Referenced by: '<S26>/Constant'
                                       */
   boolean_T CompareToConstant6_const;/* Mask Parameter: CompareToConstant6_const
-                                      * Referenced by: '<S26>/Constant'
+                                      * Referenced by: '<S27>/Constant'
                                       */
 };
 
-/* Parameters for system: '<S27>/Curvatura Actuador 5' */
+/* Parameters for system: '<S28>/Curvatura Actuador 5' */
 struct P_CurvaturaActuador5_ControlSystem_Refactorization_T_ {
   real_T Curvatura_Y0;                 /* Computed Parameter: Curvatura_Y0
-                                        * Referenced by: '<S40>/Curvatura'
+                                        * Referenced by: '<S41>/Curvatura'
                                         */
   real_T Modelodecurvaturadelactuador_A[5];
                            /* Computed Parameter: Modelodecurvaturadelactuador_A
-                            * Referenced by: '<S40>/Modelo de curvatura del actuador'
+                            * Referenced by: '<S41>/Modelo de curvatura del actuador'
                             */
   real_T Modelodecurvaturadelactuador_C[5];
                            /* Computed Parameter: Modelodecurvaturadelactuador_C
-                            * Referenced by: '<S40>/Modelo de curvatura del actuador'
+                            * Referenced by: '<S41>/Modelo de curvatura del actuador'
                             */
 };
 
 /* Parameters for system: '<S22>/Modelo de los actuadores' */
 struct P_CoreSubsys_ControlSystem_Refactorization_gmy0_T_ {
   real_T CompareToConstant_const;     /* Mask Parameter: CompareToConstant_const
-                                       * Referenced by: '<S28>/Constant'
+                                       * Referenced by: '<S29>/Constant'
                                        */
   real_T CompareToConstant1_const;   /* Mask Parameter: CompareToConstant1_const
-                                      * Referenced by: '<S29>/Constant'
-                                      */
-  real_T CompareToConstant2_const;   /* Mask Parameter: CompareToConstant2_const
                                       * Referenced by: '<S30>/Constant'
                                       */
-  real_T CompareToConstant3_const;   /* Mask Parameter: CompareToConstant3_const
+  real_T CompareToConstant2_const;   /* Mask Parameter: CompareToConstant2_const
                                       * Referenced by: '<S31>/Constant'
                                       */
-  real_T CompareToConstant4_const;   /* Mask Parameter: CompareToConstant4_const
+  real_T CompareToConstant3_const;   /* Mask Parameter: CompareToConstant3_const
                                       * Referenced by: '<S32>/Constant'
+                                      */
+  real_T CompareToConstant4_const;   /* Mask Parameter: CompareToConstant4_const
+                                      * Referenced by: '<S33>/Constant'
                                       */
   ModoControl CompareToConstant5_const;
                                      /* Mask Parameter: CompareToConstant5_const
-                                      * Referenced by: '<S33>/Constant'
-                                      */
-  boolean_T CompareToConstant6_const;/* Mask Parameter: CompareToConstant6_const
                                       * Referenced by: '<S34>/Constant'
                                       */
-  boolean_T CompareToConstant7_const;/* Mask Parameter: CompareToConstant7_const
+  boolean_T CompareToConstant6_const;/* Mask Parameter: CompareToConstant6_const
                                       * Referenced by: '<S35>/Constant'
                                       */
-  P_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador1;/* '<S27>/Curvatura Actuador 1' */
-  P_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador2;/* '<S27>/Curvatura Actuador 2' */
-  P_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador3;/* '<S27>/Curvatura Actuador 3' */
-  P_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador4;/* '<S27>/Curvatura Actuador 4' */
-  P_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador5;/* '<S27>/Curvatura Actuador 5' */
+  boolean_T CompareToConstant7_const;/* Mask Parameter: CompareToConstant7_const
+                                      * Referenced by: '<S36>/Constant'
+                                      */
+  P_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador1;/* '<S28>/Curvatura Actuador 1' */
+  P_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador2;/* '<S28>/Curvatura Actuador 2' */
+  P_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador3;/* '<S28>/Curvatura Actuador 3' */
+  P_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador4;/* '<S28>/Curvatura Actuador 4' */
+  P_CurvaturaActuador5_ControlSystem_Refactorization_T CurvaturaActuador5;/* '<S28>/Curvatura Actuador 5' */
 };
 
 /* Parameters (default storage) */
@@ -1185,36 +1192,101 @@ struct P_ControlSystem_Refactorization_T_ {
   slBusRegulador regulador;            /* Variable: regulador
                                         * Referenced by: '<Root>/Data Store Memory2'
                                         */
+  real_T AnalogOutput_MaxMissedTicks;
+                                  /* Mask Parameter: AnalogOutput_MaxMissedTicks
+                                   * Referenced by: '<S21>/Analog Output'
+                                   */
+  real_T DigitalOutput_MaxMissedTicks;
+                                 /* Mask Parameter: DigitalOutput_MaxMissedTicks
+                                  * Referenced by: '<S21>/Digital Output'
+                                  */
+  real_T AnalogInput_MaxMissedTicks;
+                                   /* Mask Parameter: AnalogInput_MaxMissedTicks
+                                    * Referenced by: '<S21>/Analog Input'
+                                    */
+  real_T AnalogInput1_MaxMissedTicks;
+                                  /* Mask Parameter: AnalogInput1_MaxMissedTicks
+                                   * Referenced by: '<S21>/Analog Input1'
+                                   */
+  real_T AnalogOutput_YieldWhenWaiting;
+                                /* Mask Parameter: AnalogOutput_YieldWhenWaiting
+                                 * Referenced by: '<S21>/Analog Output'
+                                 */
+  real_T DigitalOutput_YieldWhenWaiting;
+                               /* Mask Parameter: DigitalOutput_YieldWhenWaiting
+                                * Referenced by: '<S21>/Digital Output'
+                                */
+  real_T AnalogInput_YieldWhenWaiting;
+                                 /* Mask Parameter: AnalogInput_YieldWhenWaiting
+                                  * Referenced by: '<S21>/Analog Input'
+                                  */
+  real_T AnalogInput1_YieldWhenWaiting;
+                                /* Mask Parameter: AnalogInput1_YieldWhenWaiting
+                                 * Referenced by: '<S21>/Analog Input1'
+                                 */
+  int32_T DigitalOutput_BitMode;       /* Mask Parameter: DigitalOutput_BitMode
+                                        * Referenced by: '<S21>/Digital Output'
+                                        */
+  int32_T AnalogOutput_Channels;       /* Mask Parameter: AnalogOutput_Channels
+                                        * Referenced by: '<S21>/Analog Output'
+                                        */
+  int32_T DigitalOutput_Channels[8];   /* Mask Parameter: DigitalOutput_Channels
+                                        * Referenced by: '<S21>/Digital Output'
+                                        */
+  int32_T AnalogInput_Channels;        /* Mask Parameter: AnalogInput_Channels
+                                        * Referenced by: '<S21>/Analog Input'
+                                        */
+  int32_T AnalogInput1_Channels[4];    /* Mask Parameter: AnalogInput1_Channels
+                                        * Referenced by: '<S21>/Analog Input1'
+                                        */
+  int32_T AnalogOutput_RangeMode;      /* Mask Parameter: AnalogOutput_RangeMode
+                                        * Referenced by: '<S21>/Analog Output'
+                                        */
+  int32_T AnalogInput_RangeMode;       /* Mask Parameter: AnalogInput_RangeMode
+                                        * Referenced by: '<S21>/Analog Input'
+                                        */
+  int32_T AnalogInput1_RangeMode;      /* Mask Parameter: AnalogInput1_RangeMode
+                                        * Referenced by: '<S21>/Analog Input1'
+                                        */
+  int32_T AnalogOutput_VoltRange;      /* Mask Parameter: AnalogOutput_VoltRange
+                                        * Referenced by: '<S21>/Analog Output'
+                                        */
+  int32_T AnalogInput_VoltRange;       /* Mask Parameter: AnalogInput_VoltRange
+                                        * Referenced by: '<S21>/Analog Input'
+                                        */
+  int32_T AnalogInput1_VoltRange;      /* Mask Parameter: AnalogInput1_VoltRange
+                                        * Referenced by: '<S21>/Analog Input1'
+                                        */
   Controlador CompareToConstant_const;/* Mask Parameter: CompareToConstant_const
-                                       * Referenced by: '<S47>/Constant'
+                                       * Referenced by: '<S48>/Constant'
                                        */
   Controlador CompareToConstant1_const;
                                      /* Mask Parameter: CompareToConstant1_const
-                                      * Referenced by: '<S42>/Constant'
+                                      * Referenced by: '<S43>/Constant'
                                       */
   Controlador CompareToConstant4_const;
                                      /* Mask Parameter: CompareToConstant4_const
-                                      * Referenced by: '<S43>/Constant'
+                                      * Referenced by: '<S44>/Constant'
                                       */
   Controlador CompareToConstant_const_b;
                                     /* Mask Parameter: CompareToConstant_const_b
-                                     * Referenced by: '<S41>/Constant'
+                                     * Referenced by: '<S42>/Constant'
                                      */
   boolean_T CompareToConstant7_const;/* Mask Parameter: CompareToConstant7_const
-                                      * Referenced by: '<S48>/Constant'
+                                      * Referenced by: '<S49>/Constant'
                                       */
   Referencia Errorestacionario_Y0;   /* Computed Parameter: Errorestacionario_Y0
-                                      * Referenced by: '<S44>/Error estacionario'
+                                      * Referenced by: '<S45>/Error estacionario'
                                       */
   Referencia Errorderivativo_Y0;       /* Computed Parameter: Errorderivativo_Y0
-                                        * Referenced by: '<S44>/Error derivativo'
+                                        * Referenced by: '<S45>/Error derivativo'
                                         */
   Referencia Errorestacionario_Y0_i;
                                    /* Computed Parameter: Errorestacionario_Y0_i
-                                    * Referenced by: '<S45>/Error estacionario'
+                                    * Referenced by: '<S46>/Error estacionario'
                                     */
   Referencia Errorderivativo_Y0_b;   /* Computed Parameter: Errorderivativo_Y0_b
-                                      * Referenced by: '<S45>/Error derivativo'
+                                      * Referenced by: '<S46>/Error derivativo'
                                       */
   real_T RefPresion1_Value;            /* Expression: 0.2124727184153514
                                         * Referenced by: '<S18>/RefPresion1'
@@ -1264,18 +1336,19 @@ struct P_ControlSystem_Refactorization_T_ {
   real_T PresinRegulador_Y0;           /* Computed Parameter: PresinRegulador_Y0
                                         * Referenced by: '<S21>/Presión Regulador'
                                         */
-  real_T Constant_Value[4];          /* Expression: zeros(1,length(actuadorBus))
-                                      * Referenced by: '<S21>/Constant'
-                                      */
+  real_T CurvaturaActuadores_Y0;   /* Computed Parameter: CurvaturaActuadores_Y0
+                                    * Referenced by: '<S21>/Curvatura Actuadores'
+                                    */
   real_T PresinActuadores_Y0_o;     /* Computed Parameter: PresinActuadores_Y0_o
                                      * Referenced by: '<S22>/Presión Actuadores'
                                      */
   real_T PresinReguladores_Y0;       /* Computed Parameter: PresinReguladores_Y0
                                       * Referenced by: '<S22>/Presión Reguladores'
                                       */
-  real_T CurvaturaActuadores_Y0;   /* Computed Parameter: CurvaturaActuadores_Y0
-                                    * Referenced by: '<S22>/Curvatura Actuadores'
-                                    */
+  real_T CurvaturaActuadores_Y0_i;
+                                 /* Computed Parameter: CurvaturaActuadores_Y0_i
+                                  * Referenced by: '<S22>/Curvatura Actuadores'
+                                  */
   real_T Modelodelreguladordepresinelectrnico_A[2];
                    /* Computed Parameter: Modelodelreguladordepresinelectrnico_A
                     * Referenced by: '<S22>/Modelo del regulador de presión electrónico'
@@ -1285,52 +1358,52 @@ struct P_ControlSystem_Refactorization_T_ {
                     * Referenced by: '<S22>/Modelo del regulador de presión electrónico'
                     */
   real_T Gain_Gain;                    /* Expression: 65
-                                        * Referenced by: '<S46>/Gain'
+                                        * Referenced by: '<S47>/Gain'
                                         */
   real_T Integrator_IC;                /* Expression: 0
-                                        * Referenced by: '<S46>/Integrator'
+                                        * Referenced by: '<S47>/Integrator'
                                         */
   real_T Gain2_Gain;                   /* Expression: 1.25
-                                        * Referenced by: '<S46>/Gain2'
+                                        * Referenced by: '<S47>/Gain2'
                                         */
   real_T Gain1_Gain;                   /* Expression: 233.3
-                                        * Referenced by: '<S46>/Gain1'
+                                        * Referenced by: '<S47>/Gain1'
                                         */
   real_T SealControl_Y0;               /* Computed Parameter: SealControl_Y0
-                                        * Referenced by: '<S44>/SeñalControl'
-                                        */
-  real_T Constant_Value_d;             /* Expression: 0
-                                        * Referenced by: '<S44>/Constant'
-                                        */
-  real_T Constant1_Value;              /* Expression: 0
-                                        * Referenced by: '<S44>/Constant1'
-                                        */
-  real_T GananciaPresinTensin_Gain;    /* Expression: 10
-                                        * Referenced by: '<S44>/Ganancia Presión -> Tensión'
-                                        */
-  real_T Saturacindetensin_UpperSat;   /* Expression: 10
-                                        * Referenced by: '<S44>/Saturación de tensión'
-                                        */
-  real_T Saturacindetensin_LowerSat;   /* Expression: -10
-                                        * Referenced by: '<S44>/Saturación de tensión'
-                                        */
-  real_T SealControl_Y0_p;             /* Computed Parameter: SealControl_Y0_p
                                         * Referenced by: '<S45>/SeñalControl'
                                         */
-  real_T Constant_Value_k;             /* Expression: 0
+  real_T Constant_Value;               /* Expression: 0
                                         * Referenced by: '<S45>/Constant'
                                         */
-  real_T Constant1_Value_m;            /* Expression: 0
+  real_T Constant1_Value;              /* Expression: 0
                                         * Referenced by: '<S45>/Constant1'
                                         */
-  real_T GananciaPresinTensin_Gain_p;  /* Expression: 10
+  real_T GananciaPresinTensin_Gain;    /* Expression: 10
                                         * Referenced by: '<S45>/Ganancia Presión -> Tensión'
                                         */
-  real_T Saturacindetensin_UpperSat_a; /* Expression: 10
+  real_T Saturacindetensin_UpperSat;   /* Expression: 10
                                         * Referenced by: '<S45>/Saturación de tensión'
                                         */
-  real_T Saturacindetensin_LowerSat_m; /* Expression: -10
+  real_T Saturacindetensin_LowerSat;   /* Expression: -10
                                         * Referenced by: '<S45>/Saturación de tensión'
+                                        */
+  real_T SealControl_Y0_p;             /* Computed Parameter: SealControl_Y0_p
+                                        * Referenced by: '<S46>/SeñalControl'
+                                        */
+  real_T Constant_Value_k;             /* Expression: 0
+                                        * Referenced by: '<S46>/Constant'
+                                        */
+  real_T Constant1_Value_m;            /* Expression: 0
+                                        * Referenced by: '<S46>/Constant1'
+                                        */
+  real_T GananciaPresinTensin_Gain_p;  /* Expression: 10
+                                        * Referenced by: '<S46>/Ganancia Presión -> Tensión'
+                                        */
+  real_T Saturacindetensin_UpperSat_a; /* Expression: 10
+                                        * Referenced by: '<S46>/Saturación de tensión'
+                                        */
+  real_T Saturacindetensin_LowerSat_m; /* Expression: -10
+                                        * Referenced by: '<S46>/Saturación de tensión'
                                         */
   ModoControl Constant_Value_f;        /* Expression: ModoControl(1)
                                         * Referenced by: '<S20>/Constant'
@@ -1451,6 +1524,13 @@ struct tag_RTM_ControlSystem_Refactorization_T {
     uint32_T clockTick1;
     uint32_T clockTickH1;
     time_T stepSize1;
+    uint32_T clockTick2;
+    uint32_T clockTickH2;
+    time_T stepSize2;
+    struct {
+      uint16_T TID[3];
+    } TaskCounters;
+
     time_T tStart;
     time_T tFinal;
     time_T timeOfLastOutput;
@@ -1464,12 +1544,12 @@ struct tag_RTM_ControlSystem_Refactorization_T {
     int_T *sampleHits;
     int_T *perTaskSampleHits;
     time_T *t;
-    time_T sampleTimesArray[2];
-    time_T offsetTimesArray[2];
-    int_T sampleTimeTaskIDArray[2];
-    int_T sampleHitArray[2];
-    int_T perTaskSampleHitsArray[4];
-    time_T tArray[2];
+    time_T sampleTimesArray[3];
+    time_T offsetTimesArray[3];
+    int_T sampleTimeTaskIDArray[3];
+    int_T sampleHitArray[3];
+    int_T perTaskSampleHitsArray[9];
+    time_T tArray[3];
   } Timing;
 };
 
@@ -1555,31 +1635,32 @@ extern RT_MODEL_ControlSystem_Refactorization_T *const
  * '<S21>'  : 'ControlSystem_Refactorization/Hardware/DAQ'
  * '<S22>'  : 'ControlSystem_Refactorization/Hardware/Simulación'
  * '<S23>'  : 'ControlSystem_Refactorization/Hardware/DAQ/Flujo de aire en los actuadores'
- * '<S24>'  : 'ControlSystem_Refactorization/Hardware/DAQ/MATLAB Function'
- * '<S25>'  : 'ControlSystem_Refactorization/Hardware/DAQ/Flujo de aire en los actuadores/Compare To Constant5'
- * '<S26>'  : 'ControlSystem_Refactorization/Hardware/DAQ/Flujo de aire en los actuadores/Compare To Constant6'
- * '<S27>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores'
- * '<S28>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Compare To Constant'
- * '<S29>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Compare To Constant1'
- * '<S30>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Compare To Constant2'
- * '<S31>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Compare To Constant3'
- * '<S32>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Compare To Constant4'
- * '<S33>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Compare To Constant5'
- * '<S34>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Compare To Constant6'
- * '<S35>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Compare To Constant7'
- * '<S36>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Curvatura Actuador 1'
- * '<S37>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Curvatura Actuador 2'
- * '<S38>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Curvatura Actuador 3'
- * '<S39>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Curvatura Actuador 4'
- * '<S40>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Curvatura Actuador 5'
- * '<S41>'  : 'ControlSystem_Refactorization/Sistema de control/Compare To Constant'
- * '<S42>'  : 'ControlSystem_Refactorization/Sistema de control/Compare To Constant1'
- * '<S43>'  : 'ControlSystem_Refactorization/Sistema de control/Compare To Constant4'
- * '<S44>'  : 'ControlSystem_Refactorization/Sistema de control/Control de Curvatura'
- * '<S45>'  : 'ControlSystem_Refactorization/Sistema de control/Control de Presión'
- * '<S46>'  : 'ControlSystem_Refactorization/Sistema de control/Control de Curvatura/Controlador de posición PID'
- * '<S47>'  : 'ControlSystem_Refactorization/Sistema de control/Control de Curvatura/Controlador de posición PID/Compare To Constant'
- * '<S48>'  : 'ControlSystem_Refactorization/Visualización de datos en interfaz/Compare To Constant7'
- * '<S49>'  : 'ControlSystem_Refactorization/Visualización de datos en interfaz/DATOS DE ACTUADORES'
+ * '<S24>'  : 'ControlSystem_Refactorization/Hardware/DAQ/MATLAB Function1'
+ * '<S25>'  : 'ControlSystem_Refactorization/Hardware/DAQ/MATLAB Function2'
+ * '<S26>'  : 'ControlSystem_Refactorization/Hardware/DAQ/Flujo de aire en los actuadores/Compare To Constant5'
+ * '<S27>'  : 'ControlSystem_Refactorization/Hardware/DAQ/Flujo de aire en los actuadores/Compare To Constant6'
+ * '<S28>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores'
+ * '<S29>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Compare To Constant'
+ * '<S30>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Compare To Constant1'
+ * '<S31>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Compare To Constant2'
+ * '<S32>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Compare To Constant3'
+ * '<S33>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Compare To Constant4'
+ * '<S34>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Compare To Constant5'
+ * '<S35>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Compare To Constant6'
+ * '<S36>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Compare To Constant7'
+ * '<S37>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Curvatura Actuador 1'
+ * '<S38>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Curvatura Actuador 2'
+ * '<S39>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Curvatura Actuador 3'
+ * '<S40>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Curvatura Actuador 4'
+ * '<S41>'  : 'ControlSystem_Refactorization/Hardware/Simulación/Modelo de los actuadores/Curvatura Actuador 5'
+ * '<S42>'  : 'ControlSystem_Refactorization/Sistema de control/Compare To Constant'
+ * '<S43>'  : 'ControlSystem_Refactorization/Sistema de control/Compare To Constant1'
+ * '<S44>'  : 'ControlSystem_Refactorization/Sistema de control/Compare To Constant4'
+ * '<S45>'  : 'ControlSystem_Refactorization/Sistema de control/Control de Curvatura'
+ * '<S46>'  : 'ControlSystem_Refactorization/Sistema de control/Control de Presión'
+ * '<S47>'  : 'ControlSystem_Refactorization/Sistema de control/Control de Curvatura/Controlador de posición PID'
+ * '<S48>'  : 'ControlSystem_Refactorization/Sistema de control/Control de Curvatura/Controlador de posición PID/Compare To Constant'
+ * '<S49>'  : 'ControlSystem_Refactorization/Visualización de datos en interfaz/Compare To Constant7'
+ * '<S50>'  : 'ControlSystem_Refactorization/Visualización de datos en interfaz/DATOS DE ACTUADORES'
  */
 #endif                                 /* ControlSystem_Refactorization_h_ */

@@ -6,9 +6,9 @@
  *
  * Code generation for model "ControlSystem_Refactorization".
  *
- * Model version              : 2.9
+ * Model version              : 2.13
  * Simulink Coder version : 25.1 (R2025a) 21-Nov-2024
- * C source code generated on : Sun Sep 14 20:33:31 2025
+ * C source code generated on : Fri Oct  3 17:02:47 2025
  *
  * Target selection: sldrt.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -88,7 +88,7 @@ static uint_T rtDataTypeSizes[] = {
   sizeof(slBus1_Configuracion),
   sizeof(slBusElectroValvulas),
   sizeof(EstadoValvula),
-  sizeof(elegirTensionesElectrovalvulas_ControlSystem_Refactorization_T),
+  sizeof(selectElectrovalvesVoltage_ControlSystem_Refactorization_T),
   sizeof(manualControlLogic_ControlSystem_Refactorization_T),
   sizeof(sequential_autonomousControlLogic_ControlSystem_Refactorization_T),
   sizeof(uint64_T),
@@ -168,7 +168,7 @@ static const char_T * rtDataTypeNames[] = {
   "slBus1_Configuracion",
   "slBusElectroValvulas",
   "EstadoValvula",
-  "elegirTensionesElectrovalvulas_ControlSystem_Refactorization_T",
+  "selectElectrovalvesVoltage_ControlSystem_Refactorization_T",
   "manualControlLogic_ControlSystem_Refactorization_T",
   "sequential_autonomousControlLogic_ControlSystem_Refactorization_T",
   "uint64_T",
@@ -187,7 +187,7 @@ static DataTypeTransition rtBTransitions[] = {
 
   { (char_T *)
     (&ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport2
-     [0]), 0, 0, 53 },
+     [0]), 0, 0, 58 },
 
   { (char_T *)
     (&ControlSystem_Refactorization_B.TmpSignalConversionAtForEachSubsystemInport4
@@ -233,7 +233,9 @@ static DataTypeTransition rtBTransitions[] = {
 
   { (char_T *)(&ControlSystem_Refactorization_DW.regulador), 59, 0, 1 },
 
-  { (char_T *)(&ControlSystem_Refactorization_DW.sfEvent), 6, 0, 1 },
+  { (char_T *)(&ControlSystem_Refactorization_DW.AnalogOutput_PWORK), 11, 0, 4 },
+
+  { (char_T *)(&ControlSystem_Refactorization_DW.sfEvent), 6, 0, 2 },
 
   { (char_T *)(&ControlSystem_Refactorization_DW.obj_b), 67, 0, 1 },
 
@@ -242,7 +244,7 @@ static DataTypeTransition rtBTransitions[] = {
   { (char_T *)(&ControlSystem_Refactorization_DW.ControldePresin_SubsysRanBC), 2,
     0, 4 },
 
-  { (char_T *)(&ControlSystem_Refactorization_DW.objisempty), 8, 0, 8 },
+  { (char_T *)(&ControlSystem_Refactorization_DW.objisempty), 8, 0, 9 },
 
   { (char_T *)(&ControlSystem_Refactorization_DW.CoreSubsys_pnae[3].
                CurvaturaActuador1.CurvaturaActuador5_SubsysRanBC), 2, 0, 1 },
@@ -277,7 +279,7 @@ static DataTypeTransition rtBTransitions[] = {
 
 /* data type transition table for block I/O structure */
 static DataTypeTransitionTable rtBTransTable = {
-  34U,
+  35U,
   rtBTransitions
 };
 
@@ -290,6 +292,12 @@ static DataTypeTransition rtPTransitions[] = {
   { (char_T *)(&ControlSystem_Refactorization_P.electroValvulas), 65, 0, 1 },
 
   { (char_T *)(&ControlSystem_Refactorization_P.regulador), 59, 0, 1 },
+
+  { (char_T *)(&ControlSystem_Refactorization_P.AnalogOutput_MaxMissedTicks), 0,
+    0, 8 },
+
+  { (char_T *)(&ControlSystem_Refactorization_P.DigitalOutput_BitMode), 6, 0, 21
+  },
 
   { (char_T *)(&ControlSystem_Refactorization_P.CompareToConstant_const), 18, 0,
     4 },
@@ -308,7 +316,7 @@ static DataTypeTransition rtPTransitions[] = {
   { (char_T *)(&ControlSystem_Refactorization_P.Errorderivativo_Y0_b), 27, 0, 1
   },
 
-  { (char_T *)(&ControlSystem_Refactorization_P.RefPresion1_Value), 0, 0, 43 },
+  { (char_T *)(&ControlSystem_Refactorization_P.RefPresion1_Value), 0, 0, 40 },
 
   { (char_T *)(&ControlSystem_Refactorization_P.Constant_Value_f), 17, 0, 1 },
 
@@ -359,7 +367,7 @@ static DataTypeTransition rtPTransitions[] = {
 
 /* data type transition table for Parameters structure */
 static DataTypeTransitionTable rtPTransTable = {
-  24U,
+  26U,
   rtPTransitions
 };
 
